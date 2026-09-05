@@ -235,23 +235,6 @@
     color:var(--lime);background:rgba(182,255,62,.1);padding:3px 9px;border-radius:20px;margin-bottom:10px;
   }
 
-  /* PRO TACTICS SECTION */
-  .tactics-tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;}
-  .tactic-tab{
-    background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
-    font-size:11.5px;font-weight:700;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;
-    font-family:'Tajawal', sans-serif;
-  }
-  .tactic-tab.active{background:rgba(182,255,62,.15);border-color:var(--lime);color:var(--lime);}
-  .tactic-content{display:none;}
-  .tactic-content.active{display:block;}
-  .tactic-card-item{
-    background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;
-    padding:14px;margin-bottom:10px;
-  }
-  .tactic-card-item h3{font-family:'Tajawal';font-weight:800;font-size:14px;color:var(--lime);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
-  .tactic-card-item p{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
-
   /* GIVEAWAY TIMER GAME STYLES */
   .timer-display{
     font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
@@ -318,7 +301,6 @@
 <div class="nav-pages" id="navPages">
   <div class="page-tab active" data-target="page-scan">⚡ الرئيسية والفحص</div>
   <div class="page-tab" data-target="page-ai">🤖 المدرب الذكي وتحليل التشكيلة</div>
-  <div class="page-tab" data-target="page-tactics">🎯 دليل المحترفين</div>
   <div class="page-tab" data-target="page-giveaway">🎁 مختبر الجوائز</div>
   <div class="page-tab" data-target="page-system">⚙ الأداء والنظام</div>
   <div class="page-tab" data-target="page-net">📶 الشبكة والتخزين</div>
@@ -399,61 +381,7 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: PRO TACTICS & GUIDE ================= -->
-  <div id="page-tactics" class="page-section">
-    <section>
-      <h2 class="section-title display">دليل المحترفين والتكتيك</h2>
-      <p class="section-desc">أسرار الخطط، أساليب اللعب الصحيحة، وطرق الدفاع والهجوم لتحقيق الفوز في eFootball Mobile.</p>
-      
-      <div class="panel" style="margin-top:0">
-        <!-- Tabs -->
-        <div class="tactics-tabs" id="tacticsTabs">
-          <div class="tactic-tab active" data-target="tab-defense">🛡 الدفاع المحترف</div>
-          <div class="tactic-tab" data-target="tab-attack">⚡ الهجوم وبناء اللعب</div>
-          <div class="tactic-tab" data-target="tab-meta">📈 خطط المتا (Meta)</div>
-        </div>
-
-        <!-- Tab 1: Defense -->
-        <div id="tab-defense" class="tactic-content active">
-          <div class="tactic-card-item">
-            <h3><span>🛡</span> سر الـ Match-Up والتحرش</h3>
-            <p>لا تضغط زر الضغط المباشر (Press) بعنف مع المدافع، بل اعتمد على زر (Match-Up) لغلق المساحات وتغطية زوايا التمرير، واستخدم الضغط بـ 2-Press بحذر شديد فقط عندما يكون الخصم ظهره للمرمى.</p>
-          </div>
-          <div class="tactic-card-item">
-            <h3><span>🛑</span> خط الدفاع المتقدم والتمركز</h3>
-            <p>تأكد من اختيار مدافعين بمهارة "Build Up" مع قدرة عالية على القفز والالتحامات البدنية، وتجنب تحريك قلب الدفاع يدوياً من مكانه لكيلا تترك ثغرات خلفك.</p>
-          </div>
-        </div>
-
-        <!-- Tab 2: Attack -->
-        <div id="tab-attack" class="tactic-content">
-          <div class="tactic-card-item">
-            <h3><span>🎯</span> التمرير وثلاثية البناء</h3>
-            <p>لا تستعجل الهجوم الطولي العشوائي. استخدم التمريرات القصيرة بين خط الوسط والهجوم لسحب دفاع الخصم، ثم اختر التوقيت المناسب لتمريرة "One-Two" (التمرير والركض).</p>
-          </div>
-          <div class="tactic-card-item">
-            <h3><span>🏃‍♂️</span> استغلال أطراف الملعب</h3>
-            <p>أجنحة بمهارة "Prolific Winger" أو "Roaming Flank" تصنع الفارق. اعتمد على المراوغة الخفيفة (Sharp Touch) لفتح زاوية عرضية دقيقة نحو رأس الحربة.</p>
-          </div>
-        </div>
-
-        <!-- Tab 3: Meta Tactics -->
-        <div id="tab-meta" class="tactic-content">
-          <div class="tactic-card-item">
-            <h3><span>⭐</span> الخطة والأسلوب الأقوى (Meta)</h3>
-            <p>الخطة الأفضل هي **4-2-2-2** مع أسلوب **Long Ball Counter** (الكرة الطويلة المضادة)، حيث تمنحك توازناً مثالياً وصلابة دفاعية مع سرعة فائقة في ضرب دفاعات الخصم.</p>
-          </div>
-          <div class="tactic-card-item">
-            <h3><span>📌</span> اختيار المدرب المناسب</h3>
-            <p>احرص على رفع توافق أسلوب اللعب لديك لأكثر من 100 مع المدرب لضمان التحرك التلقائي الذكي لجميع اللاعبين على أرضية الملعب.</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
-  <!-- ================= PAGE 4: GIVEAWAY TIMER GAME ================= -->
+  <!-- ================= PAGE 3: GIVEAWAY TIMER GAME ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 تحدي العداد — اربح سوايرز!</h2>
@@ -482,7 +410,7 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 5: PERFORMANCE & SYSTEM ================= -->
+  <!-- ================= PAGE 4: PERFORMANCE & SYSTEM ================= -->
   <div id="page-system" class="page-section">
     <section>
       <h2 class="section-title display">System & Performance</h2>
@@ -538,7 +466,7 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 6: NETWORK & STORAGE ================= -->
+  <!-- ================= PAGE 5: NETWORK & STORAGE ================= -->
   <div id="page-net" class="page-section">
     <section>
       <h2 class="section-title display">Network & Storage</h2>
@@ -611,18 +539,6 @@ document.getElementById('navPages').addEventListener('click', (e) => {
   document.getElementById(targetId).classList.add('active');
   tab.classList.add('active');
   window.scrollTo({top:0, behavior:'smooth'});
-});
-
-document.getElementById('tacticsTabs').addEventListener('click', (e) => {
-  const tab = e.target.closest('.tactic-tab');
-  if(!tab) return;
-  const targetId = tab.getAttribute('data-target');
-
-  document.querySelectorAll('.tactic-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tactic-content').forEach(c => c.classList.remove('active'));
-
-  tab.classList.add('active');
-  document.getElementById(targetId).classList.add('active');
 });
 
 function showToast(msg, ms=2200){
@@ -875,7 +791,7 @@ function stopGiveawayTimer(auto=false){
     resultDiv.style.color = 'var(--lime)';
     showToast('مبروك الفوز بالجائزة!');
   } else {
-    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. لقد استنفدت محاولتك لليوم، ننتظرك غداً بحماس جديد!`;
+    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. لقد استنفدت محاولتك لليوم، ننتظرس غداً بحماس جديد!`;
     resultDiv.style.color = 'var(--danger)';
   }
 }
@@ -1020,7 +936,7 @@ function startGamingDND(){
 }
 
 // =====================================================================
-// REAL storage / memory panel — page 6
+// REAL storage / memory panel — page 5
 // =====================================================================
 async function loadStorageAndMemoryPanel(){
   const mem = navigator.deviceMemory;
