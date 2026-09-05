@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaming Performance Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D12;
+    --bg-elev:#12161D;
+    --bg-card:#161C25;
+    --border:#232B38;
+    --text:#EAEEF3;
+    --text-dim:#8B95A7;
+    --text-faint:#5C6577;
+    --lime:#B6FF3E;
+    --blue:#3E8BFF;
+    --violet:#9B6BFF;
+    --warn:#FFB020;
+    --danger:#FF5470;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(62,139,255,0.14), transparent 60%),
+      radial-gradient(900px 500px at 90% 20%, rgba(182,255,62,0.06), transparent 55%),
+      var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+  .display{font-family:'Tajawal', sans-serif;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 16px;}
+
+  /* Top bar */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,13,18,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{max-width:520px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{
+    width:32px;height:32px;border-radius:9px;
+    background:linear-gradient(135deg,var(--blue),var(--violet));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Tajawal';font-weight:900;font-size:14px;color:#0A0D12;
+    box-shadow:0 0 18px rgba(62,139,255,0.35);
+  }
+  .brand-name{font-family:'Tajawal';font-weight:800;font-size:14px;line-height:1.15;}
+  .brand-sub{font-size:10.5px;color:var(--text-dim);}
+  .tg-btn{
+    display:flex;align-items:center;gap:6px;
+    background:var(--bg-card);border:1px solid var(--border);
+    padding:7px 11px;border-radius:20px;
+    color:var(--text);text-decoration:none;font-size:12px;font-weight:600;
+  }
+  .tg-dot{width:7px;height:7px;border-radius:50%;background:#2AA9EA;box-shadow:0 0 8px #2AA9EA;}
+
+  /* Page Navigation Bar (Tabs) */
+  .nav-pages{
+    display:flex;gap:6px;padding:10px 16px;background:rgba(18,22,29,0.9);
+    border-bottom:1px solid var(--border);overflow-x:auto;max-width:520px;margin:0 auto;
+    position:sticky;top:57px;z-index:40;backdrop-filter:blur(10px);
+  }
+  .page-tab{
+    background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim);
+    font-size:12px;font-weight:700;padding:8px 14px;border-radius:12px;cursor:pointer;white-space:nowrap;
+    font-family:'Tajawal', sans-serif;display:flex;align-items:center;gap:5px;flex-shrink:0;
+  }
+  .page-tab.active{background:rgba(62,139,255,0.15);border-color:var(--blue);color:#7FB0FF;}
+
+  .page-section{display:none;}
+  .page-section.active{display:block;}
+
+  section{padding:20px 0;}
+  h2.section-title{font-family:'Tajawal';font-weight:800;font-size:18px;margin-bottom:4px;}
+  p.section-desc{color:var(--text-dim);font-size:13px;margin-bottom:16px;line-height:1.7;}
+
+  /* Hero / readiness */
+  .hero{padding-top:10px;text-align:center;}
+  .hero-eyebrow{font-family:'Tajawal';font-weight:800;font-size:22px;}
+  .hero-note{color:var(--text-dim);font-size:12.5px;margin-top:6px;max-width:340px;margin-inline:auto;line-height:1.7;}
+
+  .gauge-wrap{position:relative;width:200px;height:200px;margin:20px auto 6px;}
+  .gauge-wrap svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .gauge-track{fill:none;stroke:var(--border);stroke-width:12;}
+  .gauge-fill{fill:none;stroke:var(--lime);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.2,.8,.2,1);}
+  .gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .gauge-score{font-family:'Tajawal';font-weight:900;font-size:40px;line-height:1;}
+  .gauge-pct{font-size:12px;color:var(--text-dim);margin-top:4px;}
+  .gauge-label{font-size:11.5px;font-weight:700;margin-top:6px;padding:4px 10px;border-radius:20px;background:rgba(182,255,62,0.1);color:var(--lime);}
+
+  .btn{
+    font-family:'Tajawal';font-weight:800;font-size:14px;
+    border:none;border-radius:14px;padding:14px 20px;
+    cursor:pointer;width:100%;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--lime),#7FE83B);
+    color:#0A0D12;box-shadow:0 8px 24px rgba(182,255,62,0.18);
+  }
+  .btn-blue{
+    background:linear-gradient(135deg,var(--blue),#2E6BE0);
+    color:#fff;box-shadow:0 8px 24px rgba(62,139,255,0.22);
+  }
+  .btn-ghost{
+    background:var(--bg-card);color:var(--text);border:1px solid var(--border);
+  }
+  .btn[disabled]{opacity:.55;cursor:default;}
+  .btn-row{display:flex;gap:10px;margin-top:14px;}
+
+  /* Stat cards */
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .stat-card{
+    background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
+    padding:14px;opacity:0;transform:translateY(6px);transition:opacity .35s, transform .35s;
+  }
+  .stat-card.show{opacity:1;transform:none;}
+  .stat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+  .stat-name{font-size:12px;color:var(--text-dim);font-weight:600;}
+  .stat-value{font-family:'Tajawal';font-weight:800;font-size:16px;}
+  .stat-status{font-size:11px;font-weight:700;margin-top:6px;display:inline-block;padding:3px 9px;border-radius:20px;}
+  .st-excellent{background:rgba(182,255,62,.12);color:var(--lime);}
+  .st-great{background:rgba(62,139,255,.14);color:#7FB0FF;}
+  .st-good{background:rgba(155,107,255,.14);color:#C3A9FF;}
+  .st-needs{background:rgba(255,84,112,.14);color:#FF8FA3;}
+  .st-na{background:rgba(139,149,167,.14);color:var(--text-dim);}
+
+  /* panels */
+  .panel{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;}
+  .toggle-copy .t-name{font-family:'Tajawal';font-weight:800;font-size:14.5px;}
+  .toggle-copy .t-desc{font-size:12px;color:var(--text-dim);margin-top:3px;line-height:1.6;}
+  .switch{position:relative;width:50px;height:29px;flex-shrink:0;}
+  .switch input{display:none;}
+  .slider{position:absolute;inset:0;background:var(--border);border-radius:20px;cursor:pointer;transition:background .2s;}
+  .slider::before{content:'';position:absolute;width:23px;height:23px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s;}
+  input:checked + .slider{background:var(--lime);}
+  input:checked + .slider::before{transform:translateX(-21px);}
+  .status-pill{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--text-faint);}
+  .status-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--text-faint);}
+  .status-pill.on{color:var(--lime);}
+  .status-pill.on .dot{background:var(--lime);box-shadow:0 0 8px var(--lime);}
+
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+  .chip{
+    background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
+    font-size:12px;font-weight:600;padding:8px 12px;border-radius:20px;cursor:pointer;
+  }
+  .chip.active{background:rgba(62,139,255,.14);border-color:var(--blue);color:#7FB0FF;}
+
+  .bar-track{height:9px;background:var(--bg-elev);border-radius:20px;overflow:hidden;margin-top:10px;}
+  .bar-fill{height:100%;border-radius:20px;}
+  .bar-legend{display:flex;justify-content:space-between;font-size:12px;color:var(--text-dim);margin-top:8px;}
+  .indicator{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;margin-top:10px;}
+  .fine-print{font-size:11px;color:var(--text-faint);margin-top:10px;line-height:1.6;}
+
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+  .profile-card{
+    background:var(--bg-elev);border:1.5px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;
+  }
+  .profile-card.active{border-color:var(--lime);background:rgba(182,255,62,.06);}
+  .profile-name{font-family:'Tajawal';font-weight:800;font-size:13.5px;}
+  .profile-desc{font-size:11.5px;color:var(--text-dim);margin-top:4px;}
+
+  /* AI CHATBOT STYLES */
+  .quick-topics{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+  .qt-chip{
+    background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim);
+    font-size:12px;font-weight:700;padding:9px 13px;border-radius:20px;cursor:pointer;
+    font-family:'Tajawal', sans-serif;transition:border-color .15s, color .15s, background .15s;
+  }
+  .qt-chip:hover{border-color:var(--blue);color:#7FB0FF;background:rgba(62,139,255,.08);}
+  .qt-chip:active{transform:scale(.97);}
+
+  .chat-container{
+    display:flex;flex-direction:column;height:440px;
+  }
+  .chat-messages{
+    flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;
+    background:var(--bg-elev);border-radius:12px;border:1px solid var(--border);margin-bottom:12px;
+  }
+  .chat-msg{
+    padding:10px 14px;border-radius:12px;max-width:88%;font-size:12.5px;line-height:1.65;word-break:break-word;
+  }
+  .chat-msg.ai{
+    background:var(--bg-card);border:1px solid var(--border);color:var(--text);align-self:flex-start;
+  }
+  .chat-msg.ai b{color:var(--lime);}
+  .chat-msg.user{
+    background:rgba(62,139,255,0.15);border:1px solid var(--blue);color:var(--text);align-self:flex-end;
+  }
+  .typing-dots{display:inline-flex;gap:4px;padding:2px 4px;}
+  .typing-dots span{
+    width:6px;height:6px;border-radius:50%;background:var(--text-dim);
+    animation:typingBounce 1.1s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2){animation-delay:.15s;}
+  .typing-dots span:nth-child(3){animation-delay:.3s;}
+  @keyframes typingBounce{
+    0%,60%,100%{transform:translateY(0);opacity:.5;}
+    30%{transform:translateY(-4px);opacity:1;}
+  }
+  .chat-input-row{display:flex;gap:8px;}
+  .chat-input{
+    flex:1;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;
+    padding:12px;color:var(--text);font-family:'IBM Plex Sans Arabic';font-size:12.5px;outline:none;
+  }
+  .chat-input:focus{border-color:var(--blue);}
+  .chat-input:disabled{opacity:.6;}
+  .offline-badge{
+    display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;
+    color:var(--lime);background:rgba(182,255,62,.1);padding:3px 9px;border-radius:20px;margin-bottom:10px;
+  }
+
+  /* PRO TACTICS SECTION */
+  .tactics-tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;}
+  .tactic-tab{
+    background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
+    font-size:11.5px;font-weight:700;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;
+    font-family:'Tajawal', sans-serif;
+  }
+  .tactic-tab.active{background:rgba(182,255,62,.15);border-color:var(--lime);color:var(--lime);}
+  .tactic-content{display:none;}
+  .tactic-content.active{display:block;}
+  .tactic-card-item{
+    background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;
+    padding:14px;margin-bottom:10px;
+  }
+  .tactic-card-item h3{font-family:'Tajawal';font-weight:800;font-size:14px;color:var(--lime);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+  .tactic-card-item p{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
+
+  /* GIVEAWAY TIMER GAME STYLES */
+  .timer-display{
+    font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
+    background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;padding:20px;
+    color:var(--lime);letter-spacing:2px;box-shadow:inset 0 0 20px rgba(0,0,0,0.5);margin-bottom:16px;
+  }
+  .giveaway-rules{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:14px;background:rgba(255,176,32,0.08);border:1px solid rgba(255,176,32,0.2);padding:12px;border-radius:12px;}
+  .cooldown-box{
+    background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.25);color:#FF8FA3;
+    padding:12px;border-radius:12px;font-size:13px;text-align:center;font-weight:700;margin-bottom:14px;display:none;
+  }
+
+  .net-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;}
+  .net-cell{background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;padding:12px 6px;text-align:center;}
+  .net-cell .v{font-family:'Tajawal';font-weight:800;font-size:15px;}
+  .net-cell .l{font-size:10px;color:var(--text-dim);margin-top:3px;}
+  .net-verdict{margin-top:14px;text-align:center;font-weight:700;font-size:13px;padding:10px;border-radius:10px;}
+
+  .toast{
+    position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(14px);
+    background:#1B222D;border:1px solid var(--border);color:var(--text);
+    padding:12px 18px;border-radius:12px;font-size:13px;font-weight:600;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transition:opacity .25s, transform .25s;
+    z-index:200;max-width:88%;text-align:center;pointer-events:none;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  .tg-banner{
+    background:linear-gradient(135deg, rgba(42,169,234,.14), rgba(155,107,255,.08));
+    border:1px solid rgba(42,169,234,.3);border-radius:16px;padding:18px;
+    display:flex;align-items:center;gap:14px;margin-top:10px;
+  }
+  .tg-banner-icon{
+    width:40px;height:40px;border-radius:12px;background:#2AA9EA;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .tg-banner-title{font-family:'Tajawal';font-weight:800;font-size:14px;}
+  .tg-banner-sub{font-size:11.5px;color:var(--text-dim);margin-top:2px;}
+  .tg-banner-btn{
+    margin-inline-start:auto;background:#2AA9EA;color:#fff;text-decoration:none;
+    font-weight:700;font-size:12px;padding:8px 12px;border-radius:20px;white-space:nowrap;
+  }
+  footer{text-align:center;color:var(--text-faint);font-size:11px;padding:24px 0 6px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">GP</div>
+      <div>
+        <div class="brand-name">Gaming Center</div>
+        <div class="brand-sub">eFootball Mobile</div>
+      </div>
+    </div>
+    <a class="tg-btn" href="https://t.me/r2max" target="_blank" rel="noopener noreferrer">
+      <span class="tg-dot"></span> r2max
+    </a>
+  </div>
+</div>
+
+<!-- TOP SUB-PAGES NAVIGATION BAR -->
+<div class="nav-pages" id="navPages">
+  <div class="page-tab active" data-target="page-scan">⚡ الرئيسية والفحص</div>
+  <div class="page-tab" data-target="page-ai">🤖 المدرب الذكي</div>
+  <div class="page-tab" data-target="page-tactics">🎯 دليل المحترفين</div>
+  <div class="page-tab" data-target="page-giveaway">🎁 مختبر الجوائز</div>
+  <div class="page-tab" data-target="page-system">⚙ الأداء والنظام</div>
+  <div class="page-tab" data-target="page-net">📶 الشبكة والتخزين</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ================= PAGE 1: SCAN & HERO ================= -->
+  <div id="page-scan" class="page-section active">
+    <section class="hero">
+      <div class="hero-eyebrow display">GAME READY?</div>
+      <p class="hero-note">اضغط Start Scan ليقرأ التطبيق المعلومات الحقيقية التي يسمح بها متصفحك عن جهازك. ملاحظة: لأسباب أمنية، لا يستطيع أي متصفح قراءة حرارة المعالج أو نسبة استخدامه اللحظية — هذه المعلومة غير متاحة لأي تطبيق ويب في العالم، وسنوضح ذلك بدل اختلاق أرقام.</p>
+
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 220 220">
+          <circle class="gauge-track" cx="110" cy="110" r="94"></circle>
+          <circle id="gaugeFill" class="gauge-fill" cx="110" cy="110" r="94"
+            stroke-dasharray="590.6" stroke-dashoffset="590.6"></circle>
+        </svg>
+        <div class="gauge-center">
+          <div id="gaugeScore" class="gauge-score">--</div>
+          <div class="gauge-pct">READY</div>
+          <div id="gaugeLabel" class="gauge-label">لم يتم الفحص بعد</div>
+        </div>
+      </div>
+
+      <button id="scanBtn" class="btn btn-primary" onclick="runScan()">Start Scan</button>
+
+      <div id="statGrid" class="stat-grid"></div>
+      <div id="warnZone"></div>
+      <p id="scanFinePrint" class="fine-print" style="display:none"></p>
+
+      <div class="btn-row">
+        <button id="boostBtn" class="btn btn-blue" onclick="boostAndPlay()" disabled>BOOST & PLAY</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PAGE 2: AI CHATBOT ASSISTANT (OFFLINE) ================= -->
+  <div id="page-ai" class="page-section">
+    <section>
+      <h2 class="section-title display">🤖 المدرب الذكي لـ eFootball</h2>
+      <div class="offline-badge">⚡ يعمل بالكامل بدون إنترنت</div>
+      <p class="section-desc">اسأل عن الخطط، أساليب اللعب، المدربين، الدفاع، الهجوم، وتطوير اللاعبين — إجابات جاهزة مخزّنة داخل التطبيق نفسه، فهي تعمل حتى بدون اتصال بالإنترنت. الأسئلة خارج مواضيع eFootball لن يفهمها هذا المساعد لأنه مبني على قواعد ثابتة وليس نموذج ذكاء اصطناعي حقيقي متصل بالإنترنت.</p>
+
+      <div class="quick-topics" id="quickTopics">
+        <div class="qt-chip" data-q="ما هي أفضل خطة وأسلوب لعب حالياً في eFootball Mobile؟">أفضل خطة 📋</div>
+        <div class="qt-chip" data-q="كيف أدافع بشكل احترافي وأمنع الأهداف؟">الدفاع 🛡</div>
+        <div class="qt-chip" data-q="كيف أطور هجومي وأسجل أهداف أكثر؟">الهجوم ⚡</div>
+        <div class="qt-chip" data-q="ما أفضل مدرب أختاره ولماذا، وكيف يؤثر توافق الأسلوب؟">اختيار المدرب 🎓</div>
+        <div class="qt-chip" data-q="كيف أتعامل مع الهجمات المرتدة السريعة من الخصم؟">الهجمات المرتدة 🏃</div>
+        <div class="qt-chip" data-q="اشرح لي الفرق بين أساليب اللعب المختلفة ومتى أستخدم كل واحد؟">أساليب اللعب 🎮</div>
+      </div>
+
+      <div class="panel chat-container">
+        <div id="chatMessages" class="chat-messages">
+          <div class="chat-msg ai">
+            أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽ (أعمل بالكامل دون إنترنت، من قاعدة معرفة مخزّنة داخل التطبيق)<br>اسألني عن أي شيء تكتيكي: الخطط، أساليب اللعب، المدربين، الدفاع، الهجوم، أو تطوير فريقك.
+          </div>
+        </div>
+
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أدافع ضد الهجمات المرتدة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
+          <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PAGE 3: PRO TACTICS & GUIDE ================= -->
+  <div id="page-tactics" class="page-section">
+    <section>
+      <h2 class="section-title display">دليل المحترفين والتكتيك</h2>
+      <p class="section-desc">أسرار الخطط، أساليب اللعب الصحيحة، وطرق الدفاع والهجوم لتحقيق الفوز في eFootball Mobile.</p>
+      
+      <div class="panel" style="margin-top:0">
+        <!-- Tabs -->
+        <div class="tactics-tabs" id="tacticsTabs">
+          <div class="tactic-tab active" data-target="tab-defense">🛡 الدفاع المحترف</div>
+          <div class="tactic-tab" data-target="tab-attack">⚡ الهجوم وبناء اللعب</div>
+          <div class="tactic-tab" data-target="tab-meta">📈 خطط المتا (Meta)</div>
+        </div>
+
+        <!-- Tab 1: Defense -->
+        <div id="tab-defense" class="tactic-content active">
+          <div class="tactic-card-item">
+            <h3><span>🛡</span> سر الـ Match-Up والتحرش</h3>
+            <p>لا تضغط زر الضغط المباشر (Press) بعنف مع المدافع، بل اعتمد على زر (Match-Up) لغلق المساحات وتغطية زوايا التمرير، واستخدم الضغط بـ 2-Press بحذر شديد فقط عندما يكون الخصم ظهره للمرمى.</p>
+          </div>
+          <div class="tactic-card-item">
+            <h3><span>🛑</span> خط الدفاع المتقدم والتمركز</h3>
+            <p>تأكد من اختيار مدافعين بمهارة "Build Up" مع قدرة عالية على القفز والالتحامات البدنية، وتجنب تحريك قلب الدفاع يدوياً من مكانه لكيلا تترك ثغرات خلفك.</p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Attack -->
+        <div id="tab-attack" class="tactic-content">
+          <div class="tactic-card-item">
+            <h3><span>🎯</span> التمرير وثلاثية البناء</h3>
+            <p>لا تستعجل الهجوم الطولي العشوائي. استخدم التمريرات القصيرة بين خط الوسط والهجوم لسحب دفاع الخصم، ثم اختر التوقيت المناسب لتمريرة "One-Two" (التمرير والركض).</p>
+          </div>
+          <div class="tactic-card-item">
+            <h3><span>🏃♂</span> استغلال أطراف الملعب</h3>
+            <p>أجنحة بمهارة "Prolific Winger" أو "Roaming Flank" تصنع الفارق. اعتمد على المراوغة الخفيفة (Sharp Touch) لفتح زاوية عرضية دقيقة نحو رأس الحربة.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Meta Tactics -->
+        <div id="tab-meta" class="tactic-content">
+          <div class="tactic-card-item">
+            <h3><span>⭐</span> الخطة والأسلوب الأقوى (Meta)</h3>
+            <p>الخطة الأفضل هي **4-2-2-2** مع أسلوب **Long Ball Counter** (الكرة الطويلة المضادة)، حيث تمنحك توازناً مثالياً وصلابة دفاعية مع سرعة فائقة في ضرب دفاعات الخصم.</p>
+          </div>
+          <div class="tactic-card-item">
+            <h3><span>📌</span> اختيار المدرب المناسب</h3>
+            <p>احرص على رفع توافق أسلوب اللعب لديك لأكثر من 100 مع المدرب لضمان التحرك التلقائي الذكي لجميع اللاعبين على أرضية الملعب.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PAGE 4: GIVEAWAY TIMER GAME ================= -->
+  <div id="page-giveaway" class="page-section">
+    <section>
+      <h2 class="section-title display">🎁 تحدي العداد — اربح سوايرز!</h2>
+      <p class="section-desc">اختبر سرعة بديهتك ودقتك. أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة!</p>
+
+      <div class="panel">
+        <div class="giveaway-rules">
+          📌 <b>قوانين التحدي:</b>
+          <br>1. العداد يبدأ من 0.00 ويصعد تلقائياً إلى 20.00 ثانية.
+          <br>2. يجب إيقاف العداد عند <b>10.00 ثانية</b> بالضبط.
+          <br>3. <b>مهم:</b> يمكنك استخدام العداد **مرة واحدة كل 24 ساعة** فقط!
+          <br>4. نسبة الربح الفعلي هي <b>1% فقط</b> عند التوقيت الصحيح تماماً.
+        </div>
+
+        <div id="cooldownBox" class="cooldown-box"></div>
+
+        <div id="timerDisplay" class="timer-display">00.00</div>
+
+        <div style="display:flex;gap:10px">
+          <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد</button>
+          <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
+        </div>
+
+        <div id="giveawayResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PAGE 5: PERFORMANCE & SYSTEM ================= -->
+  <div id="page-system" class="page-section">
+    <section>
+      <h2 class="section-title display">System & Performance</h2>
+      <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب. هذه الأوضاع تتحكم فقط في واجهة هذا التطبيق (مثل تقليل التنبيهات داخله)؛ صفحة الويب لا تملك صلاحية تغيير إعدادات نظام هاتفك الفعلية.</p>
+
+      <div class="panel">
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <div class="t-name">HIGH PERFORMANCE MODE</div>
+            <div class="t-desc">أولوية لتجربة اللعب وتقليل المشتتات قدر الإمكان.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="perfToggle" onchange="togglePerf(this.checked)">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div id="perfStatus" class="status-pill"><span class="dot"></span> Performance Mode: OFF</div>
+      </div>
+
+      <div class="panel">
+        <div class="toggle-copy">
+          <div class="t-name">Gaming DND (مدة الوضع)</div>
+        </div>
+        <div class="chip-row" id="dndChips">
+          <div class="chip" data-v="30">30 دقيقة</div>
+          <div class="chip active" data-v="60">ساعة</div>
+          <div class="chip" data-v="120">ساعتين</div>
+          <div class="chip" data-v="0">حتى إيقافه يدويًا</div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:14px" onclick="startGamingDND()">START GAMING</button>
+        <div id="dndStatus" class="status-pill"><span class="dot"></span> غير مفعّل</div>
+      </div>
+
+      <h2 class="section-title display" style="margin-top:10px">Gaming Profiles</h2>
+      <div class="profile-grid" id="profileGrid">
+        <div class="profile-card active" data-p="balanced">
+          <div class="profile-name">Balanced</div>
+          <div class="profile-desc">استخدام يومي طبيعي.</div>
+        </div>
+        <div class="profile-card" data-p="performance">
+          <div class="profile-name">Performance</div>
+          <div class="profile-desc">أقصى أداء للعب.</div>
+        </div>
+        <div class="profile-card" data-p="battery">
+          <div class="profile-name">Battery Saver</div>
+          <div class="profile-desc">توفير الطاقة.</div>
+        </div>
+        <div class="profile-card" data-p="competitive">
+          <div class="profile-name">Competitive</div>
+          <div class="profile-desc">أقل مشتتات للمنافسة.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PAGE 6: NETWORK & STORAGE ================= -->
+  <div id="page-net" class="page-section">
+    <section>
+      <h2 class="section-title display">Network & Storage</h2>
+      <p class="section-desc">قراءات حقيقية من متصفحك حيث يسمح، مع توضيح واضح لأي رقم غير متاح بدل اختلاقه.</p>
+
+      <div class="panel">
+        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Device Memory (RAM)</div>
+        <div class="bar-legend"><span id="ramLabelLeft">جارِ القراءة...</span><span id="ramLabelRight"></span></div>
+        <div class="bar-track"><div id="ramBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--warn),#FFD166)"></div></div>
+        <div id="ramIndicator" class="indicator">⏳ جارِ القراءة</div>
+        <p class="fine-print">navigator.deviceMemory يعطي تقريباً مقرباً لإجمالي ذاكرة الجهاز (بخطوات مثل 0.25 / 0.5 / 1 / 2 / 4 / 8GB) وليس الاستخدام اللحظي، وهذه الخاصية مدعومة فقط في متصفحات Chromium (Chrome/Edge/Samsung Internet وليس Safari/Firefox).</p>
+      </div>
+
+      <div class="panel">
+        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Storage (لهذا الموقع فقط)</div>
+        <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>الحد المتاح: <b id="stFree">--</b></span></div>
+        <div class="bar-track"><div id="stBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--danger),#FF8FA3)"></div></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+          <div>
+            <div class="t-name" style="font-size:13px">بيانات هذا الموقع المخزّنة محلياً</div>
+            <div class="t-desc"><span id="cacheSize">--</span> يمكن مسحها من هذا الموقع فقط</div>
+          </div>
+          <button class="btn btn-ghost" style="width:auto;padding:8px 14px;font-size:12.5px" onclick="cleanStorage()">تنظيف</button>
+        </div>
+        <p class="fine-print">المتصفح لا يسمح لأي موقع بقراءة مساحة تخزين الهاتف الكاملة أو ملفات تطبيقات أخرى؛ الرقم أعلاه هو Storage Quota الخاص بهذا الموقع فقط (Storage API)، وهو حقيقي وليس عشوائياً.</p>
+      </div>
+
+      <div class="panel">
+        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:10px">Connection Info</div>
+        <button id="netBtn" class="btn btn-ghost" onclick="runNetTest()">قراءة معلومات الاتصال</button>
+        <div class="net-grid" id="netGrid" style="display:none">
+          <div class="net-cell"><div class="v" id="netPing">--</div><div class="l">RTT (ms)</div></div>
+          <div class="net-cell"><div class="v" id="netDown">--</div><div class="l">Downlink</div></div>
+          <div class="net-cell"><div class="v" id="netUp">--</div><div class="l">النوع</div></div>
+        </div>
+        <div id="netVerdict" class="net-verdict" style="display:none"></div>
+        <p class="fine-print">هذه القيم تأتي من Network Information API الحقيقية عند دعم المتصفح لها (Chrome/Edge على أندرويد غالباً). قياس سرعة حقيقي دقيق (Mbps فعلية) يتطلب تنزيل بيانات فعلية عبر الإنترنت، وهو ما لا يمكن تنفيذه في وضع Offline.</p>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- TELEGRAM BANNER -->
+  <section style="padding-top:0">
+    <div class="tg-banner">
+      <div class="tg-banner-icon">✈</div>
+      <div>
+        <div class="tg-banner-title">قناتنا على تيليجرام</div>
+        <div class="tg-banner-sub">أخبار التحديثات ونصائح الأداء — t.me/r2max</div>
+      </div>
+      <a class="tg-banner-btn" href="https://t.me/r2max" target="_blank" rel="noopener noreferrer">انضم الآن</a>
+    </div>
+  </section>
+
+  <footer>Gaming Performance Center · نظام الصفحات المتعددة · يعمل بدون إنترنت</footer>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ROBUST EVENT LISTENERS FOR TABS
+document.getElementById('navPages').addEventListener('click', (e) => {
+  const tab = e.target.closest('.page-tab');
+  if(!tab) return;
+  const targetId = tab.getAttribute('data-target');
+  
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+  
+  document.getElementById(targetId).classList.add('active');
+  tab.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('tacticsTabs').addEventListener('click', (e) => {
+  const tab = e.target.closest('.tactic-tab');
+  if(!tab) return;
+  const targetId = tab.getAttribute('data-target');
+
+  document.querySelectorAll('.tactic-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tactic-content').forEach(c => c.classList.remove('active'));
+
+  tab.classList.add('active');
+  document.getElementById(targetId).classList.add('active');
+});
+
+function showToast(msg, ms=2200){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatCoachMessage(text){
+  const escaped = escapeHtml(text);
+  return escaped
+    .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+    .replace(/\n/g, '<br>');
+}
+
+// =====================================================================
+// AI COACH — fully OFFLINE, rule-based keyword matcher.
+// No network calls. Everything is stored inside this file, so it works
+// with the phone in airplane mode. This is NOT a live AI model — it is
+// a fixed knowledge base that matches keywords in the question.
+// =====================================================================
+const COACH_KB = [
+  {
+    keys: ['دفاع','دافع','أدافع','ادافع','match-up','ماتش اب','تحرش','2-press'],
+    reply: `🛡 **الدفاع المحترف**\n1) لا تستخدم زر الضغط المباشر (Press) بشكل متكرر — استخدم (Match-Up) لغلق المساحات وتضييق زوايا التمرير بدل الاندفاع نحو الكرة.\n2) احتفظ بخط دفاع منظم، وتجنّب سحب قلب الدفاع يدوياً من مكانه إلا لضرورة قصوى حتى لا تترك ثغرة خلفك.\n3) استخدم الـ 2-Press فقط عندما يكون المهاجم الخصم ظهره للمرمى ولا يملك خيار تمريرة سريعة.\n4) اختر مدافعين بقدرة جيدة على الالتحام والقفز (Physicality/Jump) لكسب الكرات العالية والثنائيات.`
+  },
+  {
+    keys: ['هجوم','أهاجم','اهاجم','تسجيل','أهداف','اهداف','بناء اللعب','one-two'],
+    reply: `⚡ **الهجوم وبناء اللعب**\n1) لا تستعجل الكرة الطولية العشوائية؛ استخدم تمريرات قصيرة بين الوسط والهجوم لسحب دفاع الخصم وفتح مساحات.\n2) استغل تمريرة One-Two (مرر واركض) في اللحظة المناسبة لكسر خط الدفاع.\n3) الأجنحة بمهارة Prolific Winger أو Roaming Flank تفتح لك زوايا عرضية أدق نحو رأس الحربة.\n4) نوّع بين الهجوم من الأطراف والاختراق المركزي حتى لا يقرأ الخصم نمطك بسهولة.`
+  },
+  {
+    keys: ['مدرب','coach','توافق'],
+    reply: `🎓 **اختيار المدرب**\n1) أهم عامل هو رفع نسبة توافق أسلوب لعبك (Playstyle Compatibility) مع المدرب — كلما زادت عن 100، كانت تحركات لاعبيك التلقائية أذكى وأسرع.\n2) اختر مدرباً يناسب هوية فريقك: هجومي إذا كنت تفضل الضغط والاستحواذ، أو دفاعي/كاونتر إذا تعتمد على الهجمات المرتدة.\n3) لا تكثر من تغيير المدرب بشكل متكرر؛ الاستقرار على أسلوب واحد يمنح لاعبيك انسجاماً أفضل مع الوقت.`
+  },
+  {
+    keys: ['مرتدة','كاونتر','counter','هجمات سريعة'],
+    reply: `🏃 **التعامل مع الهجمات المرتدة**\n1) لا تدفع بكل اللاعبين للهجوم في اللحظة نفسها — اترك دائماً مدافعاً أو اثنين في التغطية الخلفية (Cover).\n2) عند فقدان الكرة، اضغط فوراً على أقرب لاعب يحمل الكرة لتأخير الهجمة بدل الانسحاب الكامل.\n3) راقب مركز قلب الدفاع لديك؛ سرعته أهم صفة لمجاراة المهاجمين السريعين في الهجمة المرتدة.\n4) استخدم خط دفاع مرتفع بحذر فقط إن كان مدافعوك يملكون سرعة عالية، وإلا فضّل خطاً متوسطاً أكثر أماناً.`
+  },
+  {
+    keys: ['أسلوب','اسلوب','style','أساليب','اساليب','playstyle'],
+    reply: `🎮 **أساليب اللعب (Playstyles)**\n• **Possession Game**: استحواذ طويل وتمريرات قصيرة، يناسب من يفضل التحكم الكامل بالمباراة.\n• **Long Ball Counter**: اعتماد على كرات طويلة سريعة للانتقال من الدفاع للهجوم، مثالي للمباريات السريعة.\n• **Out Wide**: تركيز الهجوم عبر الأطراف والعرضيات.\n• **Quick Counter**: هجمة مرتدة فورية بأقل عدد لمسات بعد استرجاع الكرة.\nاختر الأسلوب حسب سرعة لاعبيك ومهاراتهم الفردية، وليس فقط حسب ما هو "قوي" بشكل عام.`
+  },
+  {
+    keys: ['خطة','خطط','تشكيل','formation','4-2-2-2','4-3-3','3-4-3'],
+    reply: `📋 **اختيار الخطة**\nلا توجد خطة واحدة "أفضل" تناسب الجميع؛ الأهم هو توافقها مع لاعبيك:\n• خطط بخط وسط مزدوج (مثل 4-2-2-2) تمنحك توازناً دفاعياً وهجومياً جيداً للمبتدئين.\n• خطط بثلاثة مهاجمين (مثل 4-3-3) تناسب من يملك أجنحة سريعة وأسلوب هجومي مباشر.\n• خطط بخط دفاع ثلاثي (3-4-3 أو 3-5-2) تحتاج ظهيرين قويين بدنياً لتغطية العرض الجانبي.\nجرّب أكثر من خطة في المباريات الودية قبل اعتمادها في المنافسة.`
+  },
+  {
+    keys: ['تطوير','مهارات','لاعب','لاعبين','skill'],
+    reply: `📈 **تطوير اللاعبين ومهاراتهم**\n1) ركّز على تطوير مهارات تخدم دور اللاعب الفعلي في تشكيلتك بدل التطوير العشوائي.\n2) للمهاجمين: أولوية لمهارات الإنهاء والتسارع. للأجنحة: المراوغة والسرعة. للمدافعين: القوة البدنية والالتحام.\n3) وازن بين رفع القدرات الأساسية (OVR) وإضافة مهارات خاصة (Skills) تناسب أسلوب لعبك.`
+  }
+];
+
+const COACH_FALLBACK = `لم أفهم سؤالك بدقة 🤔 — أنا مساعد بقواعد ثابتة أعمل دون إنترنت، ولستُ نموذج ذكاء اصطناعي حقيقي، لذا أفهم فقط مواضيع eFootball المحددة. جرّب اسأل عن: **الدفاع**، **الهجوم**، **اختيار المدرب**، **الهجمات المرتدة**، **أساليب اللعب**، **الخطط**، أو **تطوير اللاعبين** — أو اضغط أحد الأزرار السريعة بالأعلى.`;
+
+function getOfflineCoachReply(userText){
+  const q = userText.toLowerCase();
+  for(const entry of COACH_KB){
+    if(entry.keys.some(k => q.includes(k.toLowerCase()))){
+      return entry.reply;
+    }
+  }
+  return COACH_FALLBACK;
+}
+
+function sendAIChatMessage(prefillText){
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSendBtn');
+  const chatMessages = document.getElementById('chatMessages');
+  const userText = (typeof prefillText === 'string' ? prefillText : input.value).trim();
+
+  if(!userText) return;
+
+  chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg user">${escapeHtml(userText)}</div>`);
+  input.value = '';
+  input.disabled = true;
+  sendBtn.disabled = true;
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  const loadingId = 'loading_' + Date.now();
+  chatMessages.insertAdjacentHTML('beforeend', `
+    <div id="${loadingId}" class="chat-msg ai">
+      <span class="typing-dots"><span></span><span></span><span></span></span>
+    </div>`);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Small delay purely for a natural chat feel — this is a local lookup,
+  // not a network request, so it works fully offline.
+  setTimeout(() => {
+    const reply = getOfflineCoachReply(userText);
+    document.getElementById(loadingId).remove();
+    chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    input.disabled = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }, 450);
+}
+
+document.getElementById('quickTopics').addEventListener('click', (e) => {
+  const chip = e.target.closest('.qt-chip');
+  if(!chip) return;
+  sendAIChatMessage(chip.getAttribute('data-q'));
+});
+
+// GIVEAWAY TIMER LOGIC WITH 24-HOUR COOLDOWN
+const COOLDOWN_KEY = 'r2max_giveaway_last_time';
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+let giveawayMemory = null; // in-memory fallback if localStorage is unavailable
+
+function getCooldownValue(){
+  try{ return localStorage.getItem(COOLDOWN_KEY); }
+  catch(e){ return giveawayMemory; }
+}
+function setCooldownValue(v){
+  try{ localStorage.setItem(COOLDOWN_KEY, v); }
+  catch(e){ giveawayMemory = v; }
+}
+
+function checkGiveawayCooldown(){
+  const lastTime = getCooldownValue();
+  const startBtn = document.getElementById('timerStartBtn');
+  const cooldownBox = document.getElementById('cooldownBox');
+
+  if(!lastTime) return;
+
+  const elapsed = Date.now() - parseInt(lastTime, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const remaining = TWENTY_FOUR_HOURS - elapsed;
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
+    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    
+    startBtn.disabled = true;
+    cooldownBox.style.display = 'block';
+    cooldownBox.innerHTML = `⏳ لقد استخدمت محاولتك اليومية. يمكنك المحاولة مرة أخرى بعد: <b>${hours} ساعة و ${minutes} دقيقة</b>`;
+  } else {
+    startBtn.disabled = false;
+    cooldownBox.style.display = 'none';
+  }
+}
+
+checkGiveawayCooldown();
+
+let timerInterval = null;
+let startTime = 0;
+let isRunning = false;
+
+function startGiveawayTimer(){
+  const lastTime = getCooldownValue();
+  if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
+    showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
+    return;
+  }
+
+  if(isRunning) return;
+  isRunning = true;
+  document.getElementById('timerStartBtn').disabled = true;
+  document.getElementById('timerStopBtn').disabled = false;
+  document.getElementById('giveawayResult').style.display = 'none';
+
+  startTime = performance.now();
+  
+  function updateTimer(){
+    if(!isRunning) return;
+    const elapsed = (performance.now() - startTime) / 1000;
+    if(elapsed >= 20.00){
+      stopGiveawayTimer(true);
+      return;
+    }
+    document.getElementById('timerDisplay').textContent = elapsed.toFixed(2);
+    timerInterval = requestAnimationFrame(updateTimer);
+  }
+  timerInterval = requestAnimationFrame(updateTimer);
+}
+
+function stopGiveawayTimer(auto=false){
+  if(!isRunning) return;
+  isRunning = false;
+  cancelAnimationFrame(timerInterval);
+  document.getElementById('timerStopBtn').disabled = true;
+
+  setCooldownValue(Date.now().toString());
+  checkGiveawayCooldown();
+
+  const elapsedStr = document.getElementById('timerDisplay').textContent;
+  const elapsedNum = parseFloat(elapsedStr);
+  const resultDiv = document.getElementById('giveawayResult');
+  resultDiv.style.display = 'block';
+
+  const isExactTarget = (elapsedNum >= 9.98 && elapsedNum <= 10.02);
+  const randomChance = Math.random() < 0.01;
+
+  if(!auto && isExactTarget && randomChance){
+    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفته عند ${elapsedStr} ثانية وفزت بـ <b>سوايرز</b>! تواصل معنا على تيليجرام لاستلام جائزتك.`;
+    resultDiv.style.color = 'var(--lime)';
+    showToast('مبروك الفوز بالجائزة!');
+  } else {
+    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. لقد استنفدت محاولتك لليوم، ننتظرك غداً بحماس جديد!`;
+    resultDiv.style.color = 'var(--danger)';
+  }
+}
+
+// =====================================================================
+// REAL DEVICE SCAN — page 1. Only reads what browsers actually expose.
+// No fabricated numbers. Anything unsupported is labeled "not available"
+// instead of being filled with a random figure.
+// =====================================================================
+function getGpuInfo(){
+  try{
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if(!gl) return null;
+    const dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    if(!dbgInfo) return gl.getParameter(gl.RENDERER) || null;
+    return gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL) || null;
+  }catch(e){ return null; }
+}
+
+async function getBatteryInfo(){
+  try{
+    if(!navigator.getBattery) return null;
+    const b = await navigator.getBattery();
+    return { level: Math.round(b.level*100), charging: b.charging };
+  }catch(e){ return null; }
+}
+
+async function collectRealDeviceStats(){
+  const stats = [];
+
+  // CPU logical cores — real, widely supported
+  const cores = navigator.hardwareConcurrency;
+  stats.push({
+    key:'CPU (أنوية منطقية)', icon:'⚙',
+    display: cores ? String(cores) : null,
+    note: cores ? 'عدد الأنوية المنطقية الحقيقي من متصفحك' : 'غير مدعوم في هذا المتصفح'
+  });
+
+  // Device memory — real but Chromium-only, rounded
+  const mem = navigator.deviceMemory;
+  stats.push({
+    key:'ذاكرة الجهاز (RAM)', icon:'🧠',
+    display: mem ? (mem + ' GB تقريباً') : null,
+    note: mem ? 'قيمة تقريبية حقيقية (Chromium فقط)' : 'غير مدعوم في هذا المتصفح (Safari/Firefox لا يدعمانه)'
+  });
+
+  // GPU renderer name — real string
+  const gpu = getGpuInfo();
+  stats.push({
+    key:'GPU (المعالج الرسومي)', icon:'🖥',
+    display: gpu || null,
+    note: gpu ? 'اسم كرت الرسوميات الحقيقي عبر WebGL' : 'تعذّر قراءته من هذا المتصفح'
+  });
+
+  // Battery — real where supported
+  const batt = await getBatteryInfo();
+  stats.push({
+    key:'البطارية', icon:'🔋',
+    display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null,
+    note: batt ? 'قراءة حقيقية من Battery API' : 'غير مدعوم في هذا المتصفح (Chrome على أندرويد يدعمه غالباً، iOS Safari لا يدعمه)'
+  });
+
+  // Network connection type — real where supported
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  stats.push({
+    key:'نوع الاتصال', icon:'📶',
+    display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null,
+    note: conn ? 'من Network Information API' : 'غير مدعوم في هذا المتصفح'
+  });
+
+  // Online status — always real
+  stats.push({
+    key:'حالة الاتصال', icon:'🌐',
+    display: navigator.onLine ? 'متصل' : 'غير متصل',
+    note: 'حالة فعلية للاتصال بالإنترنت الآن'
+  });
+
+  return stats;
+}
+
+function runScan(){
+  const btn = document.getElementById('scanBtn');
+  btn.disabled = true;
+  btn.textContent = 'جارِ الفحص...';
+  document.getElementById('statGrid').innerHTML = '';
+  document.getElementById('warnZone').innerHTML = '';
+
+  collectRealDeviceStats().then(stats => {
+    const available = stats.filter(s => s.display !== null);
+    // Score reflects only how many real signals the browser exposed —
+    // it is honest about coverage, not a fake "device health" number.
+    const score = stats.length ? Math.round((available.length / stats.length) * 100) : 0;
+
+    const circumference = 590.6;
+    const offset = circumference - (circumference*score/100);
+    const fill = document.getElementById('gaugeFill');
+    fill.style.strokeDashoffset = offset;
+    fill.style.stroke = score>=70 ? 'var(--lime)' : (score>=40 ? 'var(--warn)' : 'var(--danger)');
+    document.getElementById('gaugeScore').textContent = score;
+    document.getElementById('gaugeLabel').textContent = score>=70 ? 'بيانات متاحة بشكل جيد' : (score>=40 ? 'بيانات جزئية' : 'بيانات محدودة');
+
+    const grid = document.getElementById('statGrid');
+    stats.forEach((s,i)=>{
+      const el = document.createElement('div');
+      el.className = 'stat-card';
+      const badgeCls = s.display !== null ? 'st-excellent' : 'st-na';
+      const badgeText = s.display !== null ? 'قراءة حقيقية' : 'غير متاح';
+      el.innerHTML = `
+        <div class="stat-top"><span class="stat-name">${s.key}</span><span>${s.icon}</span></div>
+        <div class="stat-value">${s.display !== null ? s.display : '—'}</div>
+        <span class="stat-status ${badgeCls}">${badgeText}</span>`;
+      el.title = s.note;
+      grid.appendChild(el);
+      setTimeout(()=>el.classList.add('show'), i*60);
+    });
+
+    const finePrint = document.getElementById('scanFinePrint');
+    finePrint.style.display = 'block';
+    finePrint.textContent = 'ملاحظة: لا يوجد متصفح على الإطلاق يمكنه قراءة حرارة المعالج أو نسبة استخدامه اللحظية أو مساحة التخزين الكاملة للجهاز — هذه قيود أمنية من أنظمة التشغيل نفسها، وليست نقصاً في هذا التطبيق.';
+
+    btn.disabled = false;
+    btn.textContent = 'Scan Again';
+    document.getElementById('boostBtn').disabled = false;
+  });
+}
+
+function boostAndPlay(){
+  showToast('لا يمكن لأي تطبيق ويب إغلاق تطبيقات أخرى على جهازك تلقائيًا لأسباب أمنية — أغلقها يدويًا لأفضل أداء.', 3400);
+}
+
+function togglePerf(on){
+  const pill = document.getElementById('perfStatus');
+  pill.classList.toggle('on', on);
+  pill.innerHTML = `<span class="dot"></span> Performance Mode: ${on?'ON':'OFF'}`;
+  if(on) showToast('تم تفعيل وضع الأداء داخل هذا التطبيق (واجهة فقط).');
+}
+
+document.getElementById('dndChips').addEventListener('click', (e)=>{
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  document.querySelectorAll('#dndChips .chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+});
+
+function startGamingDND(){
+  const active = document.querySelector('#dndChips .chip.active');
+  const pill = document.getElementById('dndStatus');
+  pill.classList.add('on');
+  pill.innerHTML = `<span class="dot"></span> مفعّل — ${active.textContent.trim()} (داخل هذا التطبيق فقط)`;
+  showToast('تم تفعيل Gaming DND داخل هذا التطبيق.');
+}
+
+// =====================================================================
+// REAL storage / memory panel — page 6
+// =====================================================================
+async function loadStorageAndMemoryPanel(){
+  // RAM
+  const mem = navigator.deviceMemory;
+  if(mem){
+    document.getElementById('ramLabelLeft').textContent = 'ذاكرة الجهاز التقريبية: ' + mem + ' GB';
+    document.getElementById('ramLabelRight').textContent = 'قراءة حقيقية';
+    document.getElementById('ramBar').style.width = Math.min(100, (mem/8)*100) + '%';
+    document.getElementById('ramIndicator').textContent = '🟢 مدعوم في متصفحك';
+  } else {
+    document.getElementById('ramLabelLeft').textContent = 'غير متاح في هذا المتصفح';
+    document.getElementById('ramLabelRight').textContent = '';
+    document.getElementById('ramBar').style.width = '0%';
+    document.getElementById('ramIndicator').textContent = '⚪ Safari/Firefox لا يدعمان هذه الميزة';
+  }
+
+  // Storage
+  try{
+    if(navigator.storage && navigator.storage.estimate){
+      const est = await navigator.storage.estimate();
+      const usedMB = (est.usage/1024/1024).toFixed(1);
+      const quotaMB = (est.quota/1024/1024).toFixed(0);
+      const pct = est.quota ? Math.min(100, Math.round((est.usage/est.quota)*100)) : 0;
+      document.getElementById('stUsed').textContent = usedMB + ' MB';
+      document.getElementById('stFree').textContent = quotaMB + ' MB (حصة هذا الموقع)';
+      document.getElementById('stBar').style.width = pct + '%';
+      document.getElementById('cacheSize').textContent = usedMB + ' MB';
+    } else {
+      document.getElementById('stUsed').textContent = 'غير مدعوم';
+      document.getElementById('stFree').textContent = '--';
+      document.getElementById('cacheSize').textContent = '--';
+    }
+  }catch(e){
+    document.getElementById('stUsed').textContent = 'تعذّرت القراءة';
+  }
+}
+
+async function cleanStorage(){
+  try{
+    if(window.caches && caches.keys){
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    showToast('تم مسح بيانات هذا الموقع المخزّنة محلياً (إن وُجدت).');
+  }catch(e){
+    showToast('تعذّر مسح بيانات هذا الموقع في هذا المتصفح.');
+  }
+  loadStorageAndMemoryPanel();
+}
+
+function runNetTest(){
+  const btn = document.getElementById('netBtn');
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+  if(!conn){
+    document.getElementById('netGrid').style.display = 'none';
+    const verdict = document.getElementById('netVerdict');
+    verdict.style.display = 'block';
+    verdict.textContent = 'Network Information API غير مدعومة في هذا المتصفح — لا توجد بيانات حقيقية لعرضها.';
+    verdict.style.background = 'rgba(139,149,167,.12)';
+    verdict.style.color = 'var(--text-dim)';
+    return;
+  }
+
+  document.getElementById('netPing').textContent = (conn.rtt !== undefined ? conn.rtt : '--');
+  document.getElementById('netDown').textContent = (conn.downlink !== undefined ? conn.downlink + ' Mbps' : '--');
+  document.getElementById('netUp').textContent = (conn.effectiveType || '--').toUpperCase();
+  document.getElementById('netGrid').style.display = 'grid';
+
+  const good = (conn.downlink || 0) > 5 && (conn.rtt || 999) < 150;
+  const verdict = document.getElementById('netVerdict');
+  verdict.style.display = 'block';
+  verdict.textContent = navigator.onLine
+    ? (good ? 'الاتصال يبدو جيداً حسب تقدير المتصفح' : 'الاتصال ضعيف أو متوسط حسب تقدير المتصفح')
+    : 'الجهاز غير متصل بالإنترنت حالياً';
+  verdict.style.background = good ? 'rgba(182,255,62,.1)' : 'rgba(255,84,112,.1)';
+  verdict.style.color = good ? 'var(--lime)' : '#FF8FA3';
+}
+
+document.getElementById('profileGrid').addEventListener('click', (e)=>{
+  const card = e.target.closest('.profile-card');
+  if(!card) return;
+  document.querySelectorAll('.profile-card').forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+  showToast('تم التبديل إلى نمط ' + card.querySelector('.profile-name').textContent + ' (داخل هذا التطبيق فقط)');
+});
+
+// Load real storage/memory data as soon as the network/storage page is ready
+loadStorageAndMemoryPanel();
+</script>
