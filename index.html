@@ -166,9 +166,9 @@
   }
   .qt-chip:hover{border-color:var(--blue);color:#7FB0FF;background:rgba(62,139,255,.08);}
 
-  .coach-subtabs{display:flex;gap:8px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:14px;border:1px solid var(--border);}
+  .coach-subtabs{display:grid;grid-template-columns:repeat(2, 1fr);gap:6px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:14px;border:1px solid var(--border);}
   .coach-subtab{
-    flex:1;background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
+    background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
     font-weight:800;font-size:11.5px;padding:8px 4px;border-radius:10px;cursor:pointer;text-align:center;
   }
   .coach-subtab.active{background:var(--bg-card);color:var(--lime);border:1px solid var(--border);}
@@ -213,7 +213,6 @@
     font-family:'Tajawal';font-weight:900;font-size:10px;color:#fff;box-shadow:0 0 12px rgba(62,139,255,0.6);
     transform:translate(-50%,-50%);
   }
-  /* Specific tactical animations */
   .p-gk {top:88%; left:50%;}
   .p-lb {top:72%; left:18%; animation: floatSide 3s infinite ease-in-out;}
   .p-cb1{top:74%; left:38%; animation: floatDeep 3s infinite ease-in-out;}
@@ -302,7 +301,7 @@
     color:var(--lime);background:rgba(182,255,62,.1);padding:3px 9px;border-radius:20px;margin-bottom:10px;
   }
 
-  /* TACTICS GUIDE CARDS */
+  /* TACTICS & MANAGERS GUIDE CARDS */
   .tactics-guide-card{
     background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;
   }
@@ -412,18 +411,18 @@
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
       <div class="offline-badge">⚡ مساعد eFootball التفاعلي المتقدم</div>
-      <p class="section-desc">المحور الشامل لتحليل فريقك، فحص التشكيلة بالذكاء الاصطناعي، واستعراض أساليب اللعب بـ Animation احترافي.</p>
+      <p class="section-desc">المحور الشامل لتحليل فريقك، فحص التشكيلة بالذكاء الاصطناعي، استعراض أساليب اللعب، وأفضل مدربي اللعبة.</p>
 
-      <!-- SUB-TABS FOR AI COACH -->
+      <!-- SUB-TABS FOR AI COACH (4 Tabs Now) -->
       <div class="coach-subtabs">
         <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات وتحليل التشكيلة</button>
         <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن 4-2-2-2 Pro</button>
         <button class="coach-subtab" onclick="switchCoachTab('tactics')">🏆 أساليب اللعب والخطط</button>
+        <button class="coach-subtab" onclick="switchCoachTab('managers')">👔 أساطير التدريب</button>
       </div>
 
       <!-- TAB 1: CHAT & SQUAD VISION HUMAN-LIKE -->
       <div id="coach-tab-chat" class="coach-tab-content">
-        <!-- SQUAD IMAGE VISION UPLOADER -->
         <div class="vision-box">
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
           <div class="vision-icon">📸</div>
@@ -467,7 +466,6 @@
             <div class="pitch-halfway"></div>
             <div class="ball-anim-pro"></div>
             
-            <!-- Pro 4-2-2-2 Nodes -->
             <div class="player-node p-gk">GK</div>
             <div class="player-node p-lb">LB</div>
             <div class="player-node p-cb1">CB</div>
@@ -510,6 +508,42 @@
           </div>
         </div>
       </div>
+
+      <!-- TAB 4: BEST MANAGERS GUIDE (NEW) -->
+      <div id="coach-tab-managers" class="coach-tab-content" style="display:none;">
+        <div class="tactics-guide-card" style="border-color:var(--lime);">
+          <div class="tactics-guide-title">🇫🇷 ديدييه ديشامب (Didier Deschamps)</div>
+          <div class="tactics-guide-desc">
+            <b>الأسلوب المفضل:</b> الهجمة المرتدة السريعة (Quick Counter) أو الكرة الطويلة المضادة.<br>
+            <b>⭐ الميزات:</b> يعطي تعزيزات ممتازة لخصائص اللاعبين البدنية والسرعة. يعتبر من أكثر المدربين توازناً واستقراراً في المباريات التنافسية (Divisions).
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--blue);">
+          <div class="tactics-guide-title">🇮🇹 فابيو كابيلو (Fabio Capello)</div>
+          <div class="tactics-guide-desc">
+            <b>الأسلوب المفضل:</b> الكرة الطويلة المضادة (Long Ball Counter).<br>
+            <b>⭐ الميزات:</b> يمنح الفريق صلابة دفاعية خارقة وتمركزاً مثالياً لخط الخلف ومحور الارتكاز. خيار مثالي لمن يعاني من استقبال الأهداف السهلة.
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--violet);">
+          <div class="tactics-guide-title">🇳🇱 فرانك ريكارد (Frank Rijkaard)</div>
+          <div class="tactics-guide-desc">
+            <b>الأسلوب المفضل:</b> الاستحواذ (Possession Game) أو التمرير السريع.<br>
+            <b>⭐ الميزات:</b> يرفع من دقة التمرير وسرعة اتخاذ القرار للاعبي خط الوسط (Midfield)، ويجعل السيطرة على إيقاع اللعب والاستحواذ أمراً ممتعاً وسلساً للغاية.
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--warn);">
+          <div class="tactics-guide-title">🇮🇹 سيموني إنزاغي (Simone Inzaghi)</div>
+          <div class="tactics-guide-desc">
+            <b>الأسلوب المفضل:</b> الهجمة المرتدة السريعة أو اللعب المباشر.<br>
+            <b>⭐ الميزات:</b> رائع جداً لمن يفضل اللعب بخطط تحتوي على أطراف ومهاجمين ثنائيين (مثل 3-5-2 أو 4-2-2-2)، حيث يضاعف من شراسة المهاجمين داخل منطقة الجزاء.
+          </div>
+        </div>
+      </div>
+
     </section>
   </div>
 
@@ -644,6 +678,7 @@ function switchCoachTab(tabKey){
   document.getElementById('coach-tab-chat').style.display = 'none';
   document.getElementById('coach-tab-animation').style.display = 'none';
   document.getElementById('coach-tab-tactics').style.display = 'none';
+  document.getElementById('coach-tab-managers').style.display = 'none';
 
   if(tabKey === 'chat'){
     subtabs[0].classList.add('active');
@@ -651,9 +686,12 @@ function switchCoachTab(tabKey){
   } else if(tabKey === 'animation'){
     subtabs[1].classList.add('active');
     document.getElementById('coach-tab-animation').style.display = 'block';
-  } else {
+  } else if(tabKey === 'tactics'){
     subtabs[2].classList.add('active');
     document.getElementById('coach-tab-tactics').style.display = 'block';
+  } else {
+    subtabs[3].classList.add('active');
+    document.getElementById('coach-tab-managers').style.display = 'block';
   }
 }
 
@@ -713,7 +751,6 @@ function triggerComprehensiveSquadAnalysis(){
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    // Comprehensive Human-like analysis covering defense, midfield, and attack
     const reply = `يا هلا بيك يا كابتن ماكس! 🔥 لقد قمت بفحص تشكيلتك المرفقة بعناية فائقة:\n\n` +
                   `🌟 **مديح التشكيلة:** اختيارك للاعبين وتوزيعهم يعكس احترافية عالية وانسجاماً ممتازاً يتماشى مع أقوى التكتيكات!\n\n` +
                   `🛡️ **1. نصائح الدفاع:**\n• حافظ على خط دفاع متماسك ولا تندفع بقلبي الدفاع، واستخدم خاصية Match-Up.\n• محور الارتكاز المزدوج (DMF) سيوفر لك جداراً دفاعياً صلباً يمنع أي اختراق مركزي.\n\n` +
@@ -735,6 +772,8 @@ function getCoachReply(userText){
     return `🔥 أسلوب **الكرة الطويلة المضادة** هو الأنسب لخطة 4-2-2-2 لأنه يمنحك تأميناً دفاعياً وانطلاقات صاروخية للمهاجمين بلمسة واحدة.`;
   } else if(q.includes('مرتدة') || q.includes('سريعة') || q.includes('qc')){
     return `⚡ الهجمة المرتدة السريعة تتطلب ضغطاً عالياً ومهاجمين بأعلى معدلات السرعة والاستجابة.`;
+  } else if(q.includes('مدرب') || q.includes('ديشامب') || q.includes('كابيلو') || q.includes('ريكارد') || q.includes('انزاغي')){
+    return `👔 أفضل المدربين حالياً هم ديشامب في المرتدة السريعة، كابيلو في الكرة الطويلة للصلابة الدفاعية، ريكارد للاستحواذ، وإنزاغي للشراسة الهجومية! يمكنك الاطلاع على تفاصيلهم في قسم (أساطير التدريب).`;
   }
 
   return `أنا معك يا كابتن! ارفع صورة تشكيلتك بالأعلى لأقوم بتحليلها ومدحها وتقديم نصائح الدفاع والوسط والهجوم بدقة.`;
@@ -976,7 +1015,6 @@ function startGamingDND(){
   showToast('تم تفعيل وضع عدم الإزعاج.');
 }
 
-// STORAGE & MEMORY PANEL
 async function loadStorageAndMemoryPanel(){
   const mem = navigator.deviceMemory;
   if(mem){
