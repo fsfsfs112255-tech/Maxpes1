@@ -179,6 +179,14 @@
   .qt-chip:hover{border-color:var(--blue);color:#7FB0FF;background:rgba(62,139,255,.08);}
   .qt-chip:active{transform:scale(.97);}
 
+  /* SUB-TABS FOR AI COACH & TACTICS */
+  .coach-subtabs{display:flex;gap:8px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:14px;border:1px solid var(--border);}
+  .coach-subtab{
+    flex:1;background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
+    font-weight:800;font-size:12.5px;padding:8px;border-radius:10px;cursor:pointer;text-align:center;
+  }
+  .coach-subtab.active{background:var(--bg-card);color:var(--lime);border:1px solid var(--border);}
+
   /* SQUAD VISION UPLOAD BOX */
   .vision-box{
     background:var(--bg-elev);border:2px dashed var(--border);border-radius:14px;
@@ -234,6 +242,14 @@
     display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;
     color:var(--lime);background:rgba(182,255,62,.1);padding:3px 9px;border-radius:20px;margin-bottom:10px;
   }
+
+  /* TACTICS GUIDE STYLES */
+  .tactics-guide-card{
+    background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;
+  }
+  .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .tactics-guide-desc{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
+  .tactics-list{margin-top:8px;padding-inline-start:18px;font-size:12px;color:var(--text);line-height:1.7;}
 
   /* GIVEAWAY TIMER GAME STYLES */
   .timer-display{
@@ -339,43 +355,82 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 2: AI CHATBOT ASSISTANT & SQUAD VISION ================= -->
+  <!-- ================= PAGE 2: AI COACH & TACTICS GUIDE ================= -->
   <div id="page-ai" class="page-section">
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
       <div class="offline-badge">⚡ يعمل بالكامل بدون إنترنت</div>
-      <p class="section-desc">ارفع صورة تشكيلتك للتحليل البصري التكتيكي، أو اسأل المدرب مباشرة عن الخطط، أساليب اللعب، الدفاع، الهجوم وتطوير اللاعبين.</p>
+      <p class="section-desc">المحور الشامل لتحليل فريقك، استعراض مدح التشكيلة والنصائح، ودليل أساليب اللعب في eFootball Mobile.</p>
 
-      <!-- SQUAD IMAGE VISION UPLOADER -->
-      <div class="vision-box">
-        <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
-        <div class="vision-icon">📸</div>
-        <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
-        <div class="vision-sub">سيقوم المدرب الذكي بتحليل المراكز واكتشاف الثغرات وإعطاء تقييم فوري</div>
-        <div id="visionPreviewWrap" class="vision-preview-wrap">
-          <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
-        </div>
+      <!-- SUB-TABS FOR AI COACH -->
+      <div class="coach-subtabs">
+        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات وتحليل التشكيلة</button>
+        <button class="coach-subtab" onclick="switchCoachTab('tactics')">⚽ دليل الأساليب والمعلومات</button>
       </div>
 
-      <div class="quick-topics" id="quickTopics">
-        <div class="qt-chip" data-q="ما هي أفضل خطة وأسلوب لعب حالياً في eFootball Mobile؟">أفضل خطة 📋</div>
-        <div class="qt-chip" data-q="كيف أدافع بشكل احترافي وأمنع الأهداف؟">الدفاع 🛡</div>
-        <div class="qt-chip" data-q="كيف أطور هجومي وأسجل أهداف أكثر؟">الهجوم ⚡</div>
-        <div class="qt-chip" data-q="ما أفضل مدرب أختاره ولماذا، وكيف يؤثر توافق الأسلوب؟">اختيار المدرب 🎓</div>
-        <div class="qt-chip" data-q="كيف أتعامل مع الهجمات المرتدة السريعة من الخصم؟">الهجمات المرتدة 🏃</div>
-        <div class="qt-chip" data-q="اشرح لي الفرق بين أساليب اللعب المختلفة ومتى أستخدم كل واحد؟">أساليب اللعب 🎮</div>
-      </div>
-
-      <div class="panel chat-container">
-        <div id="chatMessages" class="chat-messages">
-          <div class="chat-msg ai">
-            أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽ (أعمل بالكامل دون إنترنت).<br>يمكنك رفع صورة تشكيلتك بالأعلى ليقوم الذكاء الاصطناعي بتحليلها، أو سؤالني عن أي تكتيك، خطط، دفاع، هجوم، أو تطوير فريقك!
+      <!-- TAB 1: CHAT & SQUAD VISION -->
+      <div id="coach-tab-chat" class="coach-tab-content">
+        <!-- SQUAD IMAGE VISION UPLOADER -->
+        <div class="vision-box">
+          <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
+          <div class="vision-icon">📸</div>
+          <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
+          <div class="vision-sub">سيقوم المحلل الذكي بمدح تشكيلتك وتقييمها وإعطائك نصائح فورية</div>
+          <div id="visionPreviewWrap" class="vision-preview-wrap">
+            <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
           </div>
         </div>
 
-        <div class="chat-input-row">
-          <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أدافع ضد الهجمات المرتدة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
-          <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
+        <div class="quick-topics" id="quickTopics">
+          <div class="qt-chip" data-q="ما هي أفضل خطة وأسلوب لعب حالياً في eFootball Mobile؟">أفضل خطة 📋</div>
+          <div class="qt-chip" data-q="كيف أدافع بشكل احترافي وأمنع الأهداف؟">الدفاع 🛡</div>
+          <div class="qt-chip" data-q="كيف أطور هجومي وأسجل أهداف أكثر؟">الهجوم ⚡</div>
+          <div class="qt-chip" data-q="ما أفضل مدرب أختاره ولماذا، وكيف يؤثر توافق الأسلوب؟">اختيار المدرب 🎓</div>
+          <div class="qt-chip" data-q="كيف أتعامل مع الهجمات المرتدة السريعة من الخصم؟">الهجمات المرتدة 🏃</div>
+        </div>
+
+        <div class="panel chat-container">
+          <div id="chatMessages" class="chat-messages">
+            <div class="chat-msg ai">
+              أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽ (أعمل بالكامل دون إنترنت).<br>ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدح نقاط قوتها وتقديم النصائح، أو اسألني عن أي تكتيك!
+            </div>
+          </div>
+
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أدافع ضد الهجمات المرتدة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
+            <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: TACTICS & EFOOTBALL GUIDE -->
+      <div id="coach-tab-tactics" class="coach-tab-content" style="display:none;">
+        <div class="tactics-guide-card">
+          <div class="tactics-guide-title">🏃 والهجمات المرتدة السريعة (Quick Counter)</div>
+          <div class="tactics-guide-desc">أسلوب لعب يعتمد على الضغط الشرس (Aggressive Pressing) فور فقدان الكرة في مناطق الخصم، والانطلاق الخاطف نحو مرمى المنافس بأقل عدد من التمريرات.</div>
+          <ul class="tactics-list">
+            <li><b>مميزات:</b> يربك دفاع الخصم ويخلق انفرادات متكررة للمهاجمين.</li>
+            <li><b>عيوب:</b> يتطلب لياقة بدنية عالية للاعبين وقد يترك مساحات خلفية عند فشل الضغط.</li>
+          </ul>
+        </div>
+
+        <div class="tactics-guide-card">
+          <div class="tactics-guide-title">🛡 الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
+          <div class="tactics-guide-desc">أسلوب تكتيكي متحفظ يعتمد على تراجع الخط الخلفي لتأمين المساحات، ثم إرسال كرات طويلة وعميقة خلف مدافعي الخصم نحو الأجنحة أو المهاجم الصريح.</div>
+          <ul class="tactics-list">
+            <li><b>مميزات:</b> صلب دفاعياً وممتاز جداً ضد الخصوم الذين يندفعون بالهجوم بكثافة.</li>
+            <li><b>عيوب:</b> يتطلب مهاجمين بمهارة عالية في استقبال وتثبيت الكرات الطويلة (Target Man أو Goal Poacher).</li>
+          </ul>
+        </div>
+
+        <div class="tactics-guide-card">
+          <div class="tactics-guide-title">📱 معلومات هامة حول eFootball Mobile</div>
+          <div class="tactics-guide-desc">أسرار هامة لرفع كفاءة فريقك وتطوير اللاعبين بأفضل شكل ممكن:</div>
+          <ul class="tactics-list">
+            <li><b>توافق المدرب (Manager Proficiency):</b> تأكد دائماً أن توافق أسلوب اللعب لدى اللاعبين مع المدرب يتجاوز 100 لتجنب هبوط إحصائياتهم بنسبة ملحوظة.</li>
+            <li><b>استخدام المهارات (Player Skills):</b> إضافة مهارات مثل One-touch Pass و Through Passing تصنع الفارق الحاسم في صناعة اللعب.</li>
+            <li><b>التوازن في الدكة:</b> احتفظ بلاعبين أصحاب لياقة بدنية عالية في دكة البدلاء للدفع بهم في الدقيقة 65 لتغيير رتم المباراة.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -541,6 +596,22 @@ document.getElementById('navPages').addEventListener('click', (e) => {
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
+// SUB-TABS SWITCHER FOR AI COACH
+function switchCoachTab(tabKey){
+  const subtabs = document.querySelectorAll('.coach-subtab');
+  subtabs.forEach(t => t.classList.remove('active'));
+  
+  if(tabKey === 'chat'){
+    subtabs[0].classList.add('active');
+    document.getElementById('coach-tab-chat').style.display = 'block';
+    document.getElementById('coach-tab-tactics').style.display = 'none';
+  } else {
+    subtabs[1].classList.add('active');
+    document.getElementById('coach-tab-chat').style.display = 'none';
+    document.getElementById('coach-tab-tactics').style.display = 'block';
+  }
+}
+
 function showToast(msg, ms=2200){
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -608,7 +679,7 @@ function getOfflineCoachReply(userText){
   return COACH_FALLBACK;
 }
 
-// SQUAD IMAGE VISION SIMULATOR
+// SQUAD IMAGE VISION SIMULATOR WITH PRAISE & ADVICE
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -635,29 +706,27 @@ function runSquadVisionAnalysis(){
   const loadingId = 'vision_loading_' + Date.now();
   chatMessages.insertAdjacentHTML('beforeend', `
     <div id="${loadingId}" class="chat-msg ai">
-      🔍 جاري فحص خطوط التشكيلة، تقييم الـ OVR، واكتشاف الثغرات... <span class="typing-dots"><span></span><span></span><span></span></span>
+      🔍 جاري فحص خطوط التشكيلة، مدح نقاط القوة، وصياغة النصائح التكتيكية... <span class="typing-dots"><span></span><span></span><span></span></span>
     </div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    // Detailed dynamic squad analysis report
-    const squadReport = `🤖 **تقرير الذكاء الاصطناعي لتحليل التشكيلة:**\n\n` +
-      `📊 **التقييم العام المتوقع للتشكيلة:** 98.4 / 100 (فريق منافسة قوي للغاية!)\n\n` +
-      `🛡 **خط الدفاع:**\n` +
-      `- الأداء المتوقع: متوازن.\n` +
-      `- ⚠️ **ملاحظة/ثغرة:** تفعيل ظهير هجومي صريح (Offensive Full-back) في الجهة اليمنى قد يترك مساحة خلفية واسعة ضد الهجمات المرتدة السريعة. يُنصح بضبط تعليمات الدفاع الفردية (Defensive) عليه.\n\n` +
-      `⚡ **خط الوسط وبناء اللعب:**\n` +
-      `- التمركز ممتاز، وتوافق خط الوسط مع أسلوب اللعب الحالي يوفر ربطاً ممتازاً بين الدفاع والهجوم.\n\n` +
-      `🎯 **أفضل المراكز والتعديلات المقترحة:**\n` +
-      `1) تأكد من اختيار محور ارتكاز بمهارة (Anchorman) لزيادة الصلابة الدفاعية.\n` +
-      `2) استغل مهاجماً يتمتع بقدرة عالية على إنهاء الهجمات (Finishing > 95) في مركز الهجوم المركزي.\n\n` +
-      `هل تريد تفاصيل أكثر عن كيفية تطوير مركز معين في هذه التشكيلة؟`;
+    // Detailed dynamic squad analysis report featuring PRAISE & ADVICE
+    const squadReport = `🤖 **التقرير الشامل لتحليل التشكيلة:**\n\n` +
+      `⭐ **مدح التشكيلة (نقاط القوة):**\n` +
+      `- ماشاء الله! تشكيلتك تتمتع بتوازن ممتاز جداً من حيث اختيار اللاعبين والـ OVR العالي.\n` +
+      `- التناغم الهجومي بين الأجنحة ومهاجم الصندوق يوفر سرعة فائقة في بناء الهجمات المرتدة وتشكيل خطورة دائمة على مرمى الخصم.\n\n` +
+      `💡 **نصائح لتطوير التشكيلة وتلافي الثغرات:**\n` +
+      `1) **تغطية الأطراف:** احرص على عدم التقدم المبالغ فيه بالظهيرين معاً لكي لا تكشف قلب الدفاع أمام الهجمات المعاكسة.\n` +
+      `2) **محور الارتكاز:** تأكد من إعطاء تعليمات دفاعية (Defensive) للاعب الارتكاز ليبقى مستقراً أمام قلبي الدفاع طوال فترات المباراة.\n` +
+      `3) **توزيع النقاط:** راجع مهارات الـ One-touch Pass لدى لاعبي الوسط لضمان سرعة تدوير الكرة.\n\n` +
+      `هل ترغب في نصائح تخص أسلوب دفاع معين لهذه التشكيلة؟`;
 
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(squadReport)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل التشكيلة بنجاح!');
+    showToast('تم تحليل ومدح التشكيلة بنجاح!');
   }, 1200);
 }
 
