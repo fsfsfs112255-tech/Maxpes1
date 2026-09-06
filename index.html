@@ -62,7 +62,7 @@
   }
   .tg-dot{width:7px;height:7px;border-radius:50%;background:#2AA9EA;box-shadow:0 0 8px #2AA9EA;}
 
-  /* Page Navigation Bar (Tabs) */
+  /* Navigation Tabs */
   .nav-pages{
     display:flex;gap:6px;padding:10px 16px;background:rgba(18,22,29,0.9);
     border-bottom:1px solid var(--border);overflow-x:auto;max-width:520px;margin:0 auto;
@@ -82,7 +82,7 @@
   h2.section-title{font-family:'Tajawal';font-weight:800;font-size:18px;margin-bottom:4px;}
   p.section-desc{color:var(--text-dim);font-size:13px;margin-bottom:16px;line-height:1.7;}
 
-  /* Hero / readiness */
+  /* Hero & Gauge */
   .hero{padding-top:10px;text-align:center;}
   .hero-eyebrow{font-family:'Tajawal';font-weight:800;font-size:22px;}
   .hero-note{color:var(--text-dim);font-size:12.5px;margin-top:6px;max-width:340px;margin-inline:auto;line-height:1.7;}
@@ -127,12 +127,8 @@
   .stat-value{font-family:'Tajawal';font-weight:800;font-size:16px;}
   .stat-status{font-size:11px;font-weight:700;margin-top:6px;display:inline-block;padding:3px 9px;border-radius:20px;}
   .st-excellent{background:rgba(182,255,62,.12);color:var(--lime);}
-  .st-great{background:rgba(62,139,255,.14);color:#7FB0FF;}
-  .st-good{background:rgba(155,107,255,.14);color:#C3A9FF;}
-  .st-needs{background:rgba(255,84,112,.14);color:#FF8FA3;}
   .st-na{background:rgba(139,149,167,.14);color:var(--text-dim);}
 
-  /* panels */
   .panel{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;}
   .toggle-row{display:flex;align-items:center;justify-content:space-between;}
   .toggle-copy .t-name{font-family:'Tajawal';font-weight:800;font-size:14.5px;}
@@ -161,33 +157,23 @@
   .indicator{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;margin-top:10px;}
   .fine-print{font-size:11px;color:var(--text-faint);margin-top:10px;line-height:1.6;}
 
-  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
-  .profile-card{
-    background:var(--bg-elev);border:1.5px solid var(--border);border-radius:14px;padding:14px;cursor:pointer;
-  }
-  .profile-card.active{border-color:var(--lime);background:rgba(182,255,62,.06);}
-  .profile-name{font-family:'Tajawal';font-weight:800;font-size:13.5px;}
-  .profile-desc{font-size:11.5px;color:var(--text-dim);margin-top:4px;}
-
-  /* AI CHATBOT & VISION LAB STYLES */
+  /* AI CHATBOT & SUB-TABS */
   .quick-topics{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
   .qt-chip{
     background:var(--bg-card);border:1px solid var(--border);color:var(--text-dim);
     font-size:12px;font-weight:700;padding:9px 13px;border-radius:20px;cursor:pointer;
-    font-family:'Tajawal', sans-serif;transition:border-color .15s, color .15s, background .15s;
+    font-family:'Tajawal', sans-serif;transition:all .15s;
   }
   .qt-chip:hover{border-color:var(--blue);color:#7FB0FF;background:rgba(62,139,255,.08);}
-  .qt-chip:active{transform:scale(.97);}
 
-  /* SUB-TABS FOR AI COACH & TACTICS */
   .coach-subtabs{display:flex;gap:8px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:14px;border:1px solid var(--border);}
   .coach-subtab{
     flex:1;background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
-    font-weight:800;font-size:12px;padding:8px 4px;border-radius:10px;cursor:pointer;text-align:center;
+    font-weight:800;font-size:11.5px;padding:8px 4px;border-radius:10px;cursor:pointer;text-align:center;
   }
   .coach-subtab.active{background:var(--bg-card);color:var(--lime);border:1px solid var(--border);}
 
-  /* SQUAD VISION UPLOAD BOX */
+  /* UPLOAD SQUAD BOX */
   .vision-box{
     background:var(--bg-elev);border:2px dashed var(--border);border-radius:14px;
     padding:16px;text-align:center;margin-bottom:14px;position:relative;cursor:pointer;
@@ -203,11 +189,11 @@
   .vision-preview-wrap{margin-top:10px;display:none;position:relative;}
   .vision-preview-img{max-width:100%;max-height:160px;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
 
-  /* FORMATION ANIMATION STYLES */
+  /* ADVANCED PRO 4-2-2-2 PITCH ANIMATION */
   .pitch-container{
-    position:relative;width:100%;height:280px;background:linear-gradient(135deg, #0f2b1d, #143d28);
-    border-radius:14px;border:2px solid rgba(182,255,62,0.3);overflow:hidden;margin-bottom:14px;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+    position:relative;width:100%;height:320px;background:linear-gradient(135deg, #0b2317, #133a26);
+    border-radius:14px;border:2px solid rgba(182,255,62,0.4);overflow:hidden;margin-bottom:14px;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.7);
   }
   .pitch-lines{
     position:absolute;inset:15px;border:1px solid rgba(255,255,255,0.25);border-radius:6px;pointer-events:none;
@@ -216,46 +202,82 @@
     position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
     width:70px;height:70px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;pointer-events:none;
   }
-  .player-node{
-    position:absolute;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg, var(--blue), var(--violet));
-    border:2px solid #fff;display:flex;align-items:center;justify-content:center;
-    font-family:'Tajawal';font-weight:900;font-size:11px;color:#fff;box-shadow:0 0 12px rgba(62,139,255,0.6);
-    transform:translate(-50%,-50%);animation: pulsePlayer 2s infinite ease-in-out;
-  }
-  @keyframes pulsePlayer{
-    0%,100%{box-shadow:0 0 8px rgba(62,139,255,0.5);}
-    50%{box-shadow:0 0 18px rgba(182,255,62,0.8), 0 0 5px #fff;}
-  }
-  .ball-anim{
-    position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;
-    box-shadow:0 0 10px #fff;transform:translate(-50%,-50%);
-    animation: ballMovement 4s infinite linear;
-  }
-  @keyframes ballMovement{
-    0%{top:80%;left:50%;}
-    25%{top:50%;left:30%;}
-    50%{top:30%;left:50%;}
-    75%{top:20%;left:70%;}
-    100%{top:80%;left:50%;}
+  .pitch-halfway{
+    position:absolute;top:50%;left:15px;right:15px;height:1px;background:rgba(255,255,255,0.25);pointer-events:none;
   }
 
-  .chat-container{
-    display:flex;flex-direction:column;height:480px;
+  /* Advanced Player Nodes with Tactical Movement Animation */
+  .player-node{
+    position:absolute;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg, var(--blue), var(--violet));
+    border:2px solid #fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Tajawal';font-weight:900;font-size:10px;color:#fff;box-shadow:0 0 12px rgba(62,139,255,0.6);
+    transform:translate(-50%,-50%);
   }
+  /* Specific tactical animations */
+  .p-gk {top:88%; left:50%;}
+  .p-lb {top:72%; left:18%; animation: floatSide 3s infinite ease-in-out;}
+  .p-cb1{top:74%; left:38%; animation: floatDeep 3s infinite ease-in-out;}
+  .p-cb2{top:74%; left:62%; animation: floatDeep 3s infinite ease-in-out;}
+  .p-rb {top:72%; left:82%; animation: floatSide 3s infinite ease-in-out reverse;}
+  .p-dmf1{top:54%; left:36%; animation: pressAnchor 3s infinite ease-in-out;}
+  .p-dmf2{top:54%; left:64%; animation: pressAnchor 3s infinite ease-in-out reverse;}
+  .p-amf1{top:34%; left:28%; animation: amfAttack1 4s infinite ease-in-out;}
+  .p-amf2{top:34%; left:72%; animation: amfAttack2 4s infinite ease-in-out;}
+  .p-cf1{top:16%; left:40%; animation: cfMovement 4s infinite ease-in-out;}
+  .p-cf2{top:16%; left:60%; animation: cfMovement 4s infinite ease-in-out reverse;}
+
+  @keyframes floatSide {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-10px); }
+  }
+  @keyframes floatDeep {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(5px); }
+  }
+  @keyframes pressAnchor {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-6px) scale(1.05); }
+  }
+  @keyframes amfAttack1 {
+    0%,100% { transform: translate(-50%, -50%) translate(0, 0); }
+    50% { transform: translate(-50%, -50%) translate(8px, -14px); }
+  }
+  @keyframes amfAttack2 {
+    0%,100% { transform: translate(-50%, -50%) translate(0, 0); }
+    50% { transform: translate(-50%, -50%) translate(-8px, -14px); }
+  }
+  @keyframes cfMovement {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-16px) scale(1.08); }
+  }
+
+  .ball-anim-pro{
+    position:absolute;width:14px;height:14px;background:#fff;border-radius:50%;
+    box-shadow:0 0 12px #fff;transform:translate(-50%,-50%);
+    animation: proBallRoute 6s infinite linear;
+  }
+  @keyframes proBallRoute {
+    0%   { top:88%; left:50%; }
+    20%  { top:74%; left:38%; }
+    40%  { top:54%; left:36%; }
+    60%  { top:34%; left:28%; }
+    80%  { top:16%; left:40%; }
+    100% { top:88%; left:50%; }
+  }
+
+  /* CHAT STYLES */
+  .chat-container{display:flex;flex-direction:column;height:480px;}
   .chat-messages{
     flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;
     background:var(--bg-elev);border-radius:12px;border:1px solid var(--border);margin-bottom:12px;
   }
   .chat-msg{
-    padding:10px 14px;border-radius:12px;max-width:90%;font-size:12.5px;line-height:1.65;word-break:break-word;
+    padding:10px 14px;border-radius:12px;max-width:92%;font-size:12.5px;line-height:1.65;word-break:break-word;
   }
-  .chat-msg.ai{
-    background:var(--bg-card);border:1px solid var(--border);color:var(--text);align-self:flex-start;
-  }
+  .chat-msg.ai{background:var(--bg-card);border:1px solid var(--border);color:var(--text);align-self:flex-start;}
   .chat-msg.ai b{color:var(--lime);}
-  .chat-msg.user{
-    background:rgba(62,139,255,0.15);border:1px solid var(--blue);color:var(--text);align-self:flex-end;
-  }
+  .chat-msg.user{background:rgba(62,139,255,0.15);border:1px solid var(--blue);color:var(--text);align-self:flex-end;}
+  
   .typing-dots{display:inline-flex;gap:4px;padding:2px 4px;}
   .typing-dots span{
     width:6px;height:6px;border-radius:50%;background:var(--text-dim);
@@ -267,6 +289,7 @@
     0%,60%,100%{transform:translateY(0);opacity:.5;}
     30%{transform:translateY(-4px);opacity:1;}
   }
+
   .chat-input-row{display:flex;gap:8px;}
   .chat-input{
     flex:1;background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;
@@ -279,15 +302,14 @@
     color:var(--lime);background:rgba(182,255,62,.1);padding:3px 9px;border-radius:20px;margin-bottom:10px;
   }
 
-  /* TACTICS GUIDE STYLES */
+  /* TACTICS GUIDE CARDS */
   .tactics-guide-card{
     background:var(--bg-elev);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;
   }
   .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
   .tactics-guide-desc{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
-  .tactics-list{margin-top:8px;padding-inline-start:18px;font-size:12px;color:var(--text);line-height:1.7;}
 
-  /* GIVEAWAY TIMER GAME STYLES */
+  /* GIVEAWAY TIMER */
   .timer-display{
     font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
     background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;padding:20px;
@@ -298,12 +320,6 @@
     background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.25);color:#FF8FA3;
     padding:12px;border-radius:12px;font-size:13px;text-align:center;font-weight:700;margin-bottom:14px;display:none;
   }
-
-  .net-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;}
-  .net-cell{background:var(--bg-elev);border:1px solid var(--border);border-radius:12px;padding:12px 6px;text-align:center;}
-  .net-cell .v{font-family:'Tajawal';font-weight:800;font-size:15px;}
-  .net-cell .l{font-size:10px;color:var(--text-dim);margin-top:3px;}
-  .net-verdict{margin-top:14px;text-align:center;font-weight:700;font-size:13px;padding:10px;border-radius:10px;}
 
   .toast{
     position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(14px);
@@ -352,7 +368,7 @@
 <!-- TOP SUB-PAGES NAVIGATION BAR -->
 <div class="nav-pages" id="navPages">
   <div class="page-tab active" data-target="page-scan">⚡ الرئيسية والفحص</div>
-  <div class="page-tab" data-target="page-ai">🤖 المدرب الذكي وتحليل التشكيلة</div>
+  <div class="page-tab" data-target="page-ai">🤖 المدرب الذكي والتشكيلة</div>
   <div class="page-tab" data-target="page-giveaway">🎁 مختبر الجوائز</div>
   <div class="page-tab" data-target="page-system">⚙ الأداء والنظام</div>
   <div class="page-tab" data-target="page-net">📶 الشبكة والتخزين</div>
@@ -395,14 +411,14 @@
   <div id="page-ai" class="page-section">
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
-      <div class="offline-badge">⚡ محادثة تفاعلية مباشرة</div>
-      <p class="section-desc">المحور الشامل لتحليل فريقك، التفاعل المباشر مع المدرب الذكي، ودليل أساليب اللعب وخطة 4-2-2-2 مع الأنميشن الحصري.</p>
+      <div class="offline-badge">⚡ مساعد eFootball التفاعلي المتقدم</div>
+      <p class="section-desc">المحور الشامل لتحليل فريقك، فحص التشكيلة بالذكاء الاصطناعي، واستعراض أساليب اللعب بـ Animation احترافي.</p>
 
       <!-- SUB-TABS FOR AI COACH -->
       <div class="coach-subtabs">
-        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات التفاعلي والتشكيلة</button>
-        <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن خطة 4-2-2-2</button>
-        <button class="coach-subtab" onclick="switchCoachTab('tactics')">⚽ الأساليب ودي شامب</button>
+        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات وتحليل التشكيلة</button>
+        <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن 4-2-2-2 Pro</button>
+        <button class="coach-subtab" onclick="switchCoachTab('tactics')">🏆 أساليب اللعب والخطط</button>
       </div>
 
       <!-- TAB 1: CHAT & SQUAD VISION HUMAN-LIKE -->
@@ -412,80 +428,86 @@
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
           <div class="vision-icon">📸</div>
           <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
-          <div class="vision-sub">سيرحب بك المدرب الذكي ويسألك عن رغبتك (دفاع أم هجوم) كأنه إنسان!</div>
+          <div class="vision-sub">سيقوم المدرب بتحليلها ومدحها وإعطائك نصائح الدفاع، الوسط، والهجوم!</div>
           <div id="visionPreviewWrap" class="vision-preview-wrap">
             <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
           </div>
         </div>
 
         <div class="quick-topics" id="quickTopics">
-          <div class="qt-chip" data-q="نصائح الدفاع">أريد نصائح الدفاع 🛡</div>
-          <div class="qt-chip" data-q="نصائح الهجوم">أريد نصائح الهجوم ⚡</div>
-          <div class="qt-chip" data-q="كيف أطبق أسلوب الكرة الطويلة المضادة؟">الكرة الطويلة المضادة 🔥</div>
-          <div class="qt-chip" data-q="ما مميزات خطة 4-2-2-2؟">خطة 4-2-2-2 📋</div>
+          <div class="qt-chip" data-q="تحليل تشكيلتي بالتفصيل">فحص التشكيلة الشامل 📋</div>
+          <div class="qt-chip" data-q="نصائح الدفاع والوسط والهجوم">نصائح الدفاع والوسط والهجوم 🛡️</div>
+          <div class="qt-chip" data-q="ما هي أفضل خططة لأسلوب الكرة الطويلة المضادة؟">الكرة الطويلة المضادة 🔥</div>
+          <div class="qt-chip" data-q="أفضل خطة للهجمة المرتدة السريعة">المرتدة السريعة ⚡</div>
         </div>
 
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل! أنا مدربك الشخصي لـ eFootball Mobile 🎮⚽.<br>ارفع صورة تشكيلتك بالأعلى لنبدأ الحديث معاً!
+              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها ومدحها مع تقديم نصائح الدفاع، الوسط، والهجوم فوراً!
             </div>
           </div>
 
           <div class="chat-input-row">
-            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب ردك هنا (مثلاً: أريد نصائح للدفاع)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك أو ردك هنا..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
             <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: FORMATION 4-2-2-2 ANIMATION -->
+      <!-- TAB 2: PRO FORMATION 4-2-2-2 ANIMATION -->
       <div id="coach-tab-animation" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🎬 أنميشن حركة خطة 4-2-2-2 وتحرك اللاعبين</div>
-          <div class="tactics-guide-desc">هذا العرض الحي يوضح حركة وتمركز لاعبي خطة 4-2-2-2 وتكاملهم مع أسلوب الكرة الطويلة المضادة تحت إمرة دي شامب.</div>
+          <div class="tactics-guide-title">🎬 الأنميشن الاحترافي لخطة 4-2-2-2</div>
+          <div class="tactics-guide-desc">عرض حي ومطور لحركة اللاعبين وتكامل المحور المزدوج (DMF) وصانعي اللعب (AMF) مع التحركات الهجومية والدفاعية.</div>
           
-          <div class="pitch-container" id="pitchAnim">
+          <div class="pitch-container" id="pitchAnimPro">
             <div class="pitch-lines"></div>
             <div class="pitch-center-circle"></div>
-            <div class="ball-anim"></div>
-            <!-- Players nodes -->
-            <div class="player-node" style="top:85%; left:50%;">GK</div>
-            <div class="player-node" style="top:70%; left:20%;">LB</div>
-            <div class="player-node" style="top:73%; left:40%;">CB</div>
-            <div class="player-node" style="top:73%; left:60%;">CB</div>
-            <div class="player-node" style="top:70%; left:80%;">RB</div>
-            <div class="player-node" style="top:52%; left:35%;">DMF</div>
-            <div class="player-node" style="top:52%; left:65%;">DMF</div>
-            <div class="player-node" style="top:35%; left:25%;">AMF</div>
-            <div class="player-node" style="top:35%; left:75%;">AMF</div>
-            <div class="player-node" style="top:18%; left:40%;">CF</div>
-            <div class="player-node" style="top:18%; left:60%;">CF</div>
+            <div class="pitch-halfway"></div>
+            <div class="ball-anim-pro"></div>
+            
+            <!-- Pro 4-2-2-2 Nodes -->
+            <div class="player-node p-gk">GK</div>
+            <div class="player-node p-lb">LB</div>
+            <div class="player-node p-cb1">CB</div>
+            <div class="player-node p-cb2">CB</div>
+            <div class="player-node p-rb">RB</div>
+            <div class="player-node p-dmf1">DMF</div>
+            <div class="player-node p-dmf2">DMF</div>
+            <div class="player-node p-amf1">AMF</div>
+            <div class="player-node p-amf2">AMF</div>
+            <div class="player-node p-cf1">CF</div>
+            <div class="player-node p-cf2">CF</div>
           </div>
-          <div style="font-size:12px;color:var(--text-dim);text-align:center;">💡 يظهر الأنميشن توازن المحور المزدوج (DMF) والانطلاقة المزدوجة للأجنحة والمهاجمين.</div>
+          <div style="font-size:12px;color:var(--text-dim);text-align:center;">💡 تظهر الحركة توافق التمركز بين خطوط الدفاع والوسط والمهاجمين بمرونة عالية.</div>
         </div>
       </div>
 
-      <!-- TAB 3: TACTICS & DESCHAMPS -->
+      <!-- TAB 3: TACTICS & STYLES GUIDE -->
       <div id="coach-tab-tactics" class="coach-tab-content" style="display:none;">
-        <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🌟 المدرب الأفضل: دي شامب (Didier Deschamps)</div>
-          <div class="tactics-guide-desc">الخيار الأول في eFootball Mobile لتأمين التوازن المطلق ودعم أسلوب الكرة الطويلة المضادة (LBC).</div>
-        </div>
-
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🏆 الكرة الطويلة المضادة (LBC) - الأفضل</div>
-          <div class="tactics-guide-desc">تراجع دفاعي صلب عند فقدان الكرة لمنع الاختراقات، يليه إرسال كرات طويلة دقيقة نحو المهاجمين خلف الخصم.</div>
+          <div class="tactics-guide-title">🔥 1. أسلوب الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
+          <div class="tactics-guide-desc">
+            <b>الفكرة:</b> تراجع دفاعي منظم وصلب عند فقدان الكرة لإغلاق المساحات، ثم إرسال كرات طويلة سريعة ودقيقة نحو المهاجمين خلف دفاع الخصم المتدفق.<br>
+            <b>🏆 أفضل خطة له:</b> <b>4-2-2-2</b> (الأفضل عالمياً لتوفير ثبات دفاعي ومحور مزدوج) أو <b>5-3-2</b>.
+          </div>
         </div>
 
-        <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🏃 الهجمات المرتدة السريعة (Quick Counter)</div>
-          <div class="tactics-guide-desc">ضغط عالي وشرس وإنطلاق خاطف بأقل عدد من التمريرات.</div>
+        <div class="tactics-guide-card" style="border-color:var(--blue);">
+          <div class="tactics-guide-title">⚡ 2. أسلوب الهجمة المرتدة السريعة (Quick Counter - QC)</div>
+          <div class="tactics-guide-desc">
+            <b>الفكرة:</b> ضغط شرس وعالي على حامل الكرة في مناطق الخصم فور فقدانها، وانطلاق خاطف وسريع من الفريق بأقل عدد ممكن من التمريرات نحو مرمى الخصم.<br>
+            <b>🏆 أفضل خطة له:</b> <b>4-2-1-3</b> أو <b>4-3-3</b> لتواجد أجنحة سريعة ومحور هجومي ضاغط.
+          </div>
         </div>
 
-        <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🎯 الكرة العرضية (Out Wide) & الاستحواذ (Possession)</div>
-          <div class="tactics-guide-desc">اللعب من الأطراف لإرسال عرضيات مقوسة دقيقة، أو الاستحواذ الهادئ بالترابيطات القصيرة.</div>
+        <div class="tactics-guide-card" style="border-color:var(--violet);">
+          <div class="tactics-guide-title">🎯 3. أسلوب الاستحواذ (Possession Game)</div>
+          <div class="tactics-guide-desc">
+            <b>الفكرة:</b> الصبر في بناء الهجمة، التمريرات القصيرة المترابطة، وحرمان الخصم من الكرة عبر الاستحواذ التام وفتح الثغرات بذكاء لاعبي الوسط.<br>
+            <b>🏆 أفضل خطة له:</b> <b>4-3-3</b> أو <b>4-2-1-3</b> لتوفير خيارات تمرير متعددة حول حامل الكرة.
+          </div>
         </div>
       </div>
     </section>
@@ -600,7 +622,7 @@
 <div id="toast" class="toast"></div>
 
 <script>
-// ROBUST EVENT LISTENERS FOR TABS
+// NAVIGATION TABS
 document.getElementById('navPages').addEventListener('click', (e) => {
   const tab = e.target.closest('.page-tab');
   if(!tab) return;
@@ -657,10 +679,8 @@ function formatCoachMessage(text){
 }
 
 // =====================================================================
-// HUMAN-LIKE AI COACH CONVERSATION STATE MACHINE
+// SQUAD VISION & COMPREHENSIVE HUMAN-LIKE ANALYSIS
 // =====================================================================
-let coachConversationState = 'NORMAL'; // NORMAL, WAITING_CHOICE
-
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -672,60 +692,52 @@ function handleSquadImageUpload(event){
     previewImg.src = e.target.result;
     previewWrap.style.display = 'block';
 
-    triggerHumanLikeSquadAnalysis();
+    triggerComprehensiveSquadAnalysis();
   };
   reader.readAsDataURL(file);
 }
 
-function triggerHumanLikeSquadAnalysis(){
+function triggerComprehensiveSquadAnalysis(){
   const chatMessages = document.getElementById('chatMessages');
   
-  chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg user">📸 [تم رفع صورة التشكيلة]</div>`);
+  chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg user">📸 [تم رفع صورة التشكيلة بنجاح]</div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   const loadingId = 'loading_' + Date.now();
   chatMessages.insertAdjacentHTML('beforeend', `
     <div id="${loadingId}" class="chat-msg ai">
-      🔍 جاري فحص تشكيلتك يا بطل... <span class="typing-dots"><span></span><span></span><span></span></span>
+      🔍 المدرب الذكي يفحص تشكيلتك بدقة عالية... <span class="typing-dots"><span></span><span></span><span></span></span>
     </div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    // Human-like greeting and branching question
-    const reply = `يا هلا بيك يا كابتن! 🔥 بصراحة تشكيلتك ممتازة جداً وتوزيع اللاعبين متناسق مع خطة **4-2-2-2** والمدرب الأسطوري **دي شامب**.\n\nقول لي يا غالي، هل تريد نصائح حول **الدفاع** أم حول **الهجوم** لتطوير أدائك أكثر؟`;
+    // Comprehensive Human-like analysis covering defense, midfield, and attack
+    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 لقد قمت بفحص تشكيلتك المرفقة بعناية فائقة:\n\n` +
+                  `🌟 **مديح التشكيلة:** اختيارك للاعبين وتوزيعهم يعكس احترافية عالية وانسجاماً ممتازاً يتماشى مع أقوى التكتيكات!\n\n` +
+                  `🛡️ **1. نصائح الدفاع:**\n• حافظ على خط دفاع متماسك ولا تندفع بقلبي الدفاع، واستخدم خاصية Match-Up.\n• محور الارتكاز المزدوج (DMF) سيوفر لك جداراً دفاعياً صلباً يمنع أي اختراق مركزي.\n\n` +
+                  `⚙️ **2. نصائح الوسط (Midfield):**\n• اجعل أحد لاعبي الـ DMF يمتلك أسلوب Anchorman للتغطية الخلفية.\n• استغل لاعبي الـ AMF في صناعة اللعب السريع وفتح المساحات على الأطراف والعمق.\n\n` +
+                  `⚡ **3. نصائح الهجوم (Attack):**\n• اعتمد على التمرير السريع للمهاجمين (CF) فور استخلاص الكرة لاستغلال سرعة المرتدات.\n• لا تبقِ المهاجمين ثابتين، بل اطلب منهم التحرك خلف مدافعي الخصم.\n\nهل تحتاج إلى تعديل أي مركز إضافي يا بطل؟`;
     
-    coachConversationState = 'WAITING_CHOICE';
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل تشكيلتك بنجاح!');
-  }, 1200);
+    showToast('تم تحليل ومدح تشكيلتك الشاملة بنجاح!');
+  }, 1500);
 }
 
-function getHumanLikeCoachReply(userText){
+function getCoachReply(userText){
   const q = userText.toLowerCase();
 
-  if(coachConversationState === 'WAITING_CHOICE'){
-    if(q.includes('دفاع') || q.includes('الدفاع')){
-      coachConversationState = 'NORMAL';
-      return `🛡 **نصائح الدفاع الاحترافي لخطة 4-2-2-2:**\n1) اعتمد على محور الارتكاز المزدوج (DMF) وثبت أحدهم كـ Anchorman لقطع الكرات أمام قلبي الدفاع.\n2) استخدم خاصية **Match-Up** ولا تندفع بزر الضغط المباشر كي لا تترك مساحات.\n3) مع أسلوب الكرة الطويلة المضادة (LBC)، سيتراجع دفاعك بشكل مثالي لمنع أي انفرادات سريعة من الخصم!`;
-    } else if(q.includes('هجوم') || q.includes('الهجوم') || q.includes('هجومي')){
-      coachConversationState = 'NORMAL';
-      return `⚡ **نصائح الهجوم الفعّال لخطة 4-2-2-2:**\n1) استغل لاعبي الـ AMF بتحركات مباغتة داخل منطقة الجزاء كأنهم مهاجمون إضافيون.\n2) اعتمد على التمرير السريع نحو المهاجمين (CF) فور استخلاص الكرة لاستغلال المساحات خلف دفاع الخصم.\n3) التناغم مع أسلوب **دي شامب** يمنح لاعبيك سرعة تمركز خيالية عند التحول الهجومي!`;
-    }
+  if(q.includes('دفاع') || q.includes('وسط') || q.includes('هجوم') || q.includes('نصائح')){
+    return `🛡️ **التحليل الثلاثي المتكامل لفريقك:**\n\n• **الدفاع:** اعتمد على المدافعين أصحاب القوة البدنية العالية والتركيز.\n• **الوسط:** ادمج بين لاعب قاطع كرات (Destructor/Anchor) وآخر صانع لعب (Box-to-Box أو Hole Player).\n• **الهجوم:** استغل سرعة الـ CF في الهجمات المرتدة السريعة مع إسناد الـ AMF.`;
+  } else if(q.includes('طويلة') || q.includes('lbc')){
+    return `🔥 أسلوب **الكرة الطويلة المضادة** هو الأنسب لخطة 4-2-2-2 لأنه يمنحك تأميناً دفاعياً وانطلاقات صاروخية للمهاجمين بلمسة واحدة.`;
+  } else if(q.includes('مرتدة') || q.includes('سريعة') || q.includes('qc')){
+    return `⚡ الهجمة المرتدة السريعة تتطلب ضغطاً عالياً ومهاجمين بأعلى معدلات السرعة والاستجابة.`;
   }
 
-  // General keyword fallback
-  if(q.includes('4222') || q.includes('4-2-2-2') || q.includes('خطة')){
-    return `📋 خطة **4-2-2-2** هي الأقوى حالياً لتوازن الدفاع والهجوم، وتعمل بكفاءة مطلقة مع المدرب **دي شامب** وأسلوب **الكرة الطويلة المضادة (LBC)**.`;
-  } else if(q.includes('دي شامب') || q.includes('deschamps')){
-    return `🌟 المدرب **دي شامب** هو خيارك الأول والأفضل في اللعبة لتفعيل تكتيكات الضغط العكسي وتأمين الخط الخلفي بامتياز.`;
-  } else if(q.includes('طويلة') || q.includes('مضادة') || q.includes('lbc')){
-    return `🏆 أسلوب **الكرة الطويلة المضادة (LBC)** يمنحك صلابة دفاعية ت样的 وهجمات مرتدة خاطفة تضرب دفاع الخصم بلمسة واحدة.`;
-  }
-
-  return `أنا معك يا بطل! هل ترغب في التركيز على نصائح **الدفاع** أم **الهجوم** لفريقك؟`;
+  return `أنا معك يا كابتن! ارفع صورة تشكيلتك بالأعلى لأقوم بتحليلها ومدحها وتقديم نصائح الدفاع والوسط والهجوم بدقة.`;
 }
 
 function sendAIChatMessage(prefillText){
@@ -750,14 +762,14 @@ function sendAIChatMessage(prefillText){
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
-    const reply = getHumanLikeCoachReply(userText);
+    const reply = getCoachReply(userText);
     document.getElementById(loadingId).remove();
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     input.disabled = false;
     sendBtn.disabled = false;
     input.focus();
-  }, 450);
+  }, 500);
 }
 
 document.getElementById('quickTopics').addEventListener('click', (e) => {
@@ -766,7 +778,7 @@ document.getElementById('quickTopics').addEventListener('click', (e) => {
   sendAIChatMessage(chip.getAttribute('data-q'));
 });
 
-// GIVEAWAY TIMER LOGIC WITH 24-HOUR COOLDOWN
+// GIVEAWAY TIMER LOGIC
 const COOLDOWN_KEY = 'r2max_giveaway_last_time';
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 let giveawayMemory = null;
@@ -863,9 +875,7 @@ function stopGiveawayTimer(auto=false){
   }
 }
 
-// =====================================================================
-// REAL DEVICE SCAN — page 1
-// =====================================================================
+// REAL DEVICE SCAN
 function getGpuInfo(){
   try{
     const canvas = document.createElement('canvas');
@@ -888,16 +898,16 @@ async function getBatteryInfo(){
 async function collectRealDeviceStats(){
   const stats = [];
   const cores = navigator.hardwareConcurrency;
-  stats.push({ key:'CPU (أنوية منطقية)', icon:'⚙', display: cores ? String(cores) : null, note: 'عدد الأنوية' });
+  stats.push({ key:'CPU (أنوية منطقية)', icon:'⚙', display: cores ? String(cores) : null });
   const mem = navigator.deviceMemory;
-  stats.push({ key:'ذاكرة الجهاز (RAM)', icon:'🧠', display: mem ? (mem + ' GB تقريباً') : null, note: 'الذاكرة العشوائية' });
+  stats.push({ key:'ذاكرة الجهاز (RAM)', icon:'🧠', display: mem ? (mem + ' GB تقريباً') : null });
   const gpu = getGpuInfo();
-  stats.push({ key:'GPU (المعالج الرسومي)', icon:'🖥', display: gpu || null, note: 'كرت الشاشة' });
+  stats.push({ key:'GPU (المعالج الرسومي)', icon:'🖥', display: gpu || null });
   const batt = await getBatteryInfo();
-  stats.push({ key:'البطارية', icon:'🔋', display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null, note: 'البطارية' });
+  stats.push({ key:'البطارية', icon:'🔋', display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null });
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  stats.push({ key:'نوع الاتصال', icon:'📶', display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null, note: 'الاتصال' });
-  stats.push({ key:'حالة الاتصال', icon:'🌐', display: navigator.onLine ? 'متصل' : 'غير متصل', note: 'الإنترنت' });
+  stats.push({ key:'نوع الاتصال', icon:'📶', display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null });
+  stats.push({ key:'حالة الاتصال', icon:'🌐', display: navigator.onLine ? 'متصل' : 'غير متصل' });
   return stats;
 }
 
