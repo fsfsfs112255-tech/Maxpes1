@@ -203,6 +203,42 @@
   .vision-preview-wrap{margin-top:10px;display:none;position:relative;}
   .vision-preview-img{max-width:100%;max-height:160px;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
 
+  /* FORMATION ANIMATION STYLES */
+  .pitch-container{
+    position:relative;width:100%;height:280px;background:linear-gradient(135deg, #0f2b1d, #143d28);
+    border-radius:14px;border:2px solid rgba(182,255,62,0.3);overflow:hidden;margin-bottom:14px;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.6);
+  }
+  .pitch-lines{
+    position:absolute;inset:15px;border:1px solid rgba(255,255,255,0.25);border-radius:6px;pointer-events:none;
+  }
+  .pitch-center-circle{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:70px;height:70px;border:1px solid rgba(255,255,255,0.25);border-radius:50%;pointer-events:none;
+  }
+  .player-node{
+    position:absolute;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg, var(--blue), var(--violet));
+    border:2px solid #fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Tajawal';font-weight:900;font-size:11px;color:#fff;box-shadow:0 0 12px rgba(62,139,255,0.6);
+    transform:translate(-50%,-50%);animation: pulsePlayer 2s infinite ease-in-out;
+  }
+  @keyframes pulsePlayer{
+    0%,100%{box-shadow:0 0 8px rgba(62,139,255,0.5);}
+    50%{box-shadow:0 0 18px rgba(182,255,62,0.8), 0 0 5px #fff;}
+  }
+  .ball-anim{
+    position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;
+    box-shadow:0 0 10px #fff;transform:translate(-50%,-50%);
+    animation: ballMovement 4s infinite linear;
+  }
+  @keyframes ballMovement{
+    0%{top:80%;left:50%;}
+    25%{top:50%;left:30%;}
+    50%{top:30%;left:50%;}
+    75%{top:20%;left:70%;}
+    100%{top:80%;left:50%;}
+  }
+
   .chat-container{
     display:flex;flex-direction:column;height:480px;
   }
@@ -328,7 +364,7 @@
   <div id="page-scan" class="page-section active">
     <section class="hero">
       <div class="hero-eyebrow display">GAME READY?</div>
-      <p class="hero-note">اضغط Start Scan ليقرأ التطبيق المعلومات الحقيقية التي يسمح بها متصفحك عن جهازك. ملاحظة: لأسباب أمنية، لا يستطيع أي متصفح قراءة حرارة المعالج أو نسبة استخدامه اللحظية — هذه المعلومة غير متاحة لأي تطبيق ويب في العالم، وسنوضح ذلك بدل اختلاق أرقام.</p>
+      <p class="hero-note">اضغط Start Scan ليقرأ التطبيق المعلومات الحقيقية التي يسمح بها متصفحك عن جهازك.</p>
 
       <div class="gauge-wrap">
         <svg viewBox="0 0 220 220">
@@ -359,100 +395,97 @@
   <div id="page-ai" class="page-section">
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
-      <div class="offline-badge">⚡ يعمل بالكامل بدون إنترنت</div>
-      <p class="section-desc">المحور الشامل لتحليل فريقك، استعراض مدح التشكيلة والنصائح، ودليل أساليب اللعب وخطة 4-2-2-2 مع المدرب الأسطوري دي شامب.</p>
+      <div class="offline-badge">⚡ محادثة تفاعلية مباشرة</div>
+      <p class="section-desc">المحور الشامل لتحليل فريقك، التفاعل المباشر مع المدرب الذكي، ودليل أساليب اللعب وخطة 4-2-2-2 مع الأنميشن الحصري.</p>
 
       <!-- SUB-TABS FOR AI COACH -->
       <div class="coach-subtabs">
-        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات والتحليل الذكي</button>
+        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات التفاعلي والتشكيلة</button>
+        <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن خطة 4-2-2-2</button>
         <button class="coach-subtab" onclick="switchCoachTab('tactics')">⚽ الأساليب ودي شامب</button>
-        <button class="coach-subtab" onclick="switchCoachTab('formation')">📋 شرح خطة 4-2-2-2</button>
       </div>
 
-      <!-- TAB 1: CHAT & SQUAD VISION -->
+      <!-- TAB 1: CHAT & SQUAD VISION HUMAN-LIKE -->
       <div id="coach-tab-chat" class="coach-tab-content">
         <!-- SQUAD IMAGE VISION UPLOADER -->
         <div class="vision-box">
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
           <div class="vision-icon">📸</div>
           <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
-          <div class="vision-sub">سيقوم المحلل الذكي بمدح تشكيلتك وتقييمها وإعطائك نصائح فورية</div>
+          <div class="vision-sub">سيرحب بك المدرب الذكي ويسألك عن رغبتك (دفاع أم هجوم) كأنه إنسان!</div>
           <div id="visionPreviewWrap" class="vision-preview-wrap">
             <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
           </div>
         </div>
 
         <div class="quick-topics" id="quickTopics">
-          <div class="qt-chip" data-q="ما هي مميزات خطة 4-2-2-2 والمدرب دي شامب؟">خطة 4-2-2-2 🔥</div>
-          <div class="qt-chip" data-q="اشرح لي أسلوب الكرة الطويلة المضادة (LBC).">الكرة الطويلة المضادة ⚡</div>
-          <div class="qt-chip" data-q="كيف أدافع بشكل احترافي وأمنع الأهداف؟">الدفاع 🛡</div>
-          <div class="qt-chip" data-q="كيف أستفيد من الهجمات المرتدة السريعة والعرضيات؟">الهجمات والعرضيات 🎯</div>
+          <div class="qt-chip" data-q="نصائح الدفاع">أريد نصائح الدفاع 🛡</div>
+          <div class="qt-chip" data-q="نصائح الهجوم">أريد نصائح الهجوم ⚡</div>
+          <div class="qt-chip" data-q="كيف أطبق أسلوب الكرة الطويلة المضادة؟">الكرة الطويلة المضادة 🔥</div>
+          <div class="qt-chip" data-q="ما مميزات خطة 4-2-2-2؟">خطة 4-2-2-2 📋</div>
         </div>
 
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽.<br>أفضل خلطة حالياً هي خطة **4-2-2-2** تحت قيادة المدرب الأسطوري **دي شامب (Didier Deschamps)** بأسلوب **الكرة الطويلة المضادة (LBC)**.<br>ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدحها وتقديم النصائح الفورية!
+              أهلاً بك يا بطل! أنا مدربك الشخصي لـ eFootball Mobile 🎮⚽.<br>ارفع صورة تشكيلتك بالأعلى لنبدأ الحديث معاً!
             </div>
           </div>
 
           <div class="chat-input-row">
-            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أطبق أسلوب الكرة الطويلة المضادة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب ردك هنا (مثلاً: أريد نصائح للدفاع)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
             <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: TACTICS & DESCHAMPS -->
+      <!-- TAB 2: FORMATION 4-2-2-2 ANIMATION -->
+      <div id="coach-tab-animation" class="coach-tab-content" style="display:none;">
+        <div class="tactics-guide-card" style="border-color:var(--lime);">
+          <div class="tactics-guide-title">🎬 أنميشن حركة خطة 4-2-2-2 وتحرك اللاعبين</div>
+          <div class="tactics-guide-desc">هذا العرض الحي يوضح حركة وتمركز لاعبي خطة 4-2-2-2 وتكاملهم مع أسلوب الكرة الطويلة المضادة تحت إمرة دي شامب.</div>
+          
+          <div class="pitch-container" id="pitchAnim">
+            <div class="pitch-lines"></div>
+            <div class="pitch-center-circle"></div>
+            <div class="ball-anim"></div>
+            <!-- Players nodes -->
+            <div class="player-node" style="top:85%; left:50%;">GK</div>
+            <div class="player-node" style="top:70%; left:20%;">LB</div>
+            <div class="player-node" style="top:73%; left:40%;">CB</div>
+            <div class="player-node" style="top:73%; left:60%;">CB</div>
+            <div class="player-node" style="top:70%; left:80%;">RB</div>
+            <div class="player-node" style="top:52%; left:35%;">DMF</div>
+            <div class="player-node" style="top:52%; left:65%;">DMF</div>
+            <div class="player-node" style="top:35%; left:25%;">AMF</div>
+            <div class="player-node" style="top:35%; left:75%;">AMF</div>
+            <div class="player-node" style="top:18%; left:40%;">CF</div>
+            <div class="player-node" style="top:18%; left:60%;">CF</div>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim);text-align:center;">💡 يظهر الأنميشن توازن المحور المزدوج (DMF) والانطلاقة المزدوجة للأجنحة والمهاجمين.</div>
+        </div>
+      </div>
+
+      <!-- TAB 3: TACTICS & DESCHAMPS -->
       <div id="coach-tab-tactics" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card">
           <div class="tactics-guide-title">🌟 المدرب الأفضل: دي شامب (Didier Deschamps)</div>
-          <div class="tactics-guide-desc">يُعد المدرب دي شامب الخيار الأول وأفضل مدرب في eFootball Mobile لقدرته الفائقة على ضبط التوازن الدفاعي والهجومي، ودعم أسلوب اللعب الأقوى في اللعبة.</div>
+          <div class="tactics-guide-desc">الخيار الأول في eFootball Mobile لتأمين التوازن المطلق ودعم أسلوب الكرة الطويلة المضادة (LBC).</div>
         </div>
 
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🏆 الخيار الأول: الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
-          <div class="tactics-guide-desc">الأسلوب الأفضل والأكثر فعالية لتحقيق الانتصارات في المباريات التنافسية. يعتمد على تراجع الخط الخلفي لتأمين المساحات بالكامل، ثم إرسال كرات طويلة دقيقة وعميقة خلف مدافعي الخصم نحو المهاجمين الأسرع.</div>
-          <ul class="tactics-list">
-            <li><b>مميزات الخارقة:</b> صلب للغاية دفاعياً، يمنع الانفرادات السهلة، ويضرب دفاع الخصم بتمريرة واحدة حاسمة.</li>
-            <li><b>السر هنا:</b> تناغم تام مع خطة 4-2-2-2 ومدربك دي شامب.</li>
-          </ul>
+          <div class="tactics-guide-title">🏆 الكرة الطويلة المضادة (LBC) - الأفضل</div>
+          <div class="tactics-guide-desc">تراجع دفاعي صلب عند فقدان الكرة لمنع الاختراقات، يليه إرسال كرات طويلة دقيقة نحو المهاجمين خلف الخصم.</div>
         </div>
 
         <div class="tactics-guide-card">
           <div class="tactics-guide-title">🏃 الهجمات المرتدة السريعة (Quick Counter)</div>
-          <div class="tactics-guide-desc">أسلوب يعتمد على الضغط العالي والشرس فور فقدان الكرة، والانطلاق الخاطف نحو مرمى المنافس بأقل عدد من التمريرات لإرباك الخصم قبل تراجع دفاعه.</div>
-          <ul class="tactics-list">
-            <li><b>مميزات:</b> يخلق فرصاً عديدة وسريعة طوال اللقاء.</li>
-            <li><b>عيوب:</b> يتطلب لياقة بدنية عالية ويترك مساحات خلفية عند فشل الضغط.</li>
-          </ul>
+          <div class="tactics-guide-desc">ضغط عالي وشرس وإنطلاق خاطف بأقل عدد من التمريرات.</div>
         </div>
 
         <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🎯 الكرة العرضية الفعّالة (Cross Over / Out Wide)</div>
-          <div class="tactics-guide-desc">أسلوب يركز على ترحيل اللعب للأطراف وفتح المساحات للجناح أو الظهير لإرسال كرات عرضية مقوسة عالية الدقة نحو رؤوس المهاجمين (Target Man).</div>
-          <ul class="tactics-list">
-            <li><b>مميزات:</b> ممتاز جداً لفك لغز التكتلات الدفاعية العميق (دفاع الحافلة).</li>
-          </ul>
-        </div>
-
-        <div class="tactics-guide-card">
-          <div class="tactics-guide-title">♟ الاستحواذ (Possession Game)</div>
-          <div class="tactics-guide-desc">أسلوب هادئ يعتمد على التمريرات القصيرة المتقونة والحفاظ على الكرة لحرمان الخصم منها، وخلق الثغرات ببطء عبر التحركات الذكية للاعبي الوسط.</div>
-        </div>
-      </div>
-
-      <!-- TAB 3: FORMATION 4-2-2-2 SPECIAL GUIDE -->
-      <div id="coach-tab-formation" class="coach-tab-content" style="display:none;">
-        <div class="tactics-guide-card" style="border-color:var(--blue);">
-          <div class="tactics-guide-title">📋 الشرح الخاص لخطة 4-2-2-2 الأسطورية</div>
-          <div class="tactics-guide-desc">تعتبر خطة 4-2-2-2 الخيار المفضل لأفضل لاعبي العالم في eFootball Mobile، وتتميز بتوازن مثالي في كل أرجاء الملعب.</div>
-          <ul class="tactics-list">
-            <li><b>خط الدفاع (4 مدافعين):</b> قلبا دفاع صلبان (يفضل واحد Build-up والآخر Destroyer) مع ظهيرين دفاعيين (Full-Back Finishers أو Defensive Full-Backs) لتأمين الأطراف.</li>
-            <li><b>محور الارتكاز (2 DMF/CMF):</b> قلب اللعب النابض. ضع لاعب DMF بمهارة Anchorman ليكون صمام أمان مستقر أمام المدافعين، بجانبه لاعب Box-to-Box لربط الدفاع بالهجوم.</li>
-            <li><b>لاعبا الوسط الهجومي (2 AMF/SS):</b> سر خطورة الخطة! وضع لاعبين بمهارة Hole Player أو Creative Playmaker لصناعة الفارق والتغلغل داخل منطقة الجزاء كأنهم مهاجمون إضافيون.</li>
-            <li><b>خط الهجوم (2 CF):</b> مهاجمان صريحان (مثلاً Goal Poacher سريع بجانب Target Man قوي) لتشكيل ضغط مرعب ومستمر على دفاع الخصم.</li>
-          </ul>
+          <div class="tactics-guide-title">🎯 الكرة العرضية (Out Wide) & الاستحواذ (Possession)</div>
+          <div class="tactics-guide-desc">اللعب من الأطراف لإرسال عرضيات مقوسة دقيقة، أو الاستحواذ الهادئ بالترابيطات القصيرة.</div>
         </div>
       </div>
     </section>
@@ -462,19 +495,17 @@
   <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 تحدي العداد — اربح سوايرز!</h2>
-      <p class="section-desc">اختبر سرعة بديهتك ودقتك. أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة!</p>
+      <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة!</p>
 
       <div class="panel">
         <div class="giveaway-rules">
           📌 <b>قوانين التحدي:</b>
-          <br>1. العداد يبدأ من 0.00 ويصعد تلقائياً إلى 20.00 ثانية.
-          <br>2. يجب إيقاف العداد عند <b>10.00 ثانية</b> بالضبط.
-          <br>3. <b>مهم:</b> يمكنك استخدام العداد **مرة واحدة كل 24 ساعة** فقط!
-          <br>4. نسبة الربح الفعلي هي <b>1% فقط</b> عند التوقيت الصحيح تماماً.
+          <br>1. العداد يبدأ من 0.00 ويصعد إلى 20.00 ثانية.
+          <br>2. يجب إيقاف العداد عند <b>10.00 ثانية</b> تماماً.
+          <br>3. مسموح بـ <b>محاولة واحدة كل 24 ساعة</b> فقط!
         </div>
 
         <div id="cooldownBox" class="cooldown-box"></div>
-
         <div id="timerDisplay" class="timer-display">00.00</div>
 
         <div style="display:flex;gap:10px">
@@ -491,13 +522,13 @@
   <div id="page-system" class="page-section">
     <section>
       <h2 class="section-title display">System & Performance</h2>
-      <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب. هذه الأوضاع تتحكم فقط في واجهة هذا التطبيق.</p>
+      <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب.</p>
 
       <div class="panel">
         <div class="toggle-row">
           <div class="toggle-copy">
             <div class="t-name">HIGH PERFORMANCE MODE</div>
-            <div class="t-desc">أولوية لتجربة اللعب وتقليل المشتتات قدر الإمكان.</div>
+            <div class="t-desc">أولوية لتجربة اللعب وتقليل المشتتات.</div>
           </div>
           <label class="switch">
             <input type="checkbox" id="perfToggle" onchange="togglePerf(this.checked)">
@@ -520,26 +551,6 @@
         <button class="btn btn-primary" style="margin-top:14px" onclick="startGamingDND()">START GAMING</button>
         <div id="dndStatus" class="status-pill"><span class="dot"></span> غير مفعّل</div>
       </div>
-
-      <h2 class="section-title display" style="margin-top:10px">Gaming Profiles</h2>
-      <div class="profile-grid" id="profileGrid">
-        <div class="profile-card active" data-p="balanced">
-          <div class="profile-name">Balanced</div>
-          <div class="profile-desc">استخدام يومي طبيعي.</div>
-        </div>
-        <div class="profile-card" data-p="performance">
-          <div class="profile-name">Performance</div>
-          <div class="profile-desc">أقصى أداء للعب.</div>
-        </div>
-        <div class="profile-card" data-p="battery">
-          <div class="profile-name">Battery Saver</div>
-          <div class="profile-desc">توفير الطاقة.</div>
-        </div>
-        <div class="profile-card" data-p="competitive">
-          <div class="profile-name">Competitive</div>
-          <div class="profile-desc">أقل مشتتات للمنافسة.</div>
-        </div>
-      </div>
     </section>
   </div>
 
@@ -547,42 +558,27 @@
   <div id="page-net" class="page-section">
     <section>
       <h2 class="section-title display">Network & Storage</h2>
-      <p class="section-desc">قراءات حقيقية من متصفحك حيث يسمح، مع توضيح واضح لأي رقم غير متاح.</p>
+      <p class="section-desc">قراءات حقيقية من متصفحك.</p>
 
       <div class="panel">
         <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Device Memory (RAM)</div>
         <div class="bar-legend"><span id="ramLabelLeft">جارِ القراءة...</span><span id="ramLabelRight"></span></div>
         <div class="bar-track"><div id="ramBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--warn),#FFD166)"></div></div>
         <div id="ramIndicator" class="indicator">⏳ جارِ القراءة</div>
-        <p class="fine-print">navigator.deviceMemory يعطي تقريباً مقرباً لإجمالي ذاكرة الجهاز.</p>
       </div>
 
       <div class="panel">
-        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Storage (لهذا الموقع فقط)</div>
+        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Storage</div>
         <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>الحد المتاح: <b id="stFree">--</b></span></div>
         <div class="bar-track"><div id="stBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--danger),#FF8FA3)"></div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
           <div>
-            <div class="t-name" style="font-size:13px">بيانات هذا الموقع المخزّنة محلياً</div>
-            <div class="t-desc"><span id="cacheSize">--</span> يمكن مسحها من هذا الموقع فقط</div>
+            <div class="t-name" style="font-size:13px">بيانات هذا الموقع</div>
+            <div class="t-desc"><span id="cacheSize">--</span></div>
           </div>
           <button class="btn btn-ghost" style="width:auto;padding:8px 14px;font-size:12.5px" onclick="cleanStorage()">تنظيف</button>
         </div>
-        <p class="fine-print">المتصفح لا يسمح لأي موقع بقراءة مساحة تخزين الهاتف الكاملة.</p>
       </div>
-
-      <div class="panel">
-        <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:10px">Connection Info</div>
-        <button id="netBtn" class="btn btn-ghost" onclick="runNetTest()">قراءة معلومات الاتصال</button>
-        <div class="net-grid" id="netGrid" style="display:none">
-          <div class="net-cell"><div class="v" id="netPing">--</div><div class="l">RTT (ms)</div></div>
-          <div class="net-cell"><div class="v" id="netDown">--</div><div class="l">Downlink</div></div>
-          <div class="net-cell"><div class="v" id="netUp">--</div><div class="l">النوع</div></div>
-        </div>
-        <div id="netVerdict" class="net-verdict" style="display:none"></div>
-        <p class="fine-print">هذه القيم تأتي من Network Information API الحقيقية.</p>
-      </div>
-
     </section>
   </div>
 
@@ -624,18 +620,18 @@ function switchCoachTab(tabKey){
   subtabs.forEach(t => t.classList.remove('active'));
   
   document.getElementById('coach-tab-chat').style.display = 'none';
+  document.getElementById('coach-tab-animation').style.display = 'none';
   document.getElementById('coach-tab-tactics').style.display = 'none';
-  document.getElementById('coach-tab-formation').style.display = 'none';
 
   if(tabKey === 'chat'){
     subtabs[0].classList.add('active');
     document.getElementById('coach-tab-chat').style.display = 'block';
-  } else if(tabKey === 'tactics'){
+  } else if(tabKey === 'animation'){
     subtabs[1].classList.add('active');
-    document.getElementById('coach-tab-tactics').style.display = 'block';
+    document.getElementById('coach-tab-animation').style.display = 'block';
   } else {
     subtabs[2].classList.add('active');
-    document.getElementById('coach-tab-formation').style.display = 'block';
+    document.getElementById('coach-tab-tactics').style.display = 'block';
   }
 }
 
@@ -661,52 +657,10 @@ function formatCoachMessage(text){
 }
 
 // =====================================================================
-// AI COACH — fully OFFLINE, rule-based keyword matcher + SQUAD VISION
+// HUMAN-LIKE AI COACH CONVERSATION STATE MACHINE
 // =====================================================================
-const COACH_KB = [
-  {
-    keys: ['4222','4-2-2-2','خطة','تشكيل','formation'],
-    reply: `📋 **شرح خطة 4-2-2-2 الأسطورية**\n1) تعتبر الخيار الأقوى لتوازن الدفاع والهجوم.\n2) تعتمد على محورين ارتكاز (DMF) لتأمين العمق، واثنين (AMF/SS) لصناعة اللعب خلف مهاجمين صريحين.\n3) متوافقة بشكل مثالي مع أسلوب الكرة الطويلة المضادة والمدرب دي شامب.`
-  },
-  {
-    keys: ['دي شامب','deschamps','مدرب','coach'],
-    reply: `🌟 **المدرب الأفضل: دي شامب (Didier Deschamps)**\nدي شامب هو المدرب الأقوى حالياً في eFootball Mobile بفضل قدرته على تفعيل تكتيك الكرة الطويلة المضادة بأعلى كفاءة، مما يمنح لاعبيك سرعة وتمرکزاً مثالياً.`
-  },
-  {
-    keys: ['طويلة','مضادة','lbc','الكرة الطويلة'],
-    reply: `🏆 **أسلوب الكرة الطويلة المضادة (LBC)**\nهو الأسلوب الأول والأنسب للانتصار في المباريات التنافسية. يمنح دفاعك صلابة تامة عند فقدان الكرة، ثم يطلق هجمات مرتدة سريعة وعميقة نحو المهاجمين بلمسة واحدة.`
-  },
-  {
-    keys: ['مرتدة','سريعة','quick counter'],
-    reply: `🏃 **الهجمات المرتدة السريعة (Quick Counter)**\nأسلوب يعتمد على الضغط الشرس فور فقدان الكرة والإنطلاق الخاطف، لكنه يتطلب لياقة بدنية عالية وقد يخلف مساحات خلفية.`
-  },
-  {
-    keys: ['عرضية','عرضيات','cross','out wide'],
-    reply: `🎯 **أسلوب الكرة العرضية (Cross Over / Out Wide)**\nيركز على اللعب من الأطراف والأجنحة وإرسال كرات مقوسة عالية الدقة نحو رؤوس المهاجمين داخل منطقة الجزاء.`
-  },
-  {
-    keys: ['استحواذ','possesson'],
-    reply: `♟ **أسلوب الاستحواذ (Possession Game)**\nيعتمد على التمريرات القصيرة الهادئة والاحتفاظ بالكرة لفرض السيطرة وبناء الهجمة بهدوء وثبات.`
-  },
-  {
-    keys: ['دفاع','دافع','أدافع','ماتش اب','match-up'],
-    reply: `🛡 **الدفاع الاحترافي**\nاستخدم خاصية Match-Up لغلق زوايا التمرير وتجنب الاندفاع المستمر بزر الضغط المباشر للحفاظ على ثبات الخط الخلفي.`
-  }
-];
+let coachConversationState = 'NORMAL'; // NORMAL, WAITING_CHOICE
 
-const COACH_FALLBACK = `أنا مدربك المحلي لـ eFootball Mobile 🎮⚽ (أعمل بدون إنترنت). أفضل خلطة حالياً هي خطة **4-2-2-2** مع المدرب **دي شامب** وأسلوب **الكرة الطويلة المضادة (LBC)**. ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدحها، أو اسأل عن: **خطة 4-2-2-2**، **دي شامب**، **الكرة الطويلة المضادة**، أو **العرضيات**!`;
-
-function getOfflineCoachReply(userText){
-  const q = userText.toLowerCase();
-  for(const entry of COACH_KB){
-    if(entry.keys.some(k => q.includes(k.toLowerCase()))){
-      return entry.reply;
-    }
-  }
-  return COACH_FALLBACK;
-}
-
-// SQUAD IMAGE VISION SIMULATOR WITH PRAISE & ADVICE
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -718,41 +672,60 @@ function handleSquadImageUpload(event){
     previewImg.src = e.target.result;
     previewWrap.style.display = 'block';
 
-    runSquadVisionAnalysis();
+    triggerHumanLikeSquadAnalysis();
   };
   reader.readAsDataURL(file);
 }
 
-function runSquadVisionAnalysis(){
+function triggerHumanLikeSquadAnalysis(){
   const chatMessages = document.getElementById('chatMessages');
   
-  chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg user">📸 [تم رفع صورة تشكيلة الفريق لتحليلها بالذكاء الاصطناعي]</div>`);
+  chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg user">📸 [تم رفع صورة التشكيلة]</div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
-  const loadingId = 'vision_loading_' + Date.now();
+  const loadingId = 'loading_' + Date.now();
   chatMessages.insertAdjacentHTML('beforeend', `
     <div id="${loadingId}" class="chat-msg ai">
-      🔍 جاري فحص خطوط التشكيلة، مدح نقاط القوة، وصياغة النصائح التكتيكية مع خطة 4-2-2-2 ودي شامب... <span class="typing-dots"><span></span><span></span><span></span></span>
+      🔍 جاري فحص تشكيلتك يا بطل... <span class="typing-dots"><span></span><span></span><span></span></span>
     </div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    const squadReport = `🤖 **التقرير الشامل لتحليل التشكيلة:**\n\n` +
-      `⭐ **مدح التشكيلة (نقاط القوة):**\n` +
-      `- أداء ممتاز وتكامل رائع في توزيع المراكز داخل خطة 4-2-2-2!\n` +
-      `- استخدام المدرب **دي شامب** مع أسلوب **الكرة الطويلة المضادة (LBC)** يمنح فريقك الصلابة المطلوبة في الدفاع والانطلاقات الصاروخية في الهجوم.\n\n` +
-      `💡 **نصائح لتطوير التشكيلة:**\n` +
-      `1) **محور الارتكاز:** تأكد من تثبيت لاعب DMF بمهارة Anchorman لقطع الكرات أمام المدافعين.\n` +
-      `2) **صناعة اللعب:** استغل لاعبي الـ AMF بتحركات ذكية لضرب عمق دفاع الخصم.\n` +
-      `3) **التناغم:** تأكد أن توافق أسلوب اللعب مع دي شامب يتجاوز 100.\n\n` +
-      `هل ترغب في معرفة تفاصيل إضافية حول التوزيع التكتيكي؟`;
-
-    chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(squadReport)}</div>`);
+    // Human-like greeting and branching question
+    const reply = `يا هلا بيك يا كابتن! 🔥 بصراحة تشكيلتك ممتازة جداً وتوزيع اللاعبين متناسق مع خطة **4-2-2-2** والمدرب الأسطوري **دي شامب**.\n\nقول لي يا غالي، هل تريد نصائح حول **الدفاع** أم حول **الهجوم** لتطوير أدائك أكثر؟`;
+    
+    coachConversationState = 'WAITING_CHOICE';
+    chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل ومدح التشكيلة بنجاح!');
+    showToast('تم تحليل تشكيلتك بنجاح!');
   }, 1200);
+}
+
+function getHumanLikeCoachReply(userText){
+  const q = userText.toLowerCase();
+
+  if(coachConversationState === 'WAITING_CHOICE'){
+    if(q.includes('دفاع') || q.includes('الدفاع')){
+      coachConversationState = 'NORMAL';
+      return `🛡 **نصائح الدفاع الاحترافي لخطة 4-2-2-2:**\n1) اعتمد على محور الارتكاز المزدوج (DMF) وثبت أحدهم كـ Anchorman لقطع الكرات أمام قلبي الدفاع.\n2) استخدم خاصية **Match-Up** ولا تندفع بزر الضغط المباشر كي لا تترك مساحات.\n3) مع أسلوب الكرة الطويلة المضادة (LBC)، سيتراجع دفاعك بشكل مثالي لمنع أي انفرادات سريعة من الخصم!`;
+    } else if(q.includes('هجوم') || q.includes('الهجوم') || q.includes('هجومي')){
+      coachConversationState = 'NORMAL';
+      return `⚡ **نصائح الهجوم الفعّال لخطة 4-2-2-2:**\n1) استغل لاعبي الـ AMF بتحركات مباغتة داخل منطقة الجزاء كأنهم مهاجمون إضافيون.\n2) اعتمد على التمرير السريع نحو المهاجمين (CF) فور استخلاص الكرة لاستغلال المساحات خلف دفاع الخصم.\n3) التناغم مع أسلوب **دي شامب** يمنح لاعبيك سرعة تمركز خيالية عند التحول الهجومي!`;
+    }
+  }
+
+  // General keyword fallback
+  if(q.includes('4222') || q.includes('4-2-2-2') || q.includes('خطة')){
+    return `📋 خطة **4-2-2-2** هي الأقوى حالياً لتوازن الدفاع والهجوم، وتعمل بكفاءة مطلقة مع المدرب **دي شامب** وأسلوب **الكرة الطويلة المضادة (LBC)**.`;
+  } else if(q.includes('دي شامب') || q.includes('deschamps')){
+    return `🌟 المدرب **دي شامب** هو خيارك الأول والأفضل في اللعبة لتفعيل تكتيكات الضغط العكسي وتأمين الخط الخلفي بامتياز.`;
+  } else if(q.includes('طويلة') || q.includes('مضادة') || q.includes('lbc')){
+    return `🏆 أسلوب **الكرة الطويلة المضادة (LBC)** يمنحك صلابة دفاعية ت样的 وهجمات مرتدة خاطفة تضرب دفاع الخصم بلمسة واحدة.`;
+  }
+
+  return `أنا معك يا بطل! هل ترغب في التركيز على نصائح **الدفاع** أم **الهجوم** لفريقك؟`;
 }
 
 function sendAIChatMessage(prefillText){
@@ -777,7 +750,7 @@ function sendAIChatMessage(prefillText){
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
-    const reply = getOfflineCoachReply(userText);
+    const reply = getHumanLikeCoachReply(userText);
     document.getElementById(loadingId).remove();
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -822,7 +795,7 @@ function checkGiveawayCooldown(){
     
     startBtn.disabled = true;
     cooldownBox.style.display = 'block';
-    cooldownBox.innerHTML = `⏳ لقد استخدمت محاولتك اليومية. يمكنك المحاولة مرة أخرى بعد: <b>${hours} ساعة و ${minutes} دقيقة</b>`;
+    cooldownBox.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${hours} ساعة و ${minutes} دقيقة</b>`;
   } else {
     startBtn.disabled = false;
     cooldownBox.style.display = 'none';
@@ -881,11 +854,11 @@ function stopGiveawayTimer(auto=false){
   const randomChance = Math.random() < 0.01;
 
   if(!auto && isExactTarget && randomChance){
-    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفته عند ${elapsedStr} ثانية وفزت بـ <b>سوايرز</b>! تواصل معنا على تيليجرام لاستلام جائزتك.`;
+    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفته عند ${elapsedStr} ثانية وفزت بـ <b>سوايرز</b>!`;
     resultDiv.style.color = 'var(--lime)';
     showToast('مبروك الفوز بالجائزة!');
   } else {
-    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. لقد استنفدت محاولتك لليوم، ننتظرس غداً بحماس جديد!`;
+    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. استنفدت محاولتك اليومية، ننتظرك غداً!`;
     resultDiv.style.color = 'var(--danger)';
   }
 }
@@ -914,48 +887,17 @@ async function getBatteryInfo(){
 
 async function collectRealDeviceStats(){
   const stats = [];
-
   const cores = navigator.hardwareConcurrency;
-  stats.push({
-    key:'CPU (أنوية منطقية)', icon:'⚙',
-    display: cores ? String(cores) : null,
-    note: cores ? 'عدد الأنوية المنطقية الحقيقي من متصفحك' : 'غير مدعوم في هذا المتصفح'
-  });
-
+  stats.push({ key:'CPU (أنوية منطقية)', icon:'⚙', display: cores ? String(cores) : null, note: 'عدد الأنوية' });
   const mem = navigator.deviceMemory;
-  stats.push({
-    key:'ذاكرة الجهاز (RAM)', icon:'🧠',
-    display: mem ? (mem + ' GB تقريباً') : null,
-    note: mem ? 'قيمة تقريبية حقيقية (Chromium فقط)' : 'غير مدعوم في هذا المتصفح'
-  });
-
+  stats.push({ key:'ذاكرة الجهاز (RAM)', icon:'🧠', display: mem ? (mem + ' GB تقريباً') : null, note: 'الذاكرة العشوائية' });
   const gpu = getGpuInfo();
-  stats.push({
-    key:'GPU (المعالج الرسومي)', icon:'🖥',
-    display: gpu || null,
-    note: gpu ? 'اسم كرت الرسوميات الحقيقي عبر WebGL' : 'تعذّر قراءته من هذا المتصفح'
-  });
-
+  stats.push({ key:'GPU (المعالج الرسومي)', icon:'🖥', display: gpu || null, note: 'كرت الشاشة' });
   const batt = await getBatteryInfo();
-  stats.push({
-    key:'البطارية', icon:'🔋',
-    display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null,
-    note: batt ? 'قراءة حقيقية من Battery API' : 'غير مدعوم في هذا المتصفح'
-  });
-
+  stats.push({ key:'البطارية', icon:'🔋', display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null, note: 'البطارية' });
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  stats.push({
-    key:'نوع الاتصال', icon:'📶',
-    display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null,
-    note: conn ? 'من Network Information API' : 'غير مدعوم في هذا المتصفح'
-  });
-
-  stats.push({
-    key:'حالة الاتصال', icon:'🌐',
-    display: navigator.onLine ? 'متصل' : 'غير متصل',
-    note: 'حالة فعلية للاتصال بالإنترنت الآن'
-  });
-
+  stats.push({ key:'نوع الاتصال', icon:'📶', display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null, note: 'الاتصال' });
+  stats.push({ key:'حالة الاتصال', icon:'🌐', display: navigator.onLine ? 'متصل' : 'غير متصل', note: 'الإنترنت' });
   return stats;
 }
 
@@ -964,7 +906,6 @@ function runScan(){
   btn.disabled = true;
   btn.textContent = 'جارِ الفحص...';
   document.getElementById('statGrid').innerHTML = '';
-  document.getElementById('warnZone').innerHTML = '';
 
   collectRealDeviceStats().then(stats => {
     const available = stats.filter(s => s.display !== null);
@@ -974,28 +915,24 @@ function runScan(){
     const offset = circumference - (circumference*score/100);
     const fill = document.getElementById('gaugeFill');
     fill.style.strokeDashoffset = offset;
-    fill.style.stroke = score>=70 ? 'var(--lime)' : (score>=40 ? 'var(--warn)' : 'var(--danger)');
     document.getElementById('gaugeScore').textContent = score;
-    document.getElementById('gaugeLabel').textContent = score>=70 ? 'بيانات متاحة بشكل جيد' : (score>=40 ? 'بيانات جزئية' : 'بيانات محدودة');
+    document.getElementById('gaugeLabel').textContent = score>=70 ? 'بيانات ممتازة' : 'بيانات جزئية';
 
     const grid = document.getElementById('statGrid');
     stats.forEach((s,i)=>{
       const el = document.createElement('div');
       el.className = 'stat-card';
-      const badgeCls = s.display !== null ? 'st-excellent' : 'st-na';
-      const badgeText = s.display !== null ? 'قراءة حقيقية' : 'غير متاح';
       el.innerHTML = `
         <div class="stat-top"><span class="stat-name">${s.key}</span><span>${s.icon}</span></div>
         <div class="stat-value">${s.display !== null ? s.display : '—'}</div>
-        <span class="stat-status ${badgeCls}">${badgeText}</span>`;
-      el.title = s.note;
+        <span class="stat-status ${s.display !== null ? 'st-excellent' : 'st-na'}">${s.display !== null ? 'قراءة حقيقية' : 'غير متاح'}</span>`;
       grid.appendChild(el);
       setTimeout(()=>el.classList.add('show'), i*60);
     });
 
     const finePrint = document.getElementById('scanFinePrint');
     finePrint.style.display = 'block';
-    finePrint.textContent = 'ملاحظة: لا يوجد متصفح على الإطلاق يمكنه قراءة حرارة المعالج أو نسبة استخدامه اللحظية أو مساحة التخزين الكاملة للجهاز — هذه قيود أمنية من أنظمة التشغيل نفسها.';
+    finePrint.textContent = 'ملاحظة: المتصفحات تفرض قيوداً أمنية على قراءة حرارة المعالج الكاملة.';
 
     btn.disabled = false;
     btn.textContent = 'Scan Again';
@@ -1004,14 +941,14 @@ function runScan(){
 }
 
 function boostAndPlay(){
-  showToast('لا يمكن لأي تطبيق ويب إغلاق تطبيقات أخرى على جهازك تلقائيًا لأسباب أمنية — أغلقها يدويًا لأفضل أداء.', 3400);
+  showToast('أغلق التطبيقات في الخلفية يدويًا للحصول على أفضل أداء للعب.', 3400);
 }
 
 function togglePerf(on){
   const pill = document.getElementById('perfStatus');
   pill.classList.toggle('on', on);
   pill.innerHTML = `<span class="dot"></span> Performance Mode: ${on?'ON':'OFF'}`;
-  if(on) showToast('تم تفعيل وضع الأداء داخل هذا التطبيق (واجهة فقط).');
+  if(on) showToast('تم تفعيل وضع الأداء.');
 }
 
 document.getElementById('dndChips').addEventListener('click', (e)=>{
@@ -1025,25 +962,21 @@ function startGamingDND(){
   const active = document.querySelector('#dndChips .chip.active');
   const pill = document.getElementById('dndStatus');
   pill.classList.add('on');
-  pill.innerHTML = `<span class="dot"></span> مفعّل — ${active.textContent.trim()} (داخل هذا التطبيق فقط)`;
-  showToast('تم تفعيل Gaming DND داخل هذا التطبيق.');
+  pill.innerHTML = `<span class="dot"></span> مفعّل — ${active.textContent.trim()}`;
+  showToast('تم تفعيل وضع عدم الإزعاج.');
 }
 
-// =====================================================================
-// REAL storage / memory panel — page 5
-// =====================================================================
+// STORAGE & MEMORY PANEL
 async function loadStorageAndMemoryPanel(){
   const mem = navigator.deviceMemory;
   if(mem){
-    document.getElementById('ramLabelLeft').textContent = 'ذاكرة الجهاز التقريبية: ' + mem + ' GB';
-    document.getElementById('ramLabelRight').textContent = 'قراءة حقيقية';
+    document.getElementById('ramLabelLeft').textContent = 'الذاكرة التقريبية: ' + mem + ' GB';
     document.getElementById('ramBar').style.width = Math.min(100, (mem/8)*100) + '%';
-    document.getElementById('ramIndicator').textContent = '🟢 مدعوم في متصفحك';
+    document.getElementById('ramIndicator').textContent = '🟢 مدعوم';
   } else {
-    document.getElementById('ramLabelLeft').textContent = 'غير متاح في هذا المتصفح';
-    document.getElementById('ramLabelRight').textContent = '';
+    document.getElementById('ramLabelLeft').textContent = 'غير مدعوم في هذا المتصفح';
     document.getElementById('ramBar').style.width = '0%';
-    document.getElementById('ramIndicator').textContent = '⚪ Safari/Firefox لا يدعمان هذه الميزة';
+    document.getElementById('ramIndicator').textContent = '⚪ غير متاح';
   }
 
   try{
@@ -1053,17 +986,11 @@ async function loadStorageAndMemoryPanel(){
       const quotaMB = (est.quota/1024/1024).toFixed(0);
       const pct = est.quota ? Math.min(100, Math.round((est.usage/est.quota)*100)) : 0;
       document.getElementById('stUsed').textContent = usedMB + ' MB';
-      document.getElementById('stFree').textContent = quotaMB + ' MB (حصة هذا الموقع)';
+      document.getElementById('stFree').textContent = quotaMB + ' MB';
       document.getElementById('stBar').style.width = pct + '%';
       document.getElementById('cacheSize').textContent = usedMB + ' MB';
-    } else {
-      document.getElementById('stUsed').textContent = 'غير مدعوم';
-      document.getElementById('stFree').textContent = '--';
-      document.getElementById('cacheSize').textContent = '--';
     }
-  }catch(e){
-    document.getElementById('stUsed').textContent = 'تعذّرت القراءة';
-  }
+  }catch(e){}
 }
 
 async function cleanStorage(){
@@ -1072,54 +999,14 @@ async function cleanStorage(){
       const keys = await caches.keys();
       await Promise.all(keys.map(k => caches.delete(k)));
     }
-    showToast('تم مسح بيانات هذا الموقع المخزّنة محلياً (إن وُجدت).');
+    showToast('تم تنظيف البيانات بنجاح.');
   }catch(e){
-    showToast('تعذّر مسح بيانات هذا الموقع في هذا المتصفح.');
+    showToast('تعذّر التنظيف.');
   }
   loadStorageAndMemoryPanel();
 }
 
-function runNetTest(){
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-
-  if(!conn){
-    document.getElementById('netGrid').style.display = 'none';
-    const verdict = document.getElementById('netVerdict');
-    verdict.style.display = 'block';
-    verdict.textContent = 'Network Information API غير مدعومة في هذا المتصفح — لا توجد بيانات حقيقية لعرضها.';
-    verdict.style.background = 'rgba(139,149,167,.12)';
-    verdict.style.color = 'var(--text-dim)';
-    return;
-  }
-
-  document.getElementById('netPing').textContent = (conn.rtt !== undefined ? conn.rtt : '--');
-  document.getElementById('netDown').textContent = (conn.downlink !== undefined ? conn.downlink + ' Mbps' : '--');
-  document.getElementById('netUp').textContent = (conn.effectiveType || '--').toUpperCase();
-  document.getElementById('netGrid').style.display = 'grid';
-
-  const good = (conn.downlink || 0) > 5 && (conn.rtt || 999) < 150;
-  const verdict = document.getElementById('netVerdict');
-  verdict.style.display = 'block';
-  verdict.textContent = navigator.onLine
-    ? (good ? 'الاتصال يبدو جيداً حسب تقدير المتصفح' : 'الاتصال ضعيف أو متوسط حسب تقدير المتصفح')
-    : 'الجهاز غير متصل بالإنترنت حالياً';
-  verdict.style.background = good ? 'rgba(182,255,62,.1)' : 'rgba(255,84,112,.1)';
-  verdict.style.color = good ? 'var(--lime)' : '#FF8FA3';
-}
-
-document.getElementById('profileGrid').addEventListener('click', (e)=>{
-  const card = e.target.closest('.profile-card');
-  if(!card) return;
-  document.querySelectorAll('.profile-card').forEach(c=>c.classList.remove('active'));
-  card.classList.add('active');
-  showToast('تم التبديل إلى نمط ' + card.querySelector('.profile-name').textContent + ' (داخل هذا التطبيق فقط)');
-});
-
 loadStorageAndMemoryPanel();
-</script>
-
-</body>
-</html>
 </script>
 
 </body>
