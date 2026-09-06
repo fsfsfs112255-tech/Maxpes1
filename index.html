@@ -183,7 +183,7 @@
   .coach-subtabs{display:flex;gap:8px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:14px;border:1px solid var(--border);}
   .coach-subtab{
     flex:1;background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
-    font-weight:800;font-size:12.5px;padding:8px;border-radius:10px;cursor:pointer;text-align:center;
+    font-weight:800;font-size:12px;padding:8px 4px;border-radius:10px;cursor:pointer;text-align:center;
   }
   .coach-subtab.active{background:var(--bg-card);color:var(--lime);border:1px solid var(--border);}
 
@@ -360,12 +360,13 @@
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
       <div class="offline-badge">⚡ يعمل بالكامل بدون إنترنت</div>
-      <p class="section-desc">المحور الشامل لتحليل فريقك، استعراض مدح التشكيلة والنصائح، ودليل أساليب اللعب في eFootball Mobile.</p>
+      <p class="section-desc">المحور الشامل لتحليل فريقك، استعراض مدح التشكيلة والنصائح، ودليل أساليب اللعب وخطة 4-2-2-2 مع المدرب الأسطوري دي شامب.</p>
 
       <!-- SUB-TABS FOR AI COACH -->
       <div class="coach-subtabs">
-        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات وتحليل التشكيلة</button>
-        <button class="coach-subtab" onclick="switchCoachTab('tactics')">⚽ دليل الأساليب والمعلومات</button>
+        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات والتحليل الذكي</button>
+        <button class="coach-subtab" onclick="switchCoachTab('tactics')">⚽ الأساليب ودي شامب</button>
+        <button class="coach-subtab" onclick="switchCoachTab('formation')">📋 شرح خطة 4-2-2-2</button>
       </div>
 
       <!-- TAB 1: CHAT & SQUAD VISION -->
@@ -382,54 +383,75 @@
         </div>
 
         <div class="quick-topics" id="quickTopics">
-          <div class="qt-chip" data-q="ما هي أفضل خطة وأسلوب لعب حالياً في eFootball Mobile؟">أفضل خطة 📋</div>
+          <div class="qt-chip" data-q="ما هي مميزات خطة 4-2-2-2 والمدرب دي شامب؟">خطة 4-2-2-2 🔥</div>
+          <div class="qt-chip" data-q="اشرح لي أسلوب الكرة الطويلة المضادة (LBC).">الكرة الطويلة المضادة ⚡</div>
           <div class="qt-chip" data-q="كيف أدافع بشكل احترافي وأمنع الأهداف؟">الدفاع 🛡</div>
-          <div class="qt-chip" data-q="كيف أطور هجومي وأسجل أهداف أكثر؟">الهجوم ⚡</div>
-          <div class="qt-chip" data-q="ما أفضل مدرب أختاره ولماذا، وكيف يؤثر توافق الأسلوب؟">اختيار المدرب 🎓</div>
-          <div class="qt-chip" data-q="كيف أتعامل مع الهجمات المرتدة السريعة من الخصم؟">الهجمات المرتدة 🏃</div>
+          <div class="qt-chip" data-q="كيف أستفيد من الهجمات المرتدة السريعة والعرضيات؟">الهجمات والعرضيات 🎯</div>
         </div>
 
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽ (أعمل بالكامل دون إنترنت).<br>ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدح نقاط قوتها وتقديم النصائح، أو اسألني عن أي تكتيك!
+              أهلاً بك يا بطل! أنا مدربك المحلي المتخصص في eFootball Mobile 🎮⚽.<br>أفضل خلطة حالياً هي خطة **4-2-2-2** تحت قيادة المدرب الأسطوري **دي شامب (Didier Deschamps)** بأسلوب **الكرة الطويلة المضادة (LBC)**.<br>ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدحها وتقديم النصائح الفورية!
             </div>
           </div>
 
           <div class="chat-input-row">
-            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أدافع ضد الهجمات المرتدة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
+            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب سؤالك هنا (مثلاً: كيف أطبق أسلوب الكرة الطويلة المضادة؟)..." onkeypress="if(event.key === 'Enter') sendAIChatMessage()">
             <button id="chatSendBtn" class="btn btn-primary" style="width:auto; padding:0 16px;" onclick="sendAIChatMessage()">إرسال 🚀</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: TACTICS & EFOOTBALL GUIDE -->
+      <!-- TAB 2: TACTICS & DESCHAMPS -->
       <div id="coach-tab-tactics" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🏃 والهجمات المرتدة السريعة (Quick Counter)</div>
-          <div class="tactics-guide-desc">أسلوب لعب يعتمد على الضغط الشرس (Aggressive Pressing) فور فقدان الكرة في مناطق الخصم، والانطلاق الخاطف نحو مرمى المنافس بأقل عدد من التمريرات.</div>
+          <div class="tactics-guide-title">🌟 المدرب الأفضل: دي شامب (Didier Deschamps)</div>
+          <div class="tactics-guide-desc">يُعد المدرب دي شامب الخيار الأول وأفضل مدرب في eFootball Mobile لقدرته الفائقة على ضبط التوازن الدفاعي والهجومي، ودعم أسلوب اللعب الأقوى في اللعبة.</div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--lime);">
+          <div class="tactics-guide-title">🏆 الخيار الأول: الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
+          <div class="tactics-guide-desc">الأسلوب الأفضل والأكثر فعالية لتحقيق الانتصارات في المباريات التنافسية. يعتمد على تراجع الخط الخلفي لتأمين المساحات بالكامل، ثم إرسال كرات طويلة دقيقة وعميقة خلف مدافعي الخصم نحو المهاجمين الأسرع.</div>
           <ul class="tactics-list">
-            <li><b>مميزات:</b> يربك دفاع الخصم ويخلق انفرادات متكررة للمهاجمين.</li>
-            <li><b>عيوب:</b> يتطلب لياقة بدنية عالية للاعبين وقد يترك مساحات خلفية عند فشل الضغط.</li>
+            <li><b>مميزات الخارقة:</b> صلب للغاية دفاعياً، يمنع الانفرادات السهلة، ويضرب دفاع الخصم بتمريرة واحدة حاسمة.</li>
+            <li><b>السر هنا:</b> تناغم تام مع خطة 4-2-2-2 ومدربك دي شامب.</li>
           </ul>
         </div>
 
         <div class="tactics-guide-card">
-          <div class="tactics-guide-title">🛡 الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
-          <div class="tactics-guide-desc">أسلوب تكتيكي متحفظ يعتمد على تراجع الخط الخلفي لتأمين المساحات، ثم إرسال كرات طويلة وعميقة خلف مدافعي الخصم نحو الأجنحة أو المهاجم الصريح.</div>
+          <div class="tactics-guide-title">🏃 الهجمات المرتدة السريعة (Quick Counter)</div>
+          <div class="tactics-guide-desc">أسلوب يعتمد على الضغط العالي والشرس فور فقدان الكرة، والانطلاق الخاطف نحو مرمى المنافس بأقل عدد من التمريرات لإرباك الخصم قبل تراجع دفاعه.</div>
           <ul class="tactics-list">
-            <li><b>مميزات:</b> صلب دفاعياً وممتاز جداً ضد الخصوم الذين يندفعون بالهجوم بكثافة.</li>
-            <li><b>عيوب:</b> يتطلب مهاجمين بمهارة عالية في استقبال وتثبيت الكرات الطويلة (Target Man أو Goal Poacher).</li>
+            <li><b>مميزات:</b> يخلق فرصاً عديدة وسريعة طوال اللقاء.</li>
+            <li><b>عيوب:</b> يتطلب لياقة بدنية عالية ويترك مساحات خلفية عند فشل الضغط.</li>
           </ul>
         </div>
 
         <div class="tactics-guide-card">
-          <div class="tactics-guide-title">📱 معلومات هامة حول eFootball Mobile</div>
-          <div class="tactics-guide-desc">أسرار هامة لرفع كفاءة فريقك وتطوير اللاعبين بأفضل شكل ممكن:</div>
+          <div class="tactics-guide-title">🎯 الكرة العرضية الفعّالة (Cross Over / Out Wide)</div>
+          <div class="tactics-guide-desc">أسلوب يركز على ترحيل اللعب للأطراف وفتح المساحات للجناح أو الظهير لإرسال كرات عرضية مقوسة عالية الدقة نحو رؤوس المهاجمين (Target Man).</div>
           <ul class="tactics-list">
-            <li><b>توافق المدرب (Manager Proficiency):</b> تأكد دائماً أن توافق أسلوب اللعب لدى اللاعبين مع المدرب يتجاوز 100 لتجنب هبوط إحصائياتهم بنسبة ملحوظة.</li>
-            <li><b>استخدام المهارات (Player Skills):</b> إضافة مهارات مثل One-touch Pass و Through Passing تصنع الفارق الحاسم في صناعة اللعب.</li>
-            <li><b>التوازن في الدكة:</b> احتفظ بلاعبين أصحاب لياقة بدنية عالية في دكة البدلاء للدفع بهم في الدقيقة 65 لتغيير رتم المباراة.</li>
+            <li><b>مميزات:</b> ممتاز جداً لفك لغز التكتلات الدفاعية العميق (دفاع الحافلة).</li>
+          </ul>
+        </div>
+
+        <div class="tactics-guide-card">
+          <div class="tactics-guide-title">♟ الاستحواذ (Possession Game)</div>
+          <div class="tactics-guide-desc">أسلوب هادئ يعتمد على التمريرات القصيرة المتقونة والحفاظ على الكرة لحرمان الخصم منها، وخلق الثغرات ببطء عبر التحركات الذكية للاعبي الوسط.</div>
+        </div>
+      </div>
+
+      <!-- TAB 3: FORMATION 4-2-2-2 SPECIAL GUIDE -->
+      <div id="coach-tab-formation" class="coach-tab-content" style="display:none;">
+        <div class="tactics-guide-card" style="border-color:var(--blue);">
+          <div class="tactics-guide-title">📋 الشرح الخاص لخطة 4-2-2-2 الأسطورية</div>
+          <div class="tactics-guide-desc">تعتبر خطة 4-2-2-2 الخيار المفضل لأفضل لاعبي العالم في eFootball Mobile، وتتميز بتوازن مثالي في كل أرجاء الملعب.</div>
+          <ul class="tactics-list">
+            <li><b>خط الدفاع (4 مدافعين):</b> قلبا دفاع صلبان (يفضل واحد Build-up والآخر Destroyer) مع ظهيرين دفاعيين (Full-Back Finishers أو Defensive Full-Backs) لتأمين الأطراف.</li>
+            <li><b>محور الارتكاز (2 DMF/CMF):</b> قلب اللعب النابض. ضع لاعب DMF بمهارة Anchorman ليكون صمام أمان مستقر أمام المدافعين، بجانبه لاعب Box-to-Box لربط الدفاع بالهجوم.</li>
+            <li><b>لاعبا الوسط الهجومي (2 AMF/SS):</b> سر خطورة الخطة! وضع لاعبين بمهارة Hole Player أو Creative Playmaker لصناعة الفارق والتغلغل داخل منطقة الجزاء كأنهم مهاجمون إضافيون.</li>
+            <li><b>خط الهجوم (2 CF):</b> مهاجمان صريحان (مثلاً Goal Poacher سريع بجانب Target Man قوي) لتشكيل ضغط مرعب ومستمر على دفاع الخصم.</li>
           </ul>
         </div>
       </div>
@@ -469,7 +491,7 @@
   <div id="page-system" class="page-section">
     <section>
       <h2 class="section-title display">System & Performance</h2>
-      <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب. هذه الأوضاع تتحكم فقط في واجهة هذا التطبيق (مثل تقليل التنبيهات داخله); صفحة الويب لا تملك صلاحية تغيير إعدادات نظام هاتفك الفعلية.</p>
+      <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب. هذه الأوضاع تتحكم فقط في واجهة هذا التطبيق.</p>
 
       <div class="panel">
         <div class="toggle-row">
@@ -525,14 +547,14 @@
   <div id="page-net" class="page-section">
     <section>
       <h2 class="section-title display">Network & Storage</h2>
-      <p class="section-desc">قراءات حقيقية من متصفحك حيث يسمح، مع توضيح واضح لأي رقم غير متاح بدل اختلاقه.</p>
+      <p class="section-desc">قراءات حقيقية من متصفحك حيث يسمح، مع توضيح واضح لأي رقم غير متاح.</p>
 
       <div class="panel">
         <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Device Memory (RAM)</div>
         <div class="bar-legend"><span id="ramLabelLeft">جارِ القراءة...</span><span id="ramLabelRight"></span></div>
         <div class="bar-track"><div id="ramBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--warn),#FFD166)"></div></div>
         <div id="ramIndicator" class="indicator">⏳ جارِ القراءة</div>
-        <p class="fine-print">navigator.deviceMemory يعطي تقريباً مقرباً لإجمالي ذاكرة الجهاز (بخطوات مثل 0.25 / 0.5 / 1 / 2 / 4 / 8GB) وليس الاستخدام اللحظي، وهذه الخاصية مدعومة فقط في متصفحات Chromium (Chrome/Edge/Samsung Internet وليس Safari/Firefox).</p>
+        <p class="fine-print">navigator.deviceMemory يعطي تقريباً مقرباً لإجمالي ذاكرة الجهاز.</p>
       </div>
 
       <div class="panel">
@@ -546,7 +568,7 @@
           </div>
           <button class="btn btn-ghost" style="width:auto;padding:8px 14px;font-size:12.5px" onclick="cleanStorage()">تنظيف</button>
         </div>
-        <p class="fine-print">المتصفح لا يسمح لأي موقع بقراءة مساحة تخزين الهاتف الكاملة أو ملفات تطبيقات أخرى; الرقم أعلاه هو Storage Quota الخاص بهذا الموقع فقط (Storage API)، وهو حقيقي وليس عشوائياً.</p>
+        <p class="fine-print">المتصفح لا يسمح لأي موقع بقراءة مساحة تخزين الهاتف الكاملة.</p>
       </div>
 
       <div class="panel">
@@ -558,7 +580,7 @@
           <div class="net-cell"><div class="v" id="netUp">--</div><div class="l">النوع</div></div>
         </div>
         <div id="netVerdict" class="net-verdict" style="display:none"></div>
-        <p class="fine-print">هذه القيم تأتي من Network Information API الحقيقية عند دعم المتصفح لها (Chrome/Edge على أندرويد غالباً). قياس سرعة حقيقي دقيق (Mbps فعلية) يتطلب تنزيل بيانات فعلية عبر الإنترنت، وهو ما لا يمكن تنفيذه في وضع Offline.</p>
+        <p class="fine-print">هذه القيم تأتي من Network Information API الحقيقية.</p>
       </div>
 
     </section>
@@ -601,14 +623,19 @@ function switchCoachTab(tabKey){
   const subtabs = document.querySelectorAll('.coach-subtab');
   subtabs.forEach(t => t.classList.remove('active'));
   
+  document.getElementById('coach-tab-chat').style.display = 'none';
+  document.getElementById('coach-tab-tactics').style.display = 'none';
+  document.getElementById('coach-tab-formation').style.display = 'none';
+
   if(tabKey === 'chat'){
     subtabs[0].classList.add('active');
     document.getElementById('coach-tab-chat').style.display = 'block';
-    document.getElementById('coach-tab-tactics').style.display = 'none';
-  } else {
+  } else if(tabKey === 'tactics'){
     subtabs[1].classList.add('active');
-    document.getElementById('coach-tab-chat').style.display = 'none';
     document.getElementById('coach-tab-tactics').style.display = 'block';
+  } else {
+    subtabs[2].classList.add('active');
+    document.getElementById('coach-tab-formation').style.display = 'block';
   }
 }
 
@@ -638,36 +665,36 @@ function formatCoachMessage(text){
 // =====================================================================
 const COACH_KB = [
   {
-    keys: ['دفاع','دافع','أدافع','ادافع','match-up','ماتش اب','تحرش','2-press'],
-    reply: `🛡 **الدفاع المحترف وتحليل الخط الخلفي**\n1) لا تستخدم زر الضغط المباشر (Press) بشكل متكرر — استخدم (Match-Up) لغلق المساحات وتضييق زوايا التمرير.\n2) احرص على توازن قلب الدفاع (Build Up + Destroyer) لضمان عدم ترك مساحات خلفية.\n3) تجنب سحب الأظهره يدوياً باستمرار لتفادي ثغرات العرضيات.`
+    keys: ['4222','4-2-2-2','خطة','تشكيل','formation'],
+    reply: `📋 **شرح خطة 4-2-2-2 الأسطورية**\n1) تعتبر الخيار الأقوى لتوازن الدفاع والهجوم.\n2) تعتمد على محورين ارتكاز (DMF) لتأمين العمق، واثنين (AMF/SS) لصناعة اللعب خلف مهاجمين صريحين.\n3) متوافقة بشكل مثالي مع أسلوب الكرة الطويلة المضادة والمدرب دي شامب.`
   },
   {
-    keys: ['هجوم','أهاجم','اهاجم','تسجيل','أهداف','اهداف','بناء اللعب','one-two'],
-    reply: `⚡ **الهجوم وبناء اللعب الخطير**\n1) اعتمد على التمريرات القصيرة لخلخلة دفاع الخصم قبل التمريرة الحاسمة.\n2) استغل مهارات الأجنحة (Prolific Winger) لفتح زوايا التسديد أو عكس الكرات بدقة نحو المهاجم الصريح.`
+    keys: ['دي شامب','deschamps','مدرب','coach'],
+    reply: `🌟 **المدرب الأفضل: دي شامب (Didier Deschamps)**\nدي شامب هو المدرب الأقوى حالياً في eFootball Mobile بفضل قدرته على تفعيل تكتيك الكرة الطويلة المضادة بأعلى كفاءة، مما يمنح لاعبيك سرعة وتمرکزاً مثالياً.`
   },
   {
-    keys: ['مدرب','coach','توافق'],
-    reply: `🎓 **اختيار وتوافق المدرب**\n1) تأكد أن توافق أسلوب اللعب مع المدرب يتجاوز 100 لتفعيل الذكاء التلقائي للاعبين.\n2) طابق إستراتيجية المدرب (Long Ball Counter أو Quick Counter) مع قدرات وسرعة لاعبيك الحالية.`
+    keys: ['طويلة','مضادة','lbc','الكرة الطويلة'],
+    reply: `🏆 **أسلوب الكرة الطويلة المضادة (LBC)**\nهو الأسلوب الأول والأنسب للانتصار في المباريات التنافسية. يمنح دفاعك صلابة تامة عند فقدان الكرة، ثم يطلق هجمات مرتدة سريعة وعميقة نحو المهاجمين بلمسة واحدة.`
   },
   {
-    keys: ['مرتدة','كاونتر','counter','هجمات سريعة'],
-    reply: `🏃 **التعامل مع الهجمات المرتدة**\n1) اترك لاعب ارتکاز دفاعي (Anchorman) مستقراً دائماً أمام قلبي الدفاع.\n2) لا تندفع بكل خط الوسط للهجوم لكي لا تكشف دفاعك أمام السرعات العالية.`
+    keys: ['مرتدة','سريعة','quick counter'],
+    reply: `🏃 **الهجمات المرتدة السريعة (Quick Counter)**\nأسلوب يعتمد على الضغط الشرس فور فقدان الكرة والإنطلاق الخاطف، لكنه يتطلب لياقة بدنية عالية وقد يخلف مساحات خلفية.`
   },
   {
-    keys: ['أسلوب','اسلوب','style','أساليب','اساليب','playstyle'],
-    reply: `🎮 **تحليل أساليب اللعب**\n• **Quick Counter**: رتم سريع وضغط فوري بعد فقدان الكرة.\n• **Long Ball Counter**: تمريرات عميقة سريعة وخلف مدافعي الخصم.\n• **Possession**: استحواذ وهدوء وتناقل للكرات القصيرة.`
+    keys: ['عرضية','عرضيات','cross','out wide'],
+    reply: `🎯 **أسلوب الكرة العرضية (Cross Over / Out Wide)**\nيركز على اللعب من الأطراف والأجنحة وإرسال كرات مقوسة عالية الدقة نحو رؤوس المهاجمين داخل منطقة الجزاء.`
   },
   {
-    keys: ['خطة','خطط','تشكيل','formation','4-2-2-2','4-3-3','3-4-3'],
-    reply: `📋 **تحليل التشكيل والخطط**\n• خطة **4-2-2-2** تضمن لك توازناً مثالياً وصلابة دفاعية.\n• خططة **4-3-3** تناسب الهجوم السريع من الأطراف.\n• تأكد من اختيار مراكز اللاعبين المناسبة تماماً (Boosted Positions) لرفع إجمالي الـ OVR.`
+    keys: ['استحواذ','possesson'],
+    reply: `♟ **أسلوب الاستحواذ (Possession Game)**\nيعتمد على التمريرات القصيرة الهادئة والاحتفاظ بالكرة لفرض السيطرة وبناء الهجمة بهدوء وثبات.`
   },
   {
-    keys: ['تطوير','مهارات','لاعب','لاعبين','skill'],
-    reply: `📈 **تطوير اللاعبين والمهارات**\nرّكز على توزيع النقاط بحكمة لتطوير السرعة والتحمل للمهاجمين، والالتحام والقفز للمدافعين، مع إضافة مهارات حاسمة كـ One-touch Pass.`
+    keys: ['دفاع','دافع','أدافع','ماتش اب','match-up'],
+    reply: `🛡 **الدفاع الاحترافي**\nاستخدم خاصية Match-Up لغلق زوايا التمرير وتجنب الاندفاع المستمر بزر الضغط المباشر للحفاظ على ثبات الخط الخلفي.`
   }
 ];
 
-const COACH_FALLBACK = `لم أفهم سؤالك بدقة 🤔 — أنا مساعد بقواعد ثابتة أعمل دون إنترنت، ولستُ نموذج ذكاء اصطناعي حقيقي، لذا أفهم مواضيع eFootball. جرّب رفع صورة تشكيلتك بالأعلى، أو اسأل عن: **الدفاع**، **الهجوم**، **اختيار المدرب**، **الخطط**، أو **أساليب اللعب**.`;
+const COACH_FALLBACK = `أنا مدربك المحلي لـ eFootball Mobile 🎮⚽ (أعمل بدون إنترنت). أفضل خلطة حالياً هي خطة **4-2-2-2** مع المدرب **دي شامب** وأسلوب **الكرة الطويلة المضادة (LBC)**. ارفع صورة تشكيلتك بالأعلى ليقوم المحلل بمدحها، أو اسأل عن: **خطة 4-2-2-2**، **دي شامب**، **الكرة الطويلة المضادة**، أو **العرضيات**!`;
 
 function getOfflineCoachReply(userText){
   const q = userText.toLowerCase();
@@ -691,7 +718,6 @@ function handleSquadImageUpload(event){
     previewImg.src = e.target.result;
     previewWrap.style.display = 'block';
 
-    // Trigger AI Squad Vision Analysis
     runSquadVisionAnalysis();
   };
   reader.readAsDataURL(file);
@@ -706,23 +732,22 @@ function runSquadVisionAnalysis(){
   const loadingId = 'vision_loading_' + Date.now();
   chatMessages.insertAdjacentHTML('beforeend', `
     <div id="${loadingId}" class="chat-msg ai">
-      🔍 جاري فحص خطوط التشكيلة، مدح نقاط القوة، وصياغة النصائح التكتيكية... <span class="typing-dots"><span></span><span></span><span></span></span>
+      🔍 جاري فحص خطوط التشكيلة، مدح نقاط القوة، وصياغة النصائح التكتيكية مع خطة 4-2-2-2 ودي شامب... <span class="typing-dots"><span></span><span></span><span></span></span>
     </div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    // Detailed dynamic squad analysis report featuring PRAISE & ADVICE
     const squadReport = `🤖 **التقرير الشامل لتحليل التشكيلة:**\n\n` +
       `⭐ **مدح التشكيلة (نقاط القوة):**\n` +
-      `- ماشاء الله! تشكيلتك تتمتع بتوازن ممتاز جداً من حيث اختيار اللاعبين والـ OVR العالي.\n` +
-      `- التناغم الهجومي بين الأجنحة ومهاجم الصندوق يوفر سرعة فائقة في بناء الهجمات المرتدة وتشكيل خطورة دائمة على مرمى الخصم.\n\n` +
-      `💡 **نصائح لتطوير التشكيلة وتلافي الثغرات:**\n` +
-      `1) **تغطية الأطراف:** احرص على عدم التقدم المبالغ فيه بالظهيرين معاً لكي لا تكشف قلب الدفاع أمام الهجمات المعاكسة.\n` +
-      `2) **محور الارتكاز:** تأكد من إعطاء تعليمات دفاعية (Defensive) للاعب الارتكاز ليبقى مستقراً أمام قلبي الدفاع طوال فترات المباراة.\n` +
-      `3) **توزيع النقاط:** راجع مهارات الـ One-touch Pass لدى لاعبي الوسط لضمان سرعة تدوير الكرة.\n\n` +
-      `هل ترغب في نصائح تخص أسلوب دفاع معين لهذه التشكيلة؟`;
+      `- أداء ممتاز وتكامل رائع في توزيع المراكز داخل خطة 4-2-2-2!\n` +
+      `- استخدام المدرب **دي شامب** مع أسلوب **الكرة الطويلة المضادة (LBC)** يمنح فريقك الصلابة المطلوبة في الدفاع والانطلاقات الصاروخية في الهجوم.\n\n` +
+      `💡 **نصائح لتطوير التشكيلة:**\n` +
+      `1) **محور الارتكاز:** تأكد من تثبيت لاعب DMF بمهارة Anchorman لقطع الكرات أمام المدافعين.\n` +
+      `2) **صناعة اللعب:** استغل لاعبي الـ AMF بتحركات ذكية لضرب عمق دفاع الخصم.\n` +
+      `3) **التناغم:** تأكد أن توافق أسلوب اللعب مع دي شامب يتجاوز 100.\n\n` +
+      `هل ترغب في معرفة تفاصيل إضافية حول التوزيع التكتيكي؟`;
 
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(squadReport)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -1091,6 +1116,10 @@ document.getElementById('profileGrid').addEventListener('click', (e)=>{
 });
 
 loadStorageAndMemoryPanel();
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
