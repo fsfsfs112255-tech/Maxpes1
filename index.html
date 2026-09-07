@@ -256,10 +256,10 @@
     transform: translateY(-1px);
   }
 
-  .coach-subtabs{display:grid;grid-template-columns:repeat(2, 1fr);gap:6px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:16px;border:1px solid var(--border);backdrop-filter: blur(12px);}
+  .coach-subtabs{display:grid;grid-template-columns:repeat(3, 1fr);gap:6px;margin-bottom:14px;background:var(--bg-elev);padding:6px;border-radius:16px;border:1px solid var(--border);backdrop-filter: blur(12px);}
   .coach-subtab{
     background:transparent;border:none;color:var(--text-dim);font-family:'Tajawal';
-    font-weight:800;font-size:11.5px;padding:8px 4px;border-radius:10px;cursor:pointer;text-align:center;
+    font-weight:800;font-size:11px;padding:8px 2px;border-radius:10px;cursor:pointer;text-align:center;
     transition: all 0.25s ease;
   }
   .coach-subtab:hover {color: var(--text);}
@@ -377,6 +377,48 @@
     60%  { top:34%; left:28%; }
     80%  { top:16%; left:40%; }
     100% { top:88%; left:50%; }
+  }
+
+  /* DEFENSIVE PRO ANIMATION PITCH */
+  .defense-pitch{
+    position:relative;width:100%;height:300px;
+    background:linear-gradient(135deg, #0b192c, #12223c);
+    border-radius:16px;
+    border:2px solid rgba(62,139,255,0.5);
+    overflow:hidden;
+    margin-bottom:14px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 0 25px rgba(62,139,255,0.25);
+  }
+  .def-block-line {
+    position:absolute;top:60%;left:15%;right:15%;height:2px;
+    background:rgba(182,255,62,0.4);border-style:dashed;
+    box-shadow: 0 0 10px rgba(182,255,62,0.3);
+  }
+  .def-node{
+    position:absolute;width:28px;height:28px;border-radius:50%;
+    background:linear-gradient(135deg, var(--lime), #44aa00);
+    border:2px solid #fff;display:flex;align-items:center;justify-content:center;
+    font-family:'Tajawal';font-weight:900;font-size:9.5px;color:#07090E;
+    box-shadow:0 0 15px rgba(182,255,62,0.8);
+    transform:translate(-50%,-50%);
+  }
+  .d-cb1 {top:68%; left:38%; animation: defBlockMove 3s infinite ease-in-out;}
+  .d-cb2 {top:68%; left:62%; animation: defBlockMove 3s infinite ease-in-out;}
+  .d-dmf {top:52%; left:50%; animation: dmfShield 3s infinite ease-in-out;}
+  .d-lb  {top:66%; left:16%; animation: defSideMove 3s infinite ease-in-out;}
+  .d-rb  {top:66%; left:84%; animation: defSideMove 3s infinite ease-in-out reverse;}
+
+  @keyframes defBlockMove {
+    0%,100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-8px); }
+  }
+  @keyframes dmfShield {
+    0%,100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.12) translateY(-4px); }
+  }
+  @keyframes defSideMove {
+    0%,100% { transform: translate(-50%, -50%) translateX(0); }
+    50% { transform: translate(-50%, -50%) translateX(-6px); }
   }
 
   /* CHAT STYLES */
@@ -589,16 +631,15 @@
   <!-- ================= PAGE 2: AI COACH & TACTICS GUIDE ================= -->
   <div id="page-ai" class="page-section">
     <section>
-      <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
-      <div class="offline-badge">⚡ مساعد eFootball التفاعلي المتقدم</div>
-      <p class="section-desc">المحور الشامل لتحليل فريقك، فحص التشكيلة بالذكاء الاصطناعي، استعراض أساليب اللعب، وأفضل مدربي اللعبة.</p>
+      <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة والدفاع</h2>
+      <div class="offline-badge">⚡ الدليل الاحترافي الشامل لـ eFootball Mobile</div>
+      <p class="section-desc">تحليل الفريق، أساليب اللاعبين الدفاعية الصحيحة، نصائح دفاعية متقدمة، وأفضل طرق قطع الكرة.</p>
 
       <!-- SUB-TABS FOR AI COACH -->
       <div class="coach-subtabs">
-        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات وتحليل التشكيلة</button>
-        <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن 4-2-2-2 Pro</button>
-        <button class="coach-subtab" onclick="switchCoachTab('tactics')">🏆 أساليب اللعب والخطط</button>
-        <button class="coach-subtab" onclick="switchCoachTab('managers')">👔 أساطير التدريب</button>
+        <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات والفحص</button>
+        <button class="coach-subtab" onclick="switchCoachTab('defense')">🛡️ دليل الدفاع واللاعبين</button>
+        <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 أنميشن الدفاع ⚽</button>
       </div>
 
       <!-- TAB 1: CHAT & SQUAD VISION -->
@@ -615,15 +656,15 @@
 
         <div class="quick-topics" id="quickTopics">
           <div class="qt-chip" data-q="تحليل تشكيلتي بالتفصيل">فحص التشكيلة الشامل 📋</div>
-          <div class="qt-chip" data-q="نصائح الدفاع والوسط والهجوم">نصائح الدفاع والوسط والهجوم 🛡️</div>
-          <div class="qt-chip" data-q="ما هي أفضل خططة لأسلوب الكرة الطويلة المضادة؟">الكرة الطويلة المضادة 🔥</div>
-          <div class="qt-chip" data-q="أفضل خطة للهجمة المرتدة السريعة">المرتدة السريعة ⚡</div>
+          <div class="qt-chip" data-q="ما هي أفضل أساليب الدفاع واختيار المدافعين؟">طريقة الدفاع الصحيحة 🛡️</div>
+          <div class="qt-chip" data-q="كيف أدافع ضد الهجمات المرتدة السريعة؟">إيقاف المرتدات السريعة 🔥</div>
+          <div class="qt-chip" data-q="أفضل خطة لأسلوب الكرة الطويلة المضادة">الكرة الطويلة المضادة ⚡</div>
         </div>
 
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها ومدحها مع تقديم نصائح الدفاع، الوسط، والهجوم فوراً!
+              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها، أو انتقل لتبويب (دليل الدفاع واللاعبين) لتتعلم أسرار الدفاع الاحترافي في إي فوتبول!
             </div>
           </div>
 
@@ -634,93 +675,57 @@
         </div>
       </div>
 
-      <!-- TAB 2: PRO FORMATION 4-2-2-2 ANIMATION -->
+      <!-- TAB 2: PRO DEFENSIVE GUIDE & PLAYER STYLES -->
+      <div id="coach-tab-defense" class="coach-tab-content" style="display:none;">
+        <div class="tactics-guide-card" style="border-color:var(--lime);">
+          <div class="tactics-guide-title">🛡️ 1. اختيار أساليب اللاعبين الدفاعية الصحيحة</div>
+          <div class="tactics-guide-desc">
+            • <b>مدافع بناء لعب (Build-up):</b> الأفضل لقلب الدفاع. يتميز بالتمركز الهادئ، عدم الاندفاع الأعمى، وبناء الهجمة بدقة من الخلف.<br>
+            • <b>المدافع المحطم (Destroyer):</b> مدافع شرس في قطع الكرات والضغط البدني المباشر (مثل باولو مالديني أو بيبي). يفضل دمجه بجانب مدافع "بناء لعب" ليغطي وراءه.<br>
+            • <b>ظهير مدافع (Defensive Full-back):</b> يظل متراجعاً مع خط الدفاع ولا يتقدم للهجوم، مثالي لإيقاف الأجنحة السريعة وتأمين الجهة الخلفية تماماً.<br>
+            • <b>ظهير هجومي / مهاجم متراجع (Full-back Finisher / Offensive):</b> يتقدم لزيادة الكثافة الهجومية على الأطراف، لكن احذر من ترك مساحات خلفه.
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--blue);">
+          <div class="tactics-guide-title">💡 2. قواعد وأسرار الدفاع الصحيحة في eFootball Mobile</div>
+          <div class="tactics-guide-desc">
+            1. <b>استخدم زر Match-Up (المحاذاة):</b> لا تضغط زر الضغط العشوائي (Pressing) دائماً، بل اعتمد على "Match-Up" لإغلاق زوايا التمرير ومنع المهاجم من المراوغة.<br>
+            2. <b>الدفاع بالضغط الثاني (Second Defender):</b> استعمل زر الضغط الثاني بحذر لجعل لاعب قريب يضغط بينما تتحكم أنت بالمدافع الآخر لسد الثغرة خلفه.<br>
+            3. <b>عدم تحريك قلبي الدفاع (CB) للأمام:</b> اترك لاعبي الوسط (DMF) يقطعون الكرة في المنتصف، واجعل قلبي الدفاع يتراجعون للخلف لامتصاص الصدمات وإغلاق العمق.<br>
+            4. <b>استخدام أسلوب الـ Long Ball Counter أو Quick Counter:</b> اختيارك لمدرب بأسلوب متماسك يمنح خط دفاعك تمركزاً أوتوماتيكياً أسرع عند فقدان الكرة.
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--violet);">
+          <div class="tactics-guide-title">⚡ 3. أخطاء شائعة تجنبها في الدفاع</div>
+          <div class="tactics-guide-desc">
+            • الاندفاع بمدافع واحد وترك مساحة شاسعة خلفه.<br>
+            • الاعتماد الكلي على الضغط التلقائي السريع بدون مراقبة زوايا التمرير.<br>
+            • إهمال وجود لاعب محور ارتكاز (DMF) بأسلوب Anchor Man لتغطية عمق الدفاع.
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: DEFENSIVE ANIMATION PRO -->
       <div id="coach-tab-animation" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🎬 الأنميشن الاحترافي لخطة 4-2-2-2</div>
-          <div class="tactics-guide-desc">عرض حي ومطور لحركة اللاعبين وتكامل المحور المزدوج (DMF) وصانعي اللعب (AMF) مع التحركات الهجومية والدفاعية.</div>
+          <div class="tactics-guide-title">🎬 أنميشن التمركز الدفاعي التكتيكي (Match-Up & Block)</div>
+          <div class="tactics-guide-desc">عرض حي يوضح كيفية تموضع قلبي الدفاع (Build-up & Destroyer) مع جدار الارتكاز (DMF) والأظهره لغلق المساحات بانتظام.</div>
           
-          <div class="pitch-container" id="pitchAnimPro">
+          <div class="defense-pitch" id="pitchAnimDefense">
             <div class="pitch-lines"></div>
-            <div class="pitch-center-circle"></div>
-            <div class="pitch-halfway"></div>
-            <div class="ball-anim-pro"></div>
+            <div class="def-block-line"></div>
+            <div class="ball-anim-pro" style="animation: defBallRoute 5s infinite linear;"></div>
             
             <div class="player-node p-gk">GK</div>
-            <div class="player-node p-lb">LB</div>
-            <div class="player-node p-cb1">CB</div>
-            <div class="player-node p-cb2">CB</div>
-            <div class="player-node p-rb">RB</div>
-            <div class="player-node p-dmf1">DMF</div>
-            <div class="player-node p-dmf2">DMF</div>
-            <div class="player-node p-amf1">AMF</div>
-            <div class="player-node p-amf2">AMF</div>
-            <div class="player-node p-cf1">CF</div>
-            <div class="player-node p-cf2">CF</div>
+            <div class="def-node d-lb">LB</div>
+            <div class="def-node d-cb1">CB</div>
+            <div class="def-node d-cb2">CB</div>
+            <div class="def-node d-rb">RB</div>
+            <div class="def-node d-dmf">DMF</div>
           </div>
-          <div style="font-size:12px;color:var(--text-dim);text-align:center;">💡 تظهر الحركة توافق التمركز بين خطوط الدفاع والوسط والمهاجمين بمرونة عالية.</div>
-        </div>
-      </div>
-
-      <!-- TAB 3: TACTICS & STYLES GUIDE -->
-      <div id="coach-tab-tactics" class="coach-tab-content" style="display:none;">
-        <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🔥 1. أسلوب الكرة الطويلة المضادة (Long Ball Counter - LBC)</div>
-          <div class="tactics-guide-desc">
-            <b>الفكرة:</b> تراجع دفاعي منظم وصلب عند فقدان الكرة لإغلاق المساحات، ثم إرسال كرات طويلة سريعة ودقيقة نحو المهاجمين خلف دفاع الخصم المتدفق.<br>
-            <b>🏆 أفضل خطة له:</b> <b>4-2-2-2</b> (الأفضل عالمياً لتوفير ثبات دفاعي ومحور مزدوج) أو <b>5-3-2</b>.
-          </div>
-        </div>
-
-        <div class="tactics-guide-card" style="border-color:var(--blue);">
-          <div class="tactics-guide-title">⚡ 2. أسلوب الهجمة المرتدة السريعة (Quick Counter - QC)</div>
-          <div class="tactics-guide-desc">
-            <b>الفكرة:</b> ضغط شرس وعالي على حامل الكرة في مناطق الخصم فور فقدانها، وانطلاق خاطف وسريع من الفريق بأقل عدد ممكن من التمريرات نحو مرمى الخصم.<br>
-            <b>🏆 أفضل خطة له:</b> <b>4-2-1-3</b> أو <b>4-3-3</b> لتواجد أجنحة سريعة ومحور هجومي ضاغط.
-          </div>
-        </div>
-
-        <div class="tactics-guide-card" style="border-color:var(--violet);">
-          <div class="tactics-guide-title">🎯 3. أسلوب الاستحواذ (Possession Game)</div>
-          <div class="tactics-guide-desc">
-            <b>الفكرة:</b> الصبر في بناء الهجمة، التمريرات القصيرة المترابطة، وحرمان الخصم من الكرة عبر الاستحواذ التام وفتح الثغرات بذكاء لاعبي الوسط.<br>
-            <b>🏆 أفضل خطة له:</b> <b>4-3-3</b> أو <b>4-2-1-3</b> لتوفير خيارات تمرير متعددة حول حامل الكرة.
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 4: BEST MANAGERS GUIDE -->
-      <div id="coach-tab-managers" class="coach-tab-content" style="display:none;">
-        <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🇫🇷 ديدييه ديشامب (Didier Deschamps)</div>
-          <div class="tactics-guide-desc">
-            <b>الأسلوب المفضل:</b> الهجمة المرتدة السريعة (Quick Counter) أو الكرة الطويلة المضادة.<br>
-            <b>⭐ الميزات:</b> يعطي تعزيزات ممتازة لخصائص اللاعبين البدنية والسرعة. يعتبر من أكثر المدربين توازناً واستقراراً في المباريات التنافسية (Divisions).
-          </div>
-        </div>
-
-        <div class="tactics-guide-card" style="border-color:var(--blue);">
-          <div class="tactics-guide-title">🇮🇹 فابيو كابيلو (Fabio Capello)</div>
-          <div class="tactics-guide-desc">
-            <b>الأسلوب المفضل:</b> الكرة الطويلة المضادة (Long Ball Counter).<br>
-            <b>⭐ الميزات:</b> يمنح الفريق صلابة دفاعية خارقة وتمركزاً مثالياً لخط الخلف ومحور الارتكاز. خيار مثالي لمن يعاني من استقبال الأهداف السهلة.
-          </div>
-        </div>
-
-        <div class="tactics-guide-card" style="border-color:var(--violet);">
-          <div class="tactics-guide-title">🇳🇱 فرانك ريكارد (Frank Rijkaard)</div>
-          <div class="tactics-guide-desc">
-            <b>الأسلوب المفضل:</b> الاستحواذ (Possession Game) أو التمرير السريع.<br>
-            <b>⭐ الميزات:</b> يرفع من دقة التمرير وسرعة اتخاذ القرار للاعبي خط الوسط (Midfield)، ويجعل السيطرة على إيقاع اللعب والاستحواذ أمراً ممتعاً وسلساً للغاية.
-          </div>
-        </div>
-
-        <div class="tactics-guide-card" style="border-color:var(--warn);">
-          <div class="tactics-guide-title">🇮🇹 سيموني إنزاغي (Simone Inzaghi)</div>
-          <div class="tactics-guide-desc">
-            <b>الأسلوب المفضل:</b> الهجمة المرتدة السريعة أو اللعب المباشر.<br>
-            <b>⭐ الميزات:</b> رائع جداً لمن يفضل اللعب بخطط تحتوي على أطراف ومهاجمين ثنائيين (مثل 3-5-2 أو 4-2-2-2)، حيث يضاعف من شراسة المهاجمين داخل منطقة الجزاء.
-          </div>
+          <div style="font-size:12px;color:var(--text-dim);text-align:center;margin-top:8px;">💡 التمركز المتناسق يمنع المهاجمين من اختراق العمق أو إرسال الباصات الحاسمة.</div>
         </div>
       </div>
 
@@ -856,22 +861,18 @@ function switchCoachTab(tabKey){
   subtabs.forEach(t => t.classList.remove('active'));
   
   document.getElementById('coach-tab-chat').style.display = 'none';
+  document.getElementById('coach-tab-defense').style.display = 'none';
   document.getElementById('coach-tab-animation').style.display = 'none';
-  document.getElementById('coach-tab-tactics').style.display = 'none';
-  document.getElementById('coach-tab-managers').style.display = 'none';
 
   if(tabKey === 'chat'){
     subtabs[0].classList.add('active');
     document.getElementById('coach-tab-chat').style.display = 'block';
-  } else if(tabKey === 'animation'){
+  } else if(tabKey === 'defense'){
     subtabs[1].classList.add('active');
-    document.getElementById('coach-tab-animation').style.display = 'block';
-  } else if(tabKey === 'tactics'){
-    subtabs[2].classList.add('active');
-    document.getElementById('coach-tab-tactics').style.display = 'block';
+    document.getElementById('coach-tab-defense').style.display = 'block';
   } else {
-    subtabs[3].classList.add('active');
-    document.getElementById('coach-tab-managers').style.display = 'block';
+    subtabs[2].classList.add('active');
+    document.getElementById('coach-tab-animation').style.display = 'block';
   }
 }
 
@@ -931,32 +932,26 @@ function triggerComprehensiveSquadAnalysis(){
   setTimeout(() => {
     document.getElementById(loadingId).remove();
     
-    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 لقد قمت بفحص تشكيلتك المرفقة بعناية فائقة:\n\n` +
-                  `🌟 **مديح التشكيلة:** اختيارك للاعبين وتوزيعهم يعكس احترافية عالية وانسجاماً ممتازاً يتماشى مع أقوى التكتيكات!\n\n` +
-                  `🛡️ **1. نصائح الدفاع:**\n• حافظ على خط دفاع متماسك ولا تندفع بقلبي الدفاع، واستخدم خاصية Match-Up.\n• محور الارتكاز المزدوج (DMF) سيوفر لك جداراً دفاعياً صلباً يمنع أي اختراق مركزي.\n\n` +
-                  `⚙️ **2. نصائح الوسط (Midfield):**\n• اجعل أحد لاعبي الـ DMF يمتلك أسلوب Anchorman للتغطية الخلفية.\n• استغل لاعبي الـ AMF في صناعة اللعب السريع وفتح المساحات على الأطراف والعمق.\n\n` +
-                  `⚡ **3. نصائح الهجوم (Attack):**\n• اعتمد على التمرير السريع للمهاجمين (CF) فور استخلاص الكرة لاستغلال سرعة المرتدات.\n• لا تبقِ المهاجمين ثابتين، بل اطلب منهم التحرك خلف مدافعي الخصم.\n\nهل تحتاج إلى تعديل أي مركز إضافي يا بطل؟`;
+    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 لقد قمت بفحص تشكيلتك المرفقة:\n\n` +
+                  `🌟 **تقييم التشكيلة:** توازن جميل بين الهجوم والدفاع.\n\n` +
+                  `🛡️ **نصائح الدفاع المختارة لفريقك:**\n• تأكد من اختيار مدافع **بناء لعب (Build-up)** مع مدافع **محطم (Destroyer)** لضمان التغطية والتدخل القوي.\n• استخدم خاصية Match-Up دائماً ولا تندفع بزر الضغط العشوائي.\n• أطرافك الدفاعية ممتازة، احرص على جعل أحد الأظهره بوضع "دفاعي" لتأمين المرتدات.\n\nهل ترغب بمعرفة المزيد عن أساليب اللاعبين؟`;
     
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل ومدح تشكيلتك الشاملة بنجاح!');
+    showToast('تم تحليل تشكيلتك بنجاح!');
   }, 1500);
 }
 
 function getCoachReply(userText){
   const q = userText.toLowerCase();
 
-  if(q.includes('دفاع') || q.includes('وسط') || q.includes('هجوم') || q.includes('نصائح')){
-    return `🛡️ **التحليل الثلاثي المتكامل لفريقك:**\n\n• **الدفاع:** اعتمد على المدافعين أصحاب القوة البدنية العالية والتركيز.\n• **الوسط:** ادمج بين لاعب قاطع كرات (Destructor/Anchor) وآخر صانع لعب (Box-to-Box أو Hole Player).\n• **الهجوم:** استغل سرعة الـ CF في الهجمات المرتدة السريعة مع إسناد الـ AMF.`;
-  } else if(q.includes('طويلة') || q.includes('lbc')){
-    return `🔥 أسلوب **الكرة الطويلة المضادة** هو الأنسب لخطة 4-2-2-2 لأنه يمنحك تأميناً دفاعياً وانطلاقات صاروخية للمهاجمين بلمسة واحدة.`;
-  } else if(q.includes('مرتدة') || q.includes('سريعة') || q.includes('qc')){
-    return `⚡ الهجمة المرتدة السريعة تتطلب ضغطاً عالياً ومهاجمين بأعلى معدلات السرعة والاستجابة.`;
-  } else if(q.includes('مدرب') || q.includes('ديشامب') || q.includes('كابيلو') || q.includes('ريكارد') || q.includes('انزاغي')){
-    return `👔 أفضل المدربين حالياً هم ديشامب في المرتدة السريعة، كابيلو في الكرة الطويلة للصلابة الدفاعية، ريكارد للاستحواذ، وإنزاغي للشراسة الهجومية! يمكنك الاطلاع على تفاصيلهم في قسم (أساطير التدريب).`;
+  if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع') || q.includes('محطم') || q.includes('ظهير')){
+    return `🛡️ **دليل الدفاع الاحترافي في إي فوتبول:**\n\n• **بناء لعب (Build-up):** للتمركز الذكي وهدوء الخط الخلفي.\n• **محطم (Destroyer):** للضغط الشرس وقطع الكرات بمهارة.\n• **ظهير مدافع (Defensive Full-back):** لتغطية خلفية تامة ومنع المرتدات.\n• **القاعدة الذهبية:** استخدم زر Match-Up ولا تحرك قلبي الدفاع من أماكنهما بعشوائية!`;
+  } else if(q.includes('مرتدة') || q.includes('سريعة') || q.includes('إيقاف')){
+    return `🔥 لإيقاف المرتدات السريعة: تراجع بمحور الارتكاز (DMF)، أغلق زوايا التمرير بـ Match-Up، ولا تضغط بلا توقف لئلا تترك مساحات خلفك.`;
   }
 
-  return `أنا معك يا كابتن! ارفع صورة تشكيلتك بالأعلى لأقوم بتحليلها ومدحها وتقديم نصائح الدفاع والوسط والهجوم بدقة.`;
+  return `أنا معك يا كابتن! انتقل لتبويب (دليل الدفاع واللاعبين) لتتعرف على أدوار المحطم وبناء اللعب والأظهره بالتفصيل، أو ارفع صورة تشكيلتك للفحص.`;
 }
 
 function sendAIChatMessage(prefillText){
@@ -1095,7 +1090,7 @@ function stopGiveawayTimer(auto=false){
   const randomChance = Math.random() < 0.01;
 
   if(!auto && isExactTarget && randomChance){
-    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفته عند ${elapsedStr} ثانية وفزت بـ <b>سوايرز</b>!`;
+    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفْتَه عند ${elapsedStr} ثانية وفزت بجائزتك!`;
     resultDiv.style.color = 'var(--lime)';
     showToast('مبروك الفوز بالجائزة!');
   } else {
@@ -1239,7 +1234,6 @@ async function cleanStorage(){
   const cleanBtn = document.getElementById('cleanBtn');
   const stBar = document.getElementById('stBar');
   
-  // تشغيل أنيميشن النبض والوميض على لوحة التخزين والزر
   storagePanel.classList.add('cleaning-anim');
   cleanBtn.disabled = true;
   cleanBtn.textContent = 'جاري التنظيف... ⏳';
@@ -1250,7 +1244,6 @@ async function cleanStorage(){
       await Promise.all(keys.map(k => caches.delete(k)));
     }
     
-    // أنيميشن تصفير شريط المساحة بشكل تدريجي سلس
     stBar.style.width = '0%';
     
     setTimeout(() => {
