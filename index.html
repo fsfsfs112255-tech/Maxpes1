@@ -254,7 +254,7 @@
   .vision-preview-wrap{margin-top:10px;display:none;position:relative;}
   .vision-preview-img{max-width:100%;max-height:160px;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
 
-  /* ANIMATION SECTION STYLES */
+  /* ANIMATION SECTION STYLES (ENHANCED REALISTIC) */
   .anim-sub-selector{display:grid;grid-template-columns:repeat(2, 1fr);gap:8px;margin-bottom:12px;}
   .anim-sel-btn{
     background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
@@ -266,91 +266,106 @@
     box-shadow:0 0 15px rgba(182,255,62,0.25);
   }
   .anim-canvas-box{
-    position:relative;width:100%;height:320px;
-    background:linear-gradient(135deg, #091c13, #0f2e1e);
+    position:relative;width:100%;height:340px;
+    background:radial-gradient(circle at center, #113822 0%, #071910 100%);
     border-radius:16px;border:2px solid rgba(182,255,62,0.5);overflow:hidden;margin-bottom:12px;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.8), 0 0 25px rgba(182,255,62,0.25);
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.85), 0 0 25px rgba(182,255,62,0.25);
     display:none;
   }
   .anim-canvas-box.active{display:block;}
-  .pitch-lines{position:absolute;inset:15px;border:1px solid rgba(255,255,255,0.3);border-radius:6px;pointer-events:none;}
-  .pitch-center-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70px;height:70px;border:1px solid rgba(255,255,255,0.3);border-radius:50%;pointer-events:none;}
-  .pitch-halfway{position:absolute;top:50%;left:15px;right:15px;height:1px;background:rgba(255,255,255,0.3);pointer-events:none;}
+  .pitch-grass-lines{position:absolute;inset:10px;border:1.5px solid rgba(255,255,255,0.35);border-radius:8px;pointer-events:none;}
+  .pitch-center-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border:1.5px solid rgba(255,255,255,0.35);border-radius:50%;pointer-events:none;}
+  .pitch-halfway{position:absolute;top:50%;left:10px;right:10px;height:1.5px;background:rgba(255,255,255,0.35);pointer-events:none;}
+  .pitch-box-top{position:absolute;top:10px;left:30%;right:30%;height:55px;border:1.5px solid rgba(255,255,255,0.3);border-top:none;pointer-events:none;}
+  .pitch-box-bot{position:absolute;bottom:10px;left:30%;right:30%;height:55px;border:1.5px solid rgba(255,255,255,0.3);border-bottom:none;pointer-events:none;}
 
   .player-node{
-    position:absolute;width:28px;height:28px;border-radius:50%;
+    position:absolute;width:29px;height:29px;border-radius:50%;
     background:linear-gradient(135deg, var(--blue), var(--violet));
-    border:2px solid #fff;display:flex;align-items:center;justify-content:center;
+    border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;
     font-family:'Tajawal';font-weight:900;font-size:9.5px;color:#fff;
-    box-shadow:0 0 15px rgba(62,139,255,0.8);transform:translate(-50%,-50%);
+    box-shadow:0 0 16px rgba(62,139,255,0.85);transform:translate(-50%,-50%);
   }
   .ball-anim{
-    position:absolute;width:12px;height:12px;background:#fff;border-radius:50%;
-    box-shadow:0 0 12px #fff, 0 0 5px var(--lime);transform:translate(-50%,-50%);
+    position:absolute;width:13px;height:13px;background:#fff;border-radius:50%;
+    box-shadow:0 0 14px #fff, 0 0 6px var(--lime);transform:translate(-50%,-50%);
   }
 
-  /* 4-2-2-2 Formation Nodes */
-  .f4222-gk {top:88%; left:50%;}
-  .f4222-lb {top:72%; left:16%; animation: sideMove 3s infinite ease-in-out;}
-  .f4222-cb1{top:74%; left:38%;}
-  .f4222-cb2{top:74%; left:62%;}
-  .f4222-rb {top:72%; left:84%; animation: sideMove 3s infinite ease-in-out reverse;}
-  .f4222-dmf1{top:54%; left:36%; animation: dmfMove 3s infinite ease-in-out;}
-  .f4222-dmf2{top:54%; left:64%; animation: dmfMove 3s infinite ease-in-out reverse;}
-  .f4222-amf1{top:36%; left:28%; animation: amfMove 3.5s infinite ease-in-out;}
-  .f4222-amf2{top:36%; left:72%; animation: amfMove 3.5s infinite ease-in-out reverse;}
-  .f4222-cf1{top:16%; left:40%; animation: cfMove 4s infinite ease-in-out;}
-  .f4222-cf2{top:16%; left:60%; animation: cfMove 4s infinite ease-in-out reverse;}
-  .ball-f4222 {animation: ballRoute4222 6s infinite linear;}
+  /* Enhanced Realistic 4-2-2-2 Flow Animation */
+  .f4222-gk {top:90%; left:50%;}
+  .f4222-lb {top:72%; left:15%; animation: realisticLB 4s infinite ease-in-out;}
+  .f4222-cb1{top:76%; left:38%; animation: realisticCB 4s infinite ease-in-out;}
+  .f4222-cb2{top:76%; left:62%; animation: realisticCB 4s infinite ease-in-out;}
+  .f4222-rb {top:72%; left:85%; animation: realisticRB 4s infinite ease-in-out;}
+  .f4222-dmf1{top:56%; left:35%; animation: realisticDMF 4s infinite ease-in-out;}
+  .f4222-dmf2{top:56%; left:65%; animation: realisticDMF 4s infinite ease-in-out reverse;}
+  .f4222-amf1{top:36%; left:28%; animation: realisticAMF 4s infinite ease-in-out;}
+  .f4222-amf2{top:36%; left:72%; animation: realisticAMF 4s infinite ease-in-out reverse;}
+  .f4222-cf1{top:18%; left:42%; animation: realisticCF 4s infinite ease-in-out;}
+  .f4222-cf2{top:18%; left:58%; animation: realisticCF 4s infinite ease-in-out reverse;}
+  .ball-f4222 {animation: ballRouteRealistic4222 8s infinite cubic-bezier(0.4, 0, 0.2, 1);}
 
-  @keyframes sideMove { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-8px);} }
-  @keyframes dmfMove { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-5px) scale(1.05);} }
-  @keyframes amfMove { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(6px,-12px);} }
-  @keyframes cfMove { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-14px) scale(1.08);} }
-  @keyframes ballRoute4222 {
-    0% {top:88%;left:50%;} 25%{top:74%;left:38%;} 50%{top:54%;left:36%;} 75%{top:36%;left:28%;} 100%{top:88%;left:50%;}
+  @keyframes realisticLB { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(4px,-10px) scale(1.05);} }
+  @keyframes RB { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(-4px,-10px) scale(1.05);} }
+  @keyframes realisticCB { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(5px);} }
+  @keyframes realisticDMF { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(6px,-6px) scale(1.08);} }
+  @keyframes realisticAMF { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(-8px,-14px) scale(1.1);} }
+  @keyframes realisticCF { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(5px,-16px) scale(1.12);} }
+  @keyframes ballRouteRealistic4222 {
+    0% {top:90%;left:50%;}
+    20% {top:76%;left:38%;}
+    40% {top:56%;left:35%;}
+    60% {top:36%;left:28%;}
+    80% {top:18%;left:42%;}
+    100% {top:90%;left:50%;}
   }
 
-  /* Defense Nodes */
-  .def-line {position:absolute;top:62%;left:15%;right:15%;height:2px;background:rgba(182,255,62,0.4);border-style:dashed;}
-  .d-gk {top:88%; left:50%;}
-  .d-lb {top:68%; left:16%; animation: dSide 3s infinite ease-in-out;}
-  .d-cb1{top:70%; left:38%; animation: dBlock 3s infinite ease-in-out;}
-  .d-cb2{top:70%; left:62%; animation: dBlock 3s infinite ease-in-out;}
-  .d-rb {top:68%; left:84%; animation: dSide 3s infinite ease-in-out reverse;}
-  .d-dmf{top:52%; left:50%; animation: dShield 3s infinite ease-in-out;}
-  .ball-def {animation: ballRouteDef 5s infinite linear;}
+  /* Enhanced Realistic Defense Animation */
+  .def-line-real {position:absolute;top:65%;left:12%;right:12%;height:2px;background:var(--lime);border-style:dashed;box-shadow:0 0 10px var(--lime);}
+  .d-gk {top:90%; left:50%;}
+  .d-lb {top:67%; left:16%; animation: defBlockSide 3.5s infinite ease-in-out;}
+  .d-cb1{top:68%; left:38%; animation: defCenterBlock 3.5s infinite ease-in-out;}
+  .d-cb2{top:68%; left:62%; animation: defCenterBlock 3.5s infinite ease-in-out;}
+  .d-rb {top:67%; left:84%; animation: defBlockSide 3.5s infinite ease-in-out reverse;}
+  .d-dmf{top:52%; left:50%; animation: defShieldRun 3.5s infinite ease-in-out;}
+  .ball-def-real {animation: ballRouteRealDef 6s infinite ease-in-out;}
 
-  @keyframes dBlock { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-6px);} }
-  @keyframes dShield { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.1) translateY(-4px);} }
-  @keyframes dSide { 0%,100%{transform:translate(-50%,-50%) translateX(0);} 50%{transform:translate(-50%,-50%) translateX(-6px);} }
-  @keyframes ballRouteDef {
-    0% {top:20%;left:50%;} 40%{top:45%;left:50%;} 70%{top:65%;left:50%;} 100%{top:20%;left:50%;}
+  @keyframes defCenterBlock { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-7px) scale(1.05);} }
+  @keyframes defShieldRun { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(0,-10px) scale(1.1);} }
+  @keyframes defBlockSide { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(-5px,-5px);} }
+  @keyframes ballRouteRealDef {
+    0% {top:20%;left:50%;} 35% {top:45%;left:50%;} 65% {top:65%;left:50%;} 100% {top:20%;left:50%;}
   }
 
-  /* Attack Nodes */
-  .att-lw {top:30%; left:14%; animation: attRun 3.5s infinite ease-in-out;}
-  .att-rw {top:30%; left:86%; animation: attRun 3.5s infinite ease-in-out reverse;}
-  .att-amf{top:40%; left:50%; animation: attBuild 3.5s infinite ease-in-out;}
-  .att-cf {top:18%; left:50%; animation: attSprint 3.5s infinite ease-in-out;}
-  .ball-att {animation: ballRouteAtt 5s infinite linear;}
+  /* Enhanced Realistic Attack Animation */
+  .att-lw {top:28%; left:15%; animation: attWingRun 4s infinite ease-in-out;}
+  .att-rw {top:28%; left:85%; animation: attWingRun 4s infinite ease-in-out reverse;}
+  .att-amf{top:38%; left:50%; animation: attPlaymaker 4s infinite ease-in-out;}
+  .att-cf {top:15%; left:50%; animation: attStrikerRun 4s infinite ease-in-out;}
+  .ball-att-real {animation: ballRouteRealAtt 6s infinite ease-in-out;}
 
-  @keyframes attRun { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(10px,-14px);} }
-  @keyframes attBuild { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(10px);} }
-  @keyframes attSprint { 0%,100%{transform:translate(-50%,-50%) translateY(0);} 50%{transform:translate(-50%,-50%) translateY(-15px) scale(1.1);} }
-  @keyframes ballRouteAtt {
-    0% {top:70%;left:50%;} 35%{top:40%;left:50%;} 70%{top:18%;left:50%;} 100%{top:70%;left:50%;}
+  @keyframes attWingRun { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(12px,-16px) scale(1.1);} }
+  @keyframes attPlaymaker { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(0,12px);} }
+  @keyframes attStrikerRun { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(0,-18px) scale(1.15);} }
+  @keyframes ballRouteRealAtt {
+    0% {top:75%;left:50%;} 30% {top:50%;left:50%;} 65% {top:15%;left:50%;} 100% {top:75%;left:50%;}
   }
 
-  /* Correct Player Role Nodes */
-  .role-player {top:50%; left:50%; animation: rolePulse 2.5s infinite ease-in-out; width:40px; height:40px; font-size:12px;}
-  .role-indicator-ring {
+  /* Enhanced Correct Player Role Nodes & Animation */
+  .role-player-node {top:50%; left:50%; animation: realisticRolePulse 3s infinite ease-in-out; width:44px; height:44px; font-size:13px; background:linear-gradient(135deg,var(--lime),var(--blue)); color:#000; border-color:#fff;}
+  .role-orbit-ring1 {
     position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:70px;height:70px;border:2px dashed var(--lime);border-radius:50%;
-    animation: spinRing 8s infinite linear; pointer-events:none;
+    width:85px;height:85px;border:2px dashed var(--lime);border-radius:50%;
+    animation: spinRingClockwise 10s infinite linear; pointer-events:none;
   }
-  @keyframes rolePulse { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.12); box-shadow:0 0 25px var(--lime);} }
-  @keyframes spinRing { 0%{transform:translate(-50%,-50%) rotate(0deg);} 100%{transform:translate(-50%,-50%) rotate(360deg);} }
+  .role-orbit-ring2 {
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:130px;height:130px;border:1px solid rgba(62,139,255,0.4);border-radius:50%;
+    animation: spinRingCounter 14s infinite linear; pointer-events:none;
+  }
+  @keyframes realisticRolePulse { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.15); box-shadow:0 0 30px var(--lime);} }
+  @keyframes spinRingClockwise { 0%{transform:translate(-50%,-50%) rotate(0deg);} 100%{transform:translate(-50%,-50%) rotate(360deg);} }
+  @keyframes spinRingCounter { 0%{transform:translate(-50%,-50%) rotate(360deg);} 100%{transform:translate(-50%,-50%) rotate(0deg);} }
 
   /* CHAT STYLES */
   .chat-container{display:flex;flex-direction:column;height:480px;}
@@ -511,7 +526,7 @@
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
           <div class="vision-icon">📸</div>
           <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
-          <div class="vision-sub">سيقوم المدرب بتحليلها ومدحها وإعطائك نصائح الدفاع والوسط!</div>
+          <div class="vision-sub">سيقوم المدرب بتحليلك، مدح تشكيلتك، وإعطائك 5 نصائح شاملة!</div>
           <div id="visionPreviewWrap" class="vision-preview-wrap">
             <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
           </div>
@@ -526,7 +541,7 @@
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها، أو انتقل لتبويب (Animation) لرؤية التحركات والخطط بصرياً!
+              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها ومدحها وإعطائك النصائح الذهبية، أو انتقل لتبويب (Animation) لرؤية التحركات والخطط بصرياً!
             </div>
           </div>
           <div class="chat-input-row">
@@ -536,58 +551,91 @@
         </div>
       </div>
 
-      <!-- TAB 2: DEFENSE GUIDE -->
+      <!-- TAB 2: DEFENSE GUIDE (EXPANDED) -->
       <div id="coach-tab-defense" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🛡️ 1. اختيار أساليب اللاعبين الدفاعية الصحيحة</div>
+          <div class="tactics-guide-title">🛡️ 1. أساليب وتصنيفات المدافعين في اللعبة</div>
           <div class="tactics-guide-desc">
-            • <b>بناء لعب (Build-up):</b> الأفضل لقلب الدفاع. يتميز بالتمركز الهادئ، عدم الاندفاع، وبناء الهجمة بدقة.<br>
-            • <b>المحطم (Destroyer):</b> مدافع شرس في قطع الكرات والضغط البدني المباشر. يدمج بجانب بناء لعب.<br>
-            • <b>ظهير مدافع (Defensive Full-back):</b> يظل متراجعاً مع خط الدفاع تماماً لإيقاف الأجنحة.<br>
-            • <b>ظهير هجومي (Offensive Full-back):</b> يتقدم لزيادة الكثافة مع الحذر من المساحات خلفه.
+            • <b>بناء لعب (Build-up):</b> الأفضل لقلب الدفاع (CB). يتميز بالتمركز الهادئ، عدم الاندفاع الأعمى، وتغطية المساحات خلف الأظهير بدقة.<br>
+            • <b>المحطم (Destroyer):</b> مدافع شرس جداً في الالتحامات البدنية وقطع الكرات قبل وصولها للمهاجم. يفضل دمجه بجانب مدافع "بناء لعب".<br>
+            • <b>ظهير مدافع (Defensive Full-back):</b> يلتزم بالخط الخلفي تماماً ولا يتقدم للهجوم، مثالي لإيقاف الأجنحة السريعة وتأمين الجهة.<br>
+            • <b>ظهير هجومي (Offensive Full-back):</b> يتقدم لزيادة الكثافة العددية وصناعة العرضيات، لكنه يترك مساحات خلفه تحتاج لتغطية من المحور.<br>
+            • <b>قاطع الكرات / حائط الصد:</b> لاعب الارتكاز الدفاعي (DMF) الأهم لكسر هجمات الخصم في مهدها أمام قلبي الدفاع مباشرة.
           </div>
         </div>
+
         <div class="tactics-guide-card" style="border-color:var(--blue);">
-          <div class="tactics-guide-title">💡 2. قواعد وأسرار الدفاع الصحيحة</div>
+          <div class="tactics-guide-title">⚙️ 2. تقنيات الضغط والتحكم الدفاعي المتقدم</div>
           <div class="tactics-guide-desc">
-            1. <b>استخدم زر Match-Up (المحاذاة):</b> لا تضغط زر الضغط العشوائي، بل أغلق زوايا التمرير.<br>
-            2. <b>الضغط الثاني:</b> استعمل زر الضغط الثاني بحذر لجعل لاعب قريب يضغط بينما تتحكم أنت بالمدافع الآخر.<br>
-            3. <b>عدم تحريك قلبي الدفاع (CB):</b> اترك لاعبي الارتكاز (DMF) يقطعون الكرة بالمنتصف، واجعل قلبي الدفاع متراجعين.
+            1. <b>استخدام Match-Up بحرفية:</b> اضغط واستمر في سحب زر الماتش أب لتقليل سرعة المهاجم وغلق زوايا التمرير والتسديد تماماً دون الاندفاع.<br>
+            2. <b>استراتيجية الضغط الثاني (Pressure):</b> استخدم زر الضغط الثاني فقط عندما يكون لاعبك القريب خارج مسار الكرة، ليقوم لاعب آخر بالضغط بينما تغلق أنت ممرات التمرير العكسي.<br>
+            3. <b>عدم تحريك قلبي الدفاع (CB):</b> القاعدة الذهبية؛ لا تخرج بقلب الدفاع نهائياً لمطاردة مهاجم خارج منطقة الجزاء، بل اترك هذه المهمة للاعبي الارتكاز (DMF) أو الأظهير.<br>
+            4. <b>إغلاق العمق في الدفاع المتراجع:</b> عند تقدم الخصم، اجعل خط دفاعك متوازناً واعتمد على المؤشر اليدوي للتحكم بمحور الارتكاز لقطع كرات البين پاس (Through Pass).
+          </div>
+        </div>
+
+        <div class="tactics-guide-card" style="border-color:var(--violet);">
+          <div class="tactics-guide-title">🚨 3. كيفية إيقاف المرتدات السريعة (Long Ball Counter)</div>
+          <div class="tactics-guide-desc">
+            • <b>تفعيل تعليمات دفاعية (Defensive):</b> ضع تعليمات دفاعية على ظهيريك لضمان عدم تقدمهما معاً في نفس الهجمة.<br>
+            • <b>الرجوع الفوري باللاعب الخلفي:</b> عند انطلاق الكرة الطويلة للخصم، حدد أسرع مدافع لديك واسحبه فوراً للخلف لقطع طريق الانفراد.<br>
+            • <b>مراقبة مفاتيح اللعب:</b> راقب صانع ألعاب الخصم (AMF) واقطع خط التمرير الطولي قبل خروجه من قدمه.
           </div>
         </div>
       </div>
 
-      <!-- TAB 3: PLAYER ROLES & STYLES -->
+      <!-- TAB 3: PLAYER ROLES & STYLES (FULL EXHAUSTIVE LIST) -->
       <div id="coach-tab-players" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--violet);">
-          <div class="tactics-guide-title">👤 الطريقة الصحيحة لاستخدام كل لاعب</div>
-          <div class="tactics-guide-desc">
-            • <b>المهاجم الصريح (Goal Poacher / Fox in the Box):</b> التمركز خلف آخر مدافع والانطلاق الفوري عند ضرب مصيدة التسلل.<br>
-            • <b>صانع اللعب العميق (Orchestrator):</b> البقاء كخيار تمرير هادئ أمام المدافعين وتوزيع الكرات الطويلة بدقة.<br>
-            • <b>الجناح الناشط (Roaming Flank / Prolific Winger):</b> الدخول لعمق الملعب للتسديد أو إرسال العرضيات المتقنة.
+          <div class="tactics-guide-title">👤 دليل جميع أساليب اللاعبين (Player Playstyles) في eFootball</div>
+          <div class="tactics-guide-desc" style="line-height:1.9;">
+            <b>1. أساليب المهاجمين (Forwards):</b><br>
+            • <b>مهاجم صريح (Goal Poacher):</b> يتمركز بذكاء على خط التسلل وينطلق خلف المدافعين لاستلام البين پاس.<br>
+            • <b>الثعلب في الصندوق (Fox in the Box):</b> مهاجم صندوق كلاسيكي، لا يخرج كثيراً للخارج ويبحث عن أنصاف الفرص للتسجيل.<br>
+            • <b>مهاجم متراجع (Target Man):</b> يتلقى الكرات الطويلة ويحميها بجسده لفتح المساحات للقادمين من الخلف.<br>
+            • <b>مهاجم وهمي (Deep-Lying Forward):</b> يتراجع لمنتصف الملعب لاستلام الكرة وبناء الهجمة وصناعة اللعب.<br>
+            • <b>مهاجم نشط (Roaming Flank):</b> جناح يميل للدخول لعمق الملعب والتسديد بقدمه العكسية.<br>
+            • <b>جناح ترشحي / كلاسيكي (Prolific Winger):</b> يلتزم بالخط الجانبي ويرسل العرضيات المتقنة.<br>
+            • <b>مخترق الأجنحة (Creative Playmaker):</b> يفضل استلام الكرة للبحث عن تمريرات قاتلة داخل الصندوق.<br>
+            • <b>النشيط المتقدم (Coinciding / Hole Player):</b> الأفضل كـ AMF أوSS، ينطلق كقاطرة من الخلف لملء صندوق الخصم.<br><br>
+
+            <b>2. أساليب خط الوسط (Midfielders):</b><br>
+            • <b>صانع اللعب الكلاسيكي (Classic No. 10):</b> يتحرك ببطء ودقة عالية ويمتلك تمريرات ساحرة، قليل الحركة بدون كرة.<br>
+            • <b>بوكس تو بوكس (Box-to-Box):</b> محرك الفريق، يغطي الملعب دفاعياً وهجومياً بلا توقف طوال المباراة.<br>
+            • <b>محور الارتكاز (Anchor Man):</b> صخرة أمام المدافعين، لا يتقدم للهجوم أبداً ويبقى لتأمين العمق.<br>
+            • <b>صانع اللعب العميق (Orchestrator):</b> منظم إيقاع الفريق وتوزيع الكرات الهادئة أمام خط الدفاع.<br>
+            • <b>المحطة / المدافع النشط (Destroyer Mid):</b> يضغط بقوة لافت افتكاك الكرات في منتصف الملعب.<br><br>
+
+            <b>3. أساليب المدافعين والحراس (Defenders & GK):</b><br>
+            • <b>بناء لعب (Build-up):</b> قلب دفاع متزن يوزع اللعب ولا يندفع.<br>
+            • <b>المحطم (Destroyer Def):</b> مدافع شرس في الالتحامات الفردية.<br>
+            • <b>ظهير هجومي / مدافع / إضافي (Full-back Finisher / Extra Frontman):</b> تقدم وتغطية تكتيكية دقيقة.<br>
+            • <b>حارس هجومي / دفاعي (Offensive / Defensive Goalkeeper):</b> يخرج لتغطية الانفرادات أو يلتزم بحراسة خط العرين.
           </div>
         </div>
       </div>
 
-      <!-- TAB 4: NEW DEDICATED ANIMATION SECTION -->
+      <!-- TAB 4: ENHANCED REALISTIC ANIMATION SECTION -->
       <div id="coach-tab-animation" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
-          <div class="tactics-guide-title">🎬 قسم الـ Animation الحصري لـ eFootball Mobile</div>
-          <div class="tactics-guide-desc" style="margin-bottom:12px;">اختر الأنيميشن المطلوب لمشاهدة التمركز والحركة التكتيكية على الملعب الافتراضي:</div>
+          <div class="tactics-guide-title">🎬 قسم الـ Animation الاحترافي والواقعي لـ eFootball Mobile</div>
+          <div class="tactics-guide-desc" style="margin-bottom:12px;">تحركات تكتيكية حية ومحاكاة دقيقة لانسيابية اللاعبين على الميدان الافتراضي:</div>
 
           <!-- ANIMATION SUB-BUTTONS -->
           <div class="anim-sub-selector">
-            <button class="anim-sel-btn active" onclick="switchAnimView('4222')">خطة 4-2-2-2 ⚽</button>
-            <button class="anim-sel-btn" onclick="switchAnimView('defense')">أنيميشن الدفاع 🛡️</button>
-            <button class="anim-sel-btn" onclick="switchAnimView('attack')">أنيميشن الهجوم ⚡</button>
-            <button class="anim-sel-btn" onclick="switchAnimView('role')">طريقة اللاعب الصحيحة 👤</button>
+            <button class="anim-sel-btn active" onclick="switchAnimView('4222')">خطة 4-2-2-2 الواقعية ⚽</button>
+            <button class="anim-sel-btn" onclick="switchAnimView('defense')">محاكاة الدفاع المتقدم 🛡️</button>
+            <button class="anim-sel-btn" onclick="switchAnimView('attack')">الهجمة المرتدة السريعة ⚡</button>
+            <button class="anim-sel-btn" onclick="switchAnimView('role')">التمركز والأسلوب المثالي 👤</button>
           </div>
 
           <!-- 1. FORMATION 4-2-2-2 ANIMATION -->
           <div id="anim-box-4222" class="anim-canvas-box active">
-            <div class="pitch-lines"></div>
+            <div class="pitch-grass-lines"></div>
             <div class="pitch-center-circle"></div>
             <div class="pitch-halfway"></div>
+            <div class="pitch-box-top"></div>
+            <div class="pitch-box-bot"></div>
             <div class="ball-anim ball-f4222"></div>
             <div class="player-node f4222-gk">GK</div>
             <div class="player-node f4222-lb">LB</div>
@@ -604,9 +652,9 @@
 
           <!-- 2. DEFENSE ANIMATION -->
           <div id="anim-box-defense" class="anim-canvas-box">
-            <div class="pitch-lines"></div>
-            <div class="def-line"></div>
-            <div class="ball-anim ball-def"></div>
+            <div class="pitch-grass-lines"></div>
+            <div class="def-line-real"></div>
+            <div class="ball-anim ball-def-real"></div>
             <div class="player-node d-gk">GK</div>
             <div class="player-node d-lb">LB</div>
             <div class="player-node d-cb1">CB</div>
@@ -617,9 +665,9 @@
 
           <!-- 3. ATTACK ANIMATION -->
           <div id="anim-box-attack" class="anim-canvas-box">
-            <div class="pitch-lines"></div>
-            <div class="ball-anim ball-att"></div>
-            <div class="player-node" style="top:70%;left:50%;">CMF</div>
+            <div class="pitch-grass-lines"></div>
+            <div class="ball-anim ball-att-real"></div>
+            <div class="player-node" style="top:72%;left:50%;">CMF</div>
             <div class="player-node att-amf">AMF</div>
             <div class="player-node att-lw">LWF</div>
             <div class="player-node att-rw">RWF</div>
@@ -628,13 +676,14 @@
 
           <!-- 4. CORRECT PLAYER ROLE ANIMATION -->
           <div id="anim-box-role" class="anim-canvas-box">
-            <div class="pitch-lines"></div>
+            <div class="pitch-grass-lines"></div>
             <div class="pitch-center-circle"></div>
-            <div class="role-indicator-ring"></div>
-            <div class="player-node role-player" style="background:linear-gradient(135deg,var(--lime),var(--blue)); color:#000;">PRO</div>
+            <div class="role-orbit-ring2"></div>
+            <div class="role-orbit-ring1"></div>
+            <div class="player-node role-player-node">PRO</div>
           </div>
 
-          <div id="animCaption" style="font-size:12px;color:var(--text-dim);text-align:center;margin-top:8px;">💡 حركة انسيابية توضح تمركز خطة 4-2-2-2 وتناغم اللاعبين.</div>
+          <div id="animCaption" style="font-size:12px;color:var(--text-dim);text-align:center;margin-top:8px;">💡 محاكاة واقعية وانسيابية لحركة خطة 4-2-2-2 وتناغم اللاعبين بتمرير سليم.</div>
         </div>
       </div>
 
@@ -795,19 +844,19 @@ function switchAnimView(viewKey){
   if(viewKey === '4222'){
     btns[0].classList.add('active');
     document.getElementById('anim-box-4222').classList.add('active');
-    caption.textContent = '💡 حركة انسيابية توضح تمركز خطة 4-2-2-2 وتناغم اللاعبين.';
+    caption.textContent = '💡 محاكاة واقعية وانسيابية لحركة خطة 4-2-2-2 وتناغم اللاعبين بتمرير سليم.';
   } else if(viewKey === 'defense'){
     btns[1].classList.add('active');
     document.getElementById('anim-box-defense').classList.add('active');
-    caption.textContent = '🛡️ انضباط خط الدفاع وتمركز قلبي الدفاع والمحور لغلق العمق.';
+    caption.textContent = '🛡️ تمركز انضباط خط الدفاع وحائط الصد لمحور الارتكاز لغلق العمق تماماً.';
   } else if(viewKey === 'attack'){
     btns[2].classList.add('active');
     document.getElementById('anim-box-attack').classList.add('active');
-    caption.textContent = '⚡ التحركات الهجومية وسرعة انطلاق الأجنحة والصانع.';
+    caption.textContent = '⚡ سرعة انطلاق الأجنحة وصانع اللعب لاختراق حصون الخصم بكفاءة.';
   } else {
     btns[3].classList.add('active');
     document.getElementById('anim-box-role').classList.add('active');
-    caption.textContent = '👤 الطريقة الصحيحة لتموضع اللاعب واستغلال مهاراته داخل الميدان.';
+    caption.textContent = '👤 التمركز الدقيق للمهارة والأسلوب الاحترافي واستغلال المساحات بالميدان.';
   }
 }
 
@@ -830,7 +879,7 @@ function formatCoachMessage(text){
   return escaped.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
 }
 
-// SQUAD VISION UPLOAD
+// SQUAD VISION UPLOAD WITH 5 GOLDEN TIPS
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -849,24 +898,25 @@ function triggerComprehensiveSquadAnalysis(){
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   const loadingId = 'loading_' + Date.now();
-  chatMessages.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="chat-msg ai">🔍 المدرب الذكي يفحص تشكيلتك... <span class="typing-dots"><span></span><span></span><span></span></span></div>`);
+  chatMessages.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="chat-msg ai">🔍 المدرب الذكي يفحص تشكيلتك بدقة خارقة... <span class="typing-dots"><span></span><span></span><span></span></span></div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
-    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 تم فحص تشكيلتك بنجاح:\n\n🌟 **التقييم:** تشكيلة متوازنة وقوية.\n🛡️ **النصيحة:** تأكد من إعطاء الأدوار الصحيحة للمدافعين كما موضح في قسم Animation الجديد!`;
+    const reply = `يا أهلاً بك يا بطل كابتن ماكس! 🔥 ما شاء الله، تشكيلة مرعبة ومتوازنة بشكل ممتاز تدل على خبرتك العالية.\n\nإليك **5 نصائح ذهبية** لتطوير أداء فريقك أكثر:\n\n1. **الدفاع:** احرص على استخدام مدافعين بخاصية (Build-up) لتفادي الاندفاع العشوائي خلف المهاجمين.\n2. **الوسط:** اترك محور الارتكاز (Anchor Man) مستقراً في مكانه ولا تخرجه للأطراف لغلق المساحات.\n3. **الهجوم:** استغل سرعة انطلاقات (Goal Poacher) خلف مصيدة التسلل فور قطع الكرة.\n4. **التحكم:** اعتمد بشكل أساسي على زر (Match-Up) في الدفاع ولا تضغط زر الضغط العشوائي أبداً.\n5. **التناغم:** تأكد من مطابقة أسلوب لعب المدرب مع قدرات وتناغم اللاعبين لضمان أعلى أداء بدني.`;
+    
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل تشكيلتك بنجاح!');
-  }, 1500);
+    showToast('تم تحليل تشكيلتك وإعطاؤك النصائح الذهبية!');
+  }, 1600);
 }
 
 function getCoachReply(userText){
   const q = userText.toLowerCase();
   if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع')){
-    return `🛡️ **دليل الدفاع:** راجع قسم Animation الجديد لاسترعاء الفكرة بصرياً وتطبيقها فوراً في المباريات!`;
+    return `🛡️ **دليل الدفاع:** راجع قسم (Animation) الجديد لمشاهدة محاكاة حائط الصد والدفاع الواقعي وتطبيقها في مبارياتك!`;
   }
-  return `أنا معك يا كابتن! انتقل لتبويب (Animation) لمشاهدة خطة 4-2-2-2 والتحركات الدفاعية والهجومية بالتفصيل.`;
+  return `أنا معك يا كابتن! انتقل لتبويب (Animation) أو ارفع صورة تشكيلتك للحصول على تحليل وتوجيهات فورية.`;
 }
 
 function sendAIChatMessage(prefillText){
