@@ -440,7 +440,39 @@
     font-weight: 700;
   }
 
-  /* GIVEAWAY TIMER */
+  /* GIVEAWAY TIMER & PRIZE CARD */
+  .prize-card-container {
+    text-align: center;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .prize-card-badge {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--lime), #7FE83B);
+    color: #0A0D12;
+    font-family: 'Tajawal';
+    font-weight: 900;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    z-index: 2;
+    box-shadow: 0 0 15px rgba(182,255,62,0.6);
+  }
+  .prize-player-img {
+    width: 210px;
+    max-width: 100%;
+    border-radius: 16px;
+    border: 2px solid var(--lime);
+    box-shadow: 0 0 30px rgba(182,255,62,0.35), 0 10px 25px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .prize-player-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(182,255,62,0.5), 0 15px 30px rgba(0,0,0,0.7);
+  }
+
   .timer-display{
     font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
     background:var(--bg-elev);border:2px solid var(--border);border-radius:18px;padding:20px;
@@ -548,7 +580,7 @@
         <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 Animation</button>
       </div>
 
-      <!-- TAB 1: CHAT & SQUAD VISION (UPDATED WITH 7 TIPS & UPGRADE WARNING) -->
+      <!-- TAB 1: CHAT & SQUAD VISION -->
       <div id="coach-tab-chat" class="coach-tab-content">
         <div class="vision-box">
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
@@ -612,7 +644,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: PLAYER ROLES & STYLES (REDESIGNED FOR ULTIMATE ORGANIZATION & BEAUTY) -->
+      <!-- TAB 3: PLAYER ROLES & STYLES -->
       <div id="coach-tab-players" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime); margin-bottom:14px;">
           <div class="tactics-guide-title">🌟 دليل أساليب اللاعبين الاحترافي في eFootball</div>
@@ -722,13 +754,20 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: GIVEAWAY TIMER ================= -->
+  <!-- ================= PAGE 3: GIVEAWAY TIMER (UPDATED WITH LUIS SUAREZ PRIZE CARD) ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 مختبر الجوائز — تحدي العداد</h2>
-      <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة الفورية!</p>
+      <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح بطاقة لويس سواريز الأسطورية الفورية!</p>
 
       <div class="panel">
+        <!-- عرض بطاقة الجائزة (Luis Suárez Card) -->
+        <div class="prize-card-container">
+          <div class="prize-card-badge">🎯 الجائزة الكبرى</div>
+          <!-- يمكنك استبدال رابط الـ src برابط الصورة المباشر أو اسم ملف الصورة المحلي -->
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='210' height='290'><rect width='100%T' height='100%' fill='%2312161f'/><text x='50%' y='50%' fill='%23B6FF3E' font-size='14' text-anchor='middle'>Luis Suárez Card</text></svg>" data-real-src="image.png" alt="Luis Suárez Prize Card" class="prize-player-img" id="prizeCardImg">
+        </div>
+
         <div class="giveaway-rules">
           📌 <b>قوانين التحدي:</b>
           <br>1. العداد يبدأ من 0.00 ويصعد إلى 20.00 ثانية.
@@ -911,7 +950,7 @@ function formatCoachMessage(text){
   return escaped.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
 }
 
-// SQUAD VISION UPLOAD (UPDATED: PRAISE + DEFENSE STYLES + 7 TIPS + UPGRADE WARNING)
+// SQUAD VISION UPLOAD
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -1062,9 +1101,9 @@ function stopGiveawayTimer(auto=false){
 
   const isExactTarget = (elapsedNum >= 9.98 && elapsedNum <= 10.02);
   if(!auto && isExactTarget && Math.random() < 0.01){
-    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفْتَه عند ${elapsedStr} ثانية وفزت بجائزتك!`;
+    resultDiv.innerHTML = `🎉 مبروووك يا بطل! فزت ببطاقة لويس سواريز الأسطورية عند ${elapsedStr} ثانية!`;
     resultDiv.style.color = 'var(--lime)';
-    showToast('مبروك الفوز بالجائزة!');
+    showToast('مبروك الفوز ببطاقة لويس سواريز!');
   } else {
     resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. استنفدت محاولتك اليومية، ننتظرك غداً!`;
     resultDiv.style.color = 'var(--danger)';
