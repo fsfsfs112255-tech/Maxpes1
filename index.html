@@ -403,7 +403,6 @@
   .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
   .tactics-guide-desc{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
 
-  /* NEW STYLISH PLAYER ROLES STYLING */
   .role-category-box {
     background: rgba(18, 22, 31, 0.85);
     border: 1px solid rgba(62, 139, 255, 0.25);
@@ -440,39 +439,41 @@
     font-weight: 700;
   }
 
-  /* GIVEAWAY TIMER & PRIZE CARD */
-  .prize-card-container {
-    text-align: center;
+  /* GIVEAWAY LAB SUB-TABS & STYLING */
+  .giveaway-subtabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
     margin-bottom: 16px;
-    position: relative;
-  }
-  .prize-card-badge {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: linear-gradient(135deg, var(--lime), #7FE83B);
-    color: #0A0D12;
-    font-family: 'Tajawal';
-    font-weight: 900;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    z-index: 2;
-    box-shadow: 0 0 15px rgba(182,255,62,0.6);
-  }
-  .prize-player-img {
-    width: 210px;
-    max-width: 100%;
+    background: var(--bg-elev);
+    padding: 6px;
     border-radius: 16px;
-    border: 2px solid var(--lime);
-    box-shadow: 0 0 30px rgba(182,255,62,0.35), 0 10px 25px rgba(0,0,0,0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
   }
-  .prize-player-img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 40px rgba(182,255,62,0.5), 0 15px 30px rgba(0,0,0,0.7);
+  .giveaway-subtab {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: 'Tajawal';
+    font-weight: 800;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s ease;
   }
+  .giveaway-subtab.active {
+    background: var(--bg-card);
+    color: var(--lime);
+    border: 1px solid rgba(182,255,62,0.3);
+    box-shadow: 0 0 15px rgba(182,255,62,0.2);
+  }
+  .giveaway-section-box { display: none; }
+  .giveaway-section-box.active { display: block; }
 
+  /* 1. Counter Challenge */
   .timer-display{
     font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
     background:var(--bg-elev);border:2px solid var(--border);border-radius:18px;padding:20px;
@@ -482,6 +483,45 @@
     border-color:var(--lime);box-shadow: 0 0 35px rgba(182,255,62,0.35);animation: pulseTimer 1.2s infinite alternate;
   }
   @keyframes pulseTimer{ 0% {transform:scale(1);} 100% {transform:scale(1.02);} }
+
+  /* 2. Wheel of Fortune */
+  .wheel-container{text-align:center;position:relative;margin:15px auto;}
+  .wheel-outer{
+    width:220px;height:220px;margin:0 auto;border-radius:50%;position:relative;
+    border:6px solid var(--blue);background:var(--bg-elev);overflow:hidden;
+    box-shadow: 0 0 30px rgba(62,139,255,0.4);transition: transform 4s cubic-bezier(0.15, 0.9, 0.2, 1);
+  }
+  .wheel-sector{
+    position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0% 100%;
+    display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:11px;color:#fff;
+    padding-left:15px;box-sizing:border-box;
+  }
+  .wheel-pointer{
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:0;height:0;
+    border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid var(--lime);
+    z-index:10;filter:drop-shadow(0 0 8px var(--lime));
+  }
+
+  /* 3. Three Cups */
+  .cups-grid{display:flex;gap:12px;justify-content:center;margin:20px 0;}
+  .cup-item{
+    flex:1;background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;
+    padding:20px 10px;text-align:center;cursor:pointer;font-size:32px;
+    transition: all 0.3s ease;backdrop-filter: blur(10px);
+  }
+  .cup-item:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 0 20px rgba(62,139,255,0.3);}
+  .cup-name{font-family:'Tajawal';font-weight:800;font-size:12.5px;color:var(--text);margin-top:8px;}
+
+  /* 4. Scratch Card */
+  .scratch-wrap{position:relative;width:100%;height:120px;background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;overflow:hidden;margin:15px 0;text-align:center;display:flex;align-items:center;justify-content:center;}
+  .scratch-prize{font-family:'Tajawal';font-weight:900;font-size:18px;color:var(--lime);text-shadow:0 0 12px rgba(182,255,62,0.4);}
+  .scratch-cover{
+    position:absolute;inset:0;background:linear-gradient(135deg, #3A4454, #232B38);
+    display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:14px;color:var(--text-dim);
+    cursor:pointer;transition: opacity 0.5s ease;user-select:none;
+  }
+  .scratch-cover.scratched{opacity:0;pointer-events:none;}
+
   .giveaway-rules{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:14px;background:rgba(255,176,32,0.08);border:1px solid rgba(255,176,32,0.25);padding:12px;border-radius:14px;}
   .cooldown-box{background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.3);color:#FF8FA3;padding:12px;border-radius:14px;font-size:13px;text-align:center;font-weight:700;margin-bottom:14px;display:none;}
 
@@ -651,7 +691,6 @@
           <div class="tactics-guide-desc">استكشف جميع أساليب اللعب الخاصة باللاعبين مصنفة ومنظمة بدقة لتوظيف كل لاعب في مكانه المثالي واستخراج أقصى طاقاته.</div>
         </div>
 
-        <!-- 1. FORWARDS -->
         <div class="role-category-box">
           <div class="role-cat-header">⚽ أولاً: أساليب المهاجمين (Forwards)</div>
           <div class="role-item">• <b>مهاجم صريح (Goal Poacher):</b> يتحرك بذكاء خارق على خط التسلل وينطلق كالسهم خلف المدافعين لاستلام البين پاسات القاتلة.</div>
@@ -664,7 +703,6 @@
           <div class="role-item">• <b>النشيط المتقدم (Hole Player):</b> الأفضل كـ AMF أو SS، ينطلق كقاطرة من الخلف لملء صندوق الخصم ومباغتة الحارس.</div>
         </div>
 
-        <!-- 2. MIDFIELDERS -->
         <div class="role-category-box">
           <div class="role-cat-header">⚙️ ثانياً: أساليب خط الوسط (Midfielders)</div>
           <div class="role-item">• <b>صانع اللعب الكلاسيكي (Classic No. 10):</b> يتميز ببطء تكتيكي ودقة تمرير ساحرة، يقتصد في مجهوده البدني بدون كرة لضرب الدفاع بتمريرة واحدة.</div>
@@ -674,7 +712,6 @@
           <div class="role-item">• <b>المحطم / قاطع الكرات (Destroyer Mid):</b> لاعب وسط شرس جداً في الضغط العنيف وافتكاك الكرات من منتصف ملعب الخصم.</div>
         </div>
 
-        <!-- 3. DEFENDERS & GOALKEEPERS -->
         <div class="role-category-box">
           <div class="role-cat-header">🛡️ ثالثاً: أساليب المدافعين والحراس (Defenders & GK)</div>
           <div class="role-item">• <b>بناء لعب (Build-up):</b> قلب دفاع متزن وهادئ، يغطي المساحات بدقة ولا يندفع أبداً خلف المهاجمين.</div>
@@ -754,36 +791,102 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: GIVEAWAY TIMER (UPDATED WITH LUIS SUAREZ PRIZE CARD) ================= -->
+  <!-- ================= PAGE 3: GIVEAWAY LAB (UPDATED WITH 4 NEW SECTIONS) ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
-      <h2 class="section-title display">🎁 مختبر الجوائز — تحدي العداد</h2>
-      <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح بطاقة لويس سواريز الأسطورية الفورية!</p>
+      <h2 class="section-title display">🎁 مختبر الجوائز الاحترافي</h2>
+      <p class="section-desc">اختر التحدي أو اللعبة وحاول الفوز بجوائز إي فوتبول المميزة!</p>
 
-      <div class="panel">
-        <!-- عرض بطاقة الجائزة (Luis Suárez Card) -->
-        <div class="prize-card-container">
-          <div class="prize-card-badge">🎯 الجائزة الكبرى</div>
-          <!-- يمكنك استبدال رابط الـ src برابط الصورة المباشر أو اسم ملف الصورة المحلي -->
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='210' height='290'><rect width='100%T' height='100%' fill='%2312161f'/><text x='50%' y='50%' fill='%23B6FF3E' font-size='14' text-anchor='middle'>Luis Suárez Card</text></svg>" data-real-src="image.png" alt="Luis Suárez Prize Card" class="prize-player-img" id="prizeCardImg">
-        </div>
-
-        <div class="giveaway-rules">
-          📌 <b>قوانين التحدي:</b>
-          <br>1. العداد يبدأ من 0.00 ويصعد إلى 20.00 ثانية.
-          <br>2. يجب إيقاف العداد عند <b>10.00 ثانية</b> تماماً.
-          <br>3. مسموح بـ <b>محاولة واحدة كل 24 ساعة</b> فقط!
-        </div>
-
-        <div id="cooldownBox" class="cooldown-box"></div>
-        <div id="timerDisplay" class="timer-display">00.00</div>
-
-        <div style="display:flex;gap:10px">
-          <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد ⚡</button>
-          <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
-        </div>
-        <div id="giveawayResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+      <!-- GIVEAWAY SUB-TABS -->
+      <div class="giveaway-subtabs">
+        <button class="giveaway-subtab active" onclick="switchGiveawayTab('timer')">⏱️ تحدي العداد</button>
+        <button class="giveaway-subtab" onclick="switchGiveawayTab('wheel')">🎡 عجلة الحظ</button>
+        <button class="giveaway-subtab" onclick="switchGiveawayTab('cups')">🏆 الأكواب الثلاثة</button>
+        <button class="giveaway-subtab" onclick="switchGiveawayTab('scratch')">🎫 البطاقة المخدوشة</button>
       </div>
+
+      <!-- SECTION 1: COUNTER CHALLENGE -->
+      <div id="giveaway-box-timer" class="giveaway-section-box active">
+        <div class="panel">
+          <div class="giveaway-rules">
+            📌 <b>قوانين تحدي العداد:</b>
+            <br>1. العداد يبدأ من 0.00 ويصعد إلى 15.00 ثانية.
+            <br>2. أوقف العداد عند <b>10.00 ثانية</b> تماماً لتربح جائزة (لويس سواريز).
+            <br>3. مسموح بمحاولة واحدة يومياً.
+          </div>
+
+          <div id="cooldownBox" class="cooldown-box"></div>
+          <div id="timerDisplay" class="timer-display">00.00</div>
+
+          <div style="display:flex;gap:10px">
+            <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد ⚡</button>
+            <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
+          </div>
+          <div id="giveawayResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: WHEEL OF FORTUNE -->
+      <div id="giveaway-box-wheel" class="giveaway-section-box">
+        <div class="panel" style="text-align:center;">
+          <div class="giveaway-rules" style="text-align:right;">
+            📌 <b>عجلة الحظ:</b> أفرز حظك الآن واحصل على جوائز (لويس سواريز، إيكر كاسياس، 100 Coins، أو حظ أوفر).
+          </div>
+
+          <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <div id="wheelOuter" class="wheel-outer">
+              <div class="wheel-sector" style="background:#1B2430; transform: rotate(0deg) skewY(-45deg);">سواريز</div>
+              <div class="wheel-sector" style="background:#121822; transform: rotate(90deg) skewY(-45deg);">حظ أوفر</div>
+              <div class="wheel-sector" style="background:#1B2430; transform: rotate(180deg) skewY(-45deg);">كاسياس</div>
+              <div class="wheel-sector" style="background:#121822; transform: rotate(270deg) skewY(-45deg);">100 Coins</div>
+            </div>
+          </div>
+
+          <button id="spinWheelBtn" class="btn btn-primary" style="margin-top:16px;" onclick="spinWheelFortune()">تدوير العجلة 🎡</button>
+          <div id="wheelResult" style="margin-top:14px;font-weight:700;font-size:14px;display:none"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: THREE CUPS -->
+      <div id="giveaway-box-cups" class="giveaway-section-box">
+        <div class="panel">
+          <div class="giveaway-rules">
+            📌 <b>لعبة الأكواب الثلاثة:</b> اختر أحد الأكواب لاكتشاف الجائزة المخفية (لويس سواريز، إيكر كاسياس، أو حظ أوفر).
+          </div>
+
+          <div class="cups-grid">
+            <div class="cup-item" onclick="chooseCup(0)">
+              杯 <div>1</div>
+            </div>
+            <div class="cup-item" onclick="chooseCup(1)">
+              杯 <div>2</div>
+            </div>
+            <div class="cup-item" onclick="chooseCup(2)">
+              杯 <div>3</div>
+            </div>
+          </div>
+
+          <div id="cupResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: SCRATCH CARD -->
+      <div id="giveaway-box-scratch" class="giveaway-section-box">
+        <div class="panel" style="text-align:center;">
+          <div class="giveaway-rules" style="text-align:right;">
+            📌 <b>البطاقة المخدوشة:</b> اسحب أو اضغط على الطبقة الرمادية لخدش البطاقة واكتشاف جائزتك الفورية!
+          </div>
+
+          <div class="scratch-wrap">
+            <div id="scratchPrizeText" class="scratch-prize">حظ أوفر في المرة القادمة 😢</div>
+            <div id="scratchCoverBox" class="scratch-cover" onclick="revealScratchCard()">انقر لخدش البطاقة 🎫</div>
+          </div>
+
+          <button class="btn btn-ghost" style="margin-top:10px; font-size:12px;" onclick="resetScratchCard()">إعادة محاولة بطاقة جديدة 🔄</button>
+        </div>
+      </div>
+
     </section>
   </div>
 
@@ -904,6 +1007,31 @@ function switchCoachTab(tabKey){
   }
 }
 
+// GIVEAWAY SUB-TABS SWITCHER
+function switchGiveawayTab(tabKey){
+  const subtabs = document.querySelectorAll('.giveaway-subtab');
+  subtabs.forEach(t => t.classList.remove('active'));
+
+  document.getElementById('giveaway-box-timer').classList.remove('active');
+  document.getElementById('giveaway-box-wheel').classList.remove('active');
+  document.getElementById('giveaway-box-cups').classList.remove('active');
+  document.getElementById('giveaway-box-scratch').classList.remove('active');
+
+  if(tabKey === 'timer'){
+    subtabs[0].classList.add('active');
+    document.getElementById('giveaway-box-timer').classList.add('active');
+  } else if(tabKey === 'wheel'){
+    subtabs[1].classList.add('active');
+    document.getElementById('giveaway-box-wheel').classList.add('active');
+  } else if(tabKey === 'cups'){
+    subtabs[2].classList.add('active');
+    document.getElementById('giveaway-box-cups').classList.add('active');
+  } else if(tabKey === 'scratch'){
+    subtabs[3].classList.add('active');
+    document.getElementById('giveaway-box-scratch').classList.add('active');
+  }
+}
+
 // ANIMATION SUB-VIEWS SWITCHER
 function switchAnimView(viewKey){
   const btns = document.querySelectorAll('.anim-sel-btn');
@@ -983,10 +1111,6 @@ function triggerComprehensiveSquadAnalysis(){
 }
 
 function getCoachReply(userText){
-  const q = userText.toLowerCase();
-  if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع')){
-    return `🛡️ **دليل الدفاع:** استخدم مدافعين Build-up وحافظ على تمركزهم، واستخدم (Match-Up) لغلق الزوايا تماماً!`;
-  }
   return `أنا معك يا كابتن! ارفع صورة تشكيلتك أو اختر من المواضيع السريعة للحصول على إجابة تحليلية فورية.`;
 }
 
@@ -1024,7 +1148,8 @@ document.getElementById('quickTopics').addEventListener('click', (e) => {
   sendAIChatMessage(chip.getAttribute('data-q'));
 });
 
-// GIVEAWAY TIMER
+// GIVEAWAY MODULES LOGIC
+// 1. Counter Challenge
 const COOLDOWN_KEY = 'r2max_giveaway_last_time';
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 let giveawayMemory = null;
@@ -1078,7 +1203,7 @@ function startGiveawayTimer(){
   function updateTimer(){
     if(!isRunning) return;
     const elapsed = (performance.now() - startTime) / 1000;
-    if(elapsed >= 20.00){ stopGiveawayTimer(true); return; }
+    if(elapsed >= 15.00){ stopGiveawayTimer(true); return; }
     displayEl.textContent = elapsed.toFixed(2);
     timerInterval = requestAnimationFrame(updateTimer);
   }
@@ -1095,19 +1220,63 @@ function stopGiveawayTimer(auto=false){
   checkGiveawayCooldown();
 
   const elapsedStr = document.getElementById('timerDisplay').textContent;
-  const elapsedNum = parseFloat(elapsedStr);
   const resultDiv = document.getElementById('giveawayResult');
   resultDiv.style.display = 'block';
 
-  const isExactTarget = (elapsedNum >= 9.98 && elapsedNum <= 10.02);
-  if(!auto && isExactTarget && Math.random() < 0.01){
-    resultDiv.innerHTML = `🎉 مبروووك يا بطل! فزت ببطاقة لويس سواريز الأسطورية عند ${elapsedStr} ثانية!`;
-    resultDiv.style.color = 'var(--lime)';
-    showToast('مبروك الفوز ببطاقة لويس سواريز!');
-  } else {
-    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. استنفدت محاولتك اليومية، ننتظرك غداً!`;
-    resultDiv.style.color = 'var(--danger)';
+  // Strict impossible programming logic for 10.00 exact match
+  resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. فشلت في التوقف عند 10.00 تماماً! (حظ أوفر)`;
+  resultDiv.style.color = 'var(--danger)';
+}
+
+// 2. Wheel of Fortune Logic (Always lands on "حظ أوفر")
+let wheelSpun = false;
+function spinWheelFortune(){
+  if(wheelSpun){
+    showToast('لقد استخدمت محاولة عجلة الحظ مسبقاً!');
+    return;
   }
+  wheelSpun = true;
+  const wheel = document.getElementById('wheelOuter');
+  const resDiv = document.getElementById('wheelResult');
+  document.getElementById('spinWheelBtn').disabled = true;
+
+  // Sector 2 is "حظ أوفر" located at 90 degrees
+  const targetDeg = 360 * 5 + 90;
+  wheel.style.transform = `rotate(${targetDeg}deg)`;
+
+  setTimeout(() => {
+    resDiv.style.display = 'block';
+    resDiv.innerHTML = `😢 للأسف! استقرت العجلة على: <b>حظ أوفر في المرة القادمة</b>`;
+    resDiv.style.color = 'var(--danger)';
+    showToast('حظ أوفر!');
+  }, 4000);
+}
+
+// 3. Three Cups Logic (Always yields "حظ أوفر")
+let cupChosen = false;
+function chooseCup(idx){
+  if(cupChosen){
+    showToast('لقد اخترت كوباً بالفعل!');
+    return;
+  }
+  cupChosen = true;
+  const resDiv = document.getElementById('cupResult');
+  resDiv.style.display = 'block';
+  resDiv.innerHTML = `❌ الكوب رقم ${idx + 1} فارغ! النتيجة: <b>حظ أوفر في المرة القادمة</b>`;
+  resDiv.style.color = 'var(--danger)';
+  showToast('حظ أوفر!');
+}
+
+// 4. Scratch Card Logic
+function revealScratchCard(){
+  const cover = document.getElementById('scratchCoverBox');
+  cover.classList.add('scratched');
+  showToast('تم خدش البطاقة بنجاح!');
+}
+function resetScratchCard(){
+  const cover = document.getElementById('scratchCoverBox');
+  cover.classList.remove('scratched');
+  showToast('تم استبدال البطاقة ببطاقة جديدة.');
 }
 
 // DEVICE SCAN & STATS
