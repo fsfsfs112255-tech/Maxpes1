@@ -440,6 +440,157 @@
     font-weight: 700;
   }
 
+  /* ================= MANAGERS SECTION STYLES ================= */
+  .manager-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+  }
+  .manager-card:hover {
+    border-color: rgba(62, 139, 255, 0.4);
+    box-shadow: 0 0 25px rgba(62, 139, 255, 0.15);
+  }
+  .manager-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .manager-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue), var(--violet));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Tajawal';
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 15px rgba(62,139,255,0.4);
+    flex-shrink: 0;
+  }
+  .manager-info { flex: 1; }
+  .manager-name {
+    font-family: 'Tajawal';
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text);
+    text-shadow: 0 0 10px rgba(234,238,243,0.2);
+  }
+  .manager-plan {
+    font-size: 11.5px;
+    color: var(--lime);
+    background: rgba(182,255,62,0.1);
+    border: 1px solid rgba(182,255,62,0.25);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  .manager-details-box {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+  }
+  .manager-details-box b { color: var(--text); }
+  
+  /* Link-Up Pitch & Animations */
+  .manager-anim-box {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    background: radial-gradient(circle at center, #113822 0%, #071910 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(182,255,62,0.4);
+    overflow: hidden;
+    margin-top: 10px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  }
+  .m-ball {
+    position: absolute; width: 10px; height: 10px; background: #fff; border-radius: 50%;
+    box-shadow: 0 0 10px #fff, 0 0 5px var(--lime); transform: translate(-50%, -50%);
+  }
+  .m-node {
+    position: absolute; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--blue); border: 2px solid #fff; display: flex; align-items: center; justify-content: center;
+    font-family: 'Tajawal'; font-weight: 900; font-size: 8px; color: #fff; transform: translate(-50%, -50%);
+  }
+
+  /* Unique Link-Up & Animation classes per manager */
+  /* 1. Mourinho */
+  .mgr-mourinho .manager-avatar { animation: mourinhoFadeIn 3s infinite alternate ease-in-out; }
+  @keyframes mourinhoFadeIn { 0% { opacity: 0.6; transform: rotate(-8deg) scale(0.95); } 100% { opacity: 1; transform: rotate(0deg) scale(1.05); } }
+  .ball-mourinho { animation: linkMourinho 4s infinite linear; }
+  @keyframes linkMourinho { 0% { top: 80%; left: 50%; } 50% { top: 50%; left: 20%; } 100% { top: 20%; left: 50%; } }
+
+  /* 2. Capello */
+  .mgr-capello .manager-avatar { animation: capelloSlide 3s infinite alternate ease-in-out; }
+  @keyframes capelloSlide { 0% { transform: translateY(-10px); } 100% { transform: translateY(5px); } }
+  .ball-capello { animation: linkCapello 4s infinite linear; }
+  @keyframes linkCapello { 0% { top: 85%; left: 50%; } 100% { top: 15%; left: 50%; } }
+
+  /* 3. Alonso */
+  .mgr-alonso .manager-avatar { animation: alonsoZoom 3s infinite alternate ease-in-out; }
+  @keyframes alonsoZoom { 0% { transform: scale(0.95); } 100% { transform: scale(1.08); } }
+  .ball-alonso { animation: linkAlonso 4s infinite linear; }
+  @keyframes linkAlonso { 0% { top: 60%; left: 30%; } 100% { top: 25%; left: 70%; } }
+
+  /* 4. Beckenbauer */
+  .mgr-beckenbauer .manager-avatar { animation: beckPop 3s infinite alternate ease-in-out; }
+  @keyframes beckPop { 0% { transform: scale(0.9); opacity: 0.7; } 100% { transform: scale(1.05); opacity: 1; } }
+  .ball-beckenbauer { animation: linkBeck 4s infinite linear; }
+  @keyframes linkBeck { 0% { top: 70%; left: 40%; } 50% { top: 50%; left: 50%; } 100% { top: 20%; left: 60%; } }
+
+  /* 5. Martinez */
+  .mgr-martinez .manager-avatar { animation: martinezSpin 5s infinite linear; }
+  @keyframes martinezSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .ball-martinez { animation: linkMart 5s infinite linear; }
+  @keyframes linkMart { 0% { top: 70%; left: 80%; } 33% { top: 30%; left: 80%; } 66% { top: 30%; left: 20%; } 100% { top: 70%; left: 50%; } }
+
+  /* 6. Tuchel */
+  .mgr-tuchel .manager-avatar { animation: tuchelShake 0.5s infinite alternate ease-in-out; }
+  @keyframes tuchelShake { 0% { transform: translateX(-2px); } 100% { transform: translateX(2px); } }
+  .ball-tuchel { animation: linkTuch 3s infinite alternate ease-in-out; }
+  @keyframes linkTuch { 0% { top: 60%; left: 45%; } 100% { top: 30%; left: 55%; } }
+
+  /* 7. Deschamps */
+  .mgr-deschamps .manager-avatar { animation: desCrossFade 3s infinite alternate ease-in-out; }
+  @keyframes desCrossFade { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+  .ball-deschamps { animation: linkDes 4s infinite linear; }
+  @keyframes linkDes { 0% { top: 65%; left: 50%; } 100% { top: 20%; left: 50%; } }
+
+  /* 8. Koeman */
+  .mgr-koeman .manager-avatar { animation: koemanSlide 3s infinite alternate ease-in-out; }
+  @keyframes koemanSlide { 0% { transform: translateX(-8px); } 100% { transform: translateX(8px); } }
+  .ball-koeman { animation: linkKoem 6s infinite linear; }
+  @keyframes linkKoem { 0% { top: 60%; left: 50%; } 33% { top: 30%; left: 15%; } 66% { top: 30%; left: 85%; } 100% { top: 60%; left: 50%; } }
+
+  /* 9. Montella */
+  .mgr-montella .manager-avatar { animation: montEase 3s infinite alternate ease-in-out; }
+  @keyframes montEase { 0% { transform: scale(0.95); opacity: 0.8; } 100% { transform: scale(1.05); opacity: 1; } }
+  .ball-montella { animation: linkMont 4s infinite ease-in-out; }
+  @keyframes linkMont { 0% { top: 60%; left: 50%; } 50% { top: 35%; left: 50%; } 100% { top: 60%; left: 50%; } }
+
+  /* 10. Lampard */
+  .mgr-lampard .manager-avatar { animation: lampShake 0.4s infinite alternate ease-in-out; }
+  @keyframes lampShake { 0% { transform: translateY(-2px) scale(0.98); } 100% { transform: translateY(2px) scale(1.02); } }
+  .ball-lampard { animation: linkLamp 5s infinite linear; }
+  @keyframes linkLamp { 0% { top: 60%; left: 20%; } 40% { top: 60%; left: 80%; } 80% { top: 20%; left: 50%; } 100% { top: 60%; left: 20%; } }
+
   /* GIVEAWAY LAB STYLING */
   .giveaway-section-box {
     background: var(--bg-card);
@@ -559,6 +710,7 @@
 <div class="nav-pages" id="navPages">
   <div class="page-tab active" data-target="page-scan">⚡ الرئيسية والفحص</div>
   <div class="page-tab" data-target="page-ai">🤖 المدرب الذكي والتشكيلة</div>
+  <div class="page-tab" data-target="page-managers">👔 قسم المدربين</div>
   <div class="page-tab" data-target="page-giveaway">🎁 مختبر الجوائز</div>
   <div class="page-tab" data-target="page-system">⚙ الأداء والنظام</div>
   <div class="page-tab" data-target="page-net">📶 الشبكة والتخزين</div>
@@ -781,7 +933,251 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: GIVEAWAY LAB (UPDATED WITH 4 SECTIONS) ================= -->
+  <!-- ================= PAGE 3: MANAGERS CENTER (NEW SECTION) ================= -->
+  <div id="page-managers" class="page-section">
+    <section>
+      <h2 class="section-title display">👔 قسم المدربين - القائمة المدمجة والشاملة</h2>
+      <p class="section-desc">تفاصيل المدربين، الكفاءة، التقارب، الخُطط، حركة الـ Animation والـ Link-up لكل مدرب في مكان واحد.</p>
+
+      <!-- 1. José Mourinho -->
+      <div class="manager-card mgr-mourinho">
+        <div class="manager-header">
+          <div class="manager-avatar">JM</div>
+          <div class="manager-info">
+            <div class="manager-name">خوسيه مورينيو (José Mourinho)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: AMF, LMF, RMF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> تأثير "ظهور سريع" (Fade-in) لصورة مورينيو وهي تدور قليلاً من الجانب إلى المواجهة مع اهتزاز خفيف.<br>
+          • <b>الكفاءة:</b> استحواذ (59) | كرة طويلة مضادة (62) | هجمة مرتدة سريعة (89) | كرة طويلة (80) | عرضيات (68) | ضغط زائد (59)<br>
+          • <b>التقارب:</b> غير معروف | الالتحام الجسدي + 1 | قوة التحمل + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة (خط أخضر ساطع) يبدأ من الارتكاز الدفاعي، يمر عبر LMF ثم RMF، وينتهي بتمريرة حاسمة إلى المهاجم الصريح AMF خلف المدافعين.
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-mourinho"></div>
+          <div class="m-node" style="top:80%; left:50%;">DMF</div>
+          <div class="m-node" style="top:50%; left:20%;">LMF</div>
+          <div class="m-node" style="top:50%; left:80%;">RMF</div>
+          <div class="m-node" style="top:20%; left:50%;">AMF</div>
+        </div>
+      </div>
+
+      <!-- 2. Fabio Capello -->
+      <div class="manager-card mgr-capello">
+        <div class="manager-header">
+          <div class="manager-avatar">FC</div>
+          <div class="manager-info">
+            <div class="manager-name">فابيو كابيلو (Fabio Capello)</div>
+            <div class="manager-plan">الخطة: 3-5-2 (مفتاح لعب: المهاجم القناص - DMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> تأثير "انزلاق عمودي" (Slide-in) من الأعلى للأسفل مع استقرار الشعار أسفل الصورة.<br>
+          • <b>الكفاءة:</b> استحواذ (46) | كرة طويلة مضادة (89) | هجمة مرتدة سريعة (57) | كرة طويلة (89) | عرضيات (64) | ضغط زائد (46)<br>
+          • <b>التقارب:</b> مهاجمون | إنهاء الهجمة + 1 | وعي دفاعي + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة رأسي مباشر من لاعب الوسط المدافع DMF إلى المهاجم الصريح CF (يمثل "التمريرة الطويلة العالية A").
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-capello"></div>
+          <div class="m-node" style="top:85%; left:50%;">DMF</div>
+          <div class="m-node" style="top:15%; left:50%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 3. Xabi Alonso -->
+      <div class="manager-card mgr-alonso">
+        <div class="manager-header">
+          <div class="manager-avatar">XA</div>
+          <div class="manager-info">
+            <div class="manager-name">تشابي ألونسو (Xabi Alonso)</div>
+            <div class="manager-plan">الخطة: 4-4-2 (مفتاح لعب: المهاجم القناص - AMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> حركة "تكبير" (Zoom-in) ناعمة للصورة تليها إضاءة خفيفة على الاسم.<br>
+          • <b>الكفاءة:</b> استحواذ (71) | كرة طويلة مضادة (54) | هجمة مرتدة سريعة (89) | كرة طويلة (56) | عرضيات (89) | ضغط زائد (54)<br>
+          • <b>التقارب:</b> اللاعبون النجوم | التحكم في الكرة + 1 | إنهاء الهجمة + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة قطري دقيق من الوسط AMF إلى المهاجم CF (تمريرة "اختراق A").
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-alonso"></div>
+          <div class="m-node" style="top:60%; left:30%;">AMF</div>
+          <div class="m-node" style="top:25%; left:70%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 4. F. Beckenbauer -->
+      <div class="manager-card mgr-beckenbauer">
+        <div class="manager-header">
+          <div class="manager-avatar">FB</div>
+          <div class="manager-info">
+            <div class="manager-name">فرانتس بيكنباور (F. Beckenbauer)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: المهاجم القناص - CMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> صورة المدرب تنبثق من الخلف وتستقر في الإطار مع وميض للشعار.<br>
+          • <b>الكفاءة:</b> استحواذ (65) | كرة طويلة مضادة (89) | هجمة مرتدة سريعة (57) | كرة طويلة (89) | عرضيات (60) | ضغط زائد (57)<br>
+          • <b>التقارب:</b> مهاجمون | المراوغة + 1 | وعي دفاعي + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة يبدأ من CMF ويخترق الدفاع بتمريرة بينية أرضية قصيرة إلى CF.
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-beckenbauer"></div>
+          <div class="m-node" style="top:70%; left:40%;">CMF</div>
+          <div class="m-node" style="top:20%; left:60%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 5. R. Martínez -->
+      <div class="manager-card mgr-martinez">
+        <div class="manager-header">
+          <div class="manager-avatar">RM</div>
+          <div class="manager-info">
+            <div class="manager-name">روبرتو مارتينيز (R. Martínez)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: ظهير مهاجم - LWF, RWF, LB, RB)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> دوران سلس للصورة (360 درجة على محورها العمودي).<br>
+          • <b>الكفاءة:</b> استحواذ (58) | كرة طويلة مضادة (70) | هجمة مرتدة سريعة (90) | كرة طويلة (89) | عرضيات (64) | ضغط زائد (58)<br>
+          • <b>التقارب:</b> اللاعبون النجوم | إنهاء الهجمة + 1 | وعي هجومي + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار يبدأ من RB إلى RWF، ثم LWF على اليسار، ويعود للعمق.
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-martinez"></div>
+          <div class="m-node" style="top:70%; left:80%;">RB</div>
+          <div class="m-node" style="top:30%; left:80%;">RWF</div>
+          <div class="m-node" style="top:30%; left:20%;">LWF</div>
+        </div>
+      </div>
+
+      <!-- 6. Thomas Tuchel -->
+      <div class="manager-card mgr-tuchel">
+        <div class="manager-header">
+          <div class="manager-avatar">TT</div>
+          <div class="manager-info">
+            <div class="manager-name">توماس توخيل (Thomas Tuchel)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: المهاجم القناص - DMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> تأثير "اهتزاز" (Shake) للصورة عند ظهورها مع تكبير طفيف لشعار الرقم.<br>
+          • <b>الكفاءة:</b> استحواذ (90) | كرة طويلة مضادة (59) | هجمة مرتدة سريعة (89) | كرة طويلة (58) | عرضيات (70) | ضغط زائد (58)<br>
+          • <b>التقارب:</b> اللاعبون النجوم | التمريرات المنخفضة + 1 | قوة التحمل + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة سريع ومكثف يربط بين DMF و CF (يشبه تبادل One-Two).
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-tuchel"></div>
+          <div class="m-node" style="top:60%; left:45%;">DMF</div>
+          <div class="m-node" style="top:30%; left:55%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 7. D. Deschamps -->
+      <div class="manager-card mgr-deschamps">
+        <div class="manager-header">
+          <div class="manager-avatar">DD</div>
+          <div class="manager-info">
+            <div class="manager-name">ديدييه ديشامب (D. Deschamps)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: المهاجم القناص - AMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> حركة "اختفاء تدريجي وظهور جديد" (Cross-fade).<br>
+          • <b>الكفاءة:</b> استحواذ (89) | كرة طويلة مضادة (89) | هجمة مرتدة سريعة (68) | كرة طويلة (63) | عرضيات (59) | ضغط زائد (59)<br>
+          • <b>التقارب:</b> لاعبو وسط | السرعة + 1 | التحكم في الكرة + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة طويل ومباشر من AMF إلى CF (تمريرة "اختراق A" مميزة).
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-deschamps"></div>
+          <div class="m-node" style="top:65%; left:50%;">AMF</div>
+          <div class="m-node" style="top:20%; left:50%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 8. Ronald Koeman -->
+      <div class="manager-card mgr-koeman">
+        <div class="manager-header">
+          <div class="manager-avatar">RK</div>
+          <div class="manager-info">
+            <div class="manager-name">رونالد كومان (Ronald Koeman)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: جناح غزير الإنتاج - CMF, LWF, RWF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> حركة "انزلاق من اليسار لليمين" (Slide-in).<br>
+          • <b>الكفاءة:</b> استحواذ (60) | كرة طويلة مضادة (89) | هجمة مرتدة سريعة (65) | كرة طويلة (69) | عرضيات (89) | ضغط زائد (60)<br>
+          • <b>التقارب:</b> غير معروف | قوة في الركل + 1 | قفز + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار تمرير ثلاثي الأضلاع: CMF إلى LWF، ثم عرضية طويلة إلى RWF، ثم خلفية إلى CMF.
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-koeman"></div>
+          <div class="m-node" style="top:60%; left:50%;">CMF</div>
+          <div class="m-node" style="top:30%; left:15%;">LWF</div>
+          <div class="m-node" style="top:30%; left:85%;">RWF</div>
+        </div>
+      </div>
+
+      <!-- 9. V. Montella -->
+      <div class="manager-card mgr-montella">
+        <div class="manager-header">
+          <div class="manager-avatar">VM</div>
+          <div class="manager-info">
+            <div class="manager-name">فيتشينزو مونتيلا (V. Montella)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: المهاجم القناص - CMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> ظهور متتابع للعناصر بأسلوب "الظهور التدريجي" (Ease-in).<br>
+          • <b>الكفاءة:</b> استحواذ (61) | كرة طويلة مضادة (58) | هجمة مرتدة سريعة (89) | كرة طويلة (68) | عرضيات (89) | ضغط زائد (58)<br>
+          • <b>التقارب:</b> محترف | التسارع + 1 | الاستحواذ في المساحات الضيقة + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار كرة قصير وسريع من CMF إلى CF (بينية عالية في المساحات الضيقة).
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-montella"></div>
+          <div class="m-node" style="top:60%; left:50%;">CMF</div>
+          <div class="m-node" style="top:35%; left:50%;">CF</div>
+        </div>
+      </div>
+
+      <!-- 10. Frank Lampard -->
+      <div class="manager-card mgr-lampard">
+        <div class="manager-header">
+          <div class="manager-avatar">FL</div>
+          <div class="manager-info">
+            <div class="manager-name">فرانك لامبارد (Frank Lampard)</div>
+            <div class="manager-plan">الخطة: 4-3-3 (مفتاح لعب: مهاجم متربص - LMF, RMF, CF)</div>
+          </div>
+        </div>
+        <div class="manager-details-box">
+          • <b>الحركة (Animation):</b> اهتزاز طفيفة للشاشة بالكامل مع وميض أصفر للشعار.<br>
+          • <b>الكفاءة:</b> استحواذ (75) | كرة طويلة مضادة (58) | هجمة مرتدة سريعة (60) | كرة طويلة (89) | عرضيات (69) | ضغط زائد (89)<br>
+          • <b>التقارب:</b> No Affinity | التمريرات المنخفضة + 1 | احتكاك دفاعي + 1<br>
+          • <b>اللينك أب (Link-up):</b> مسار مثلث الشكل: من LMF إلى RMF، ثم "بينية A" عالية خلف المدافعين إلى CF (التمريرة 1-2 القاطعة).
+        </div>
+        <div class="manager-anim-box">
+          <div class="pitch-grass-lines"></div>
+          <div class="m-ball ball-lampard"></div>
+          <div class="m-node" style="top:60%; left:20%;">LMF</div>
+          <div class="m-node" style="top:60%; left:80%;">RMF</div>
+          <div class="m-node" style="top:20%; left:50%;">CF</div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ================= PAGE 4: GIVEAWAY LAB ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 مختبر الجوائز الاحترافي</h2>
@@ -858,7 +1254,7 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 4: PERFORMANCE & SYSTEM ================= -->
+  <!-- ================= PAGE 5: PERFORMANCE & SYSTEM ================= -->
   <div id="page-system" class="page-section">
     <section>
       <h2 class="section-title display">System & Performance</h2>
@@ -892,7 +1288,7 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 5: NETWORK & STORAGE ================= -->
+  <!-- ================= PAGE 6: NETWORK & STORAGE ================= -->
   <div id="page-net" class="page-section">
     <section>
       <h2 class="section-title display">Network & Storage</h2>
@@ -1192,7 +1588,6 @@ function spinWheel(){
   wheelBtn.disabled = true;
   resultDiv.style.display = 'none';
 
-  // Always land on slice-4 (حظ أوفر -> 315 degrees approx)
   const randomSpins = 360 * 5; 
   const targetDegree = randomSpins + 315; 
   wheelInner.style.transform = `rotate(${targetDegree}deg)`;
