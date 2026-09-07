@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaming Performance Center & eFootball Helper</title>
+<title>Gaming Performance Center</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,7 +22,6 @@
     --violet:#9B6BFF;
     --warn:#FFB020;
     --danger:#FF5470;
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -98,7 +97,7 @@
     box-shadow: 0 0 20px rgba(62,139,255,0.3);
   }
 
-  .page-section{display:none; animation: sectionFadeIn 0.4s var(--transition-smooth);}
+  .page-section{display:none; animation: sectionFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);}
   .page-section.active{display:block;}
 
   @keyframes sectionFadeIn {
@@ -165,7 +164,7 @@
   .stat-card{
     background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:14px;
     opacity:0;transform:translateY(10px) scale(0.98);
-    transition:opacity .4s var(--transition-smooth), transform .4s var(--transition-smooth), border-color 0.3s, box-shadow 0.3s;
+    transition:opacity .4s cubic-bezier(0.16,1,0.3,1), transform .4s cubic-bezier(0.16,1,0.3,1), border-color 0.3s, box-shadow 0.3s;
     backdrop-filter: blur(12px);
   }
   .stat-card.show{opacity:1;transform:none;}
@@ -255,26 +254,7 @@
   .vision-preview-wrap{margin-top:10px;display:none;position:relative;}
   .vision-preview-img{max-width:100%;max-height:160px;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
 
-  /* ANIMATION & TACTICAL PULSE SECTION STYLES */
-  @keyframes tacticalEntry {
-    0% { opacity: 0; transform: translateY(20px) scale(0.97); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
-
-  @keyframes tacticalPulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(182, 255, 62, 0.4); }
-    70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(182, 255, 62, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(182, 255, 62, 0); }
-  }
-
-  .animated-section {
-    animation: tacticalEntry 0.5s var(--transition-smooth) forwards;
-  }
-
-  .smart-coach-badge {
-    animation: tacticalPulse 2.5s infinite ease-in-out;
-  }
-
+  /* ANIMATION SECTION STYLES */
   .anim-sub-selector{display:grid;grid-template-columns:repeat(2, 1fr);gap:8px;margin-bottom:12px;}
   .anim-sel-btn{
     background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
@@ -372,68 +352,6 @@
   @keyframes rolePulse { 0%,100%{transform:translate(-50%,-50%) scale(1);} 50%{transform:translate(-50%,-50%) scale(1.12); box-shadow:0 0 25px var(--lime);} }
   @keyframes spinRing { 0%{transform:translate(-50%,-50%) rotate(0deg);} 100%{transform:translate(-50%,-50%) rotate(360deg);} }
 
-  /* PLAYSTYLES GRID & MODALS (لمنع التأثير على الباقة تماماً) */
-  .playstyles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
-    margin-top: 12px;
-  }
-
-  .playstyle-card {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    font-size: 13px;
-    font-weight: 700;
-  }
-
-  .playstyle-card:hover {
-    border-color: var(--lime);
-    transform: translateY(-2px);
-    background: rgba(182, 255, 62, 0.1);
-  }
-
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(5px);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .modal-content {
-    background: #1e293b;
-    border: 1px solid var(--lime);
-    width: 90%;
-    max-width: 480px;
-    padding: 22px;
-    border-radius: 14px;
-    animation: tacticalEntry 0.3s ease-out;
-    position: relative;
-  }
-
-  .close-modal {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: none;
-    border: none;
-    color: var(--lime);
-    font-size: 18px;
-    cursor: pointer;
-  }
-
   /* CHAT STYLES */
   .chat-container{display:flex;flex-direction:column;height:480px;}
   .chat-messages{
@@ -520,7 +438,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <div class="brand-mark smart-coach-badge">GP</div>
+      <div class="brand-mark">GP</div>
       <div>
         <div class="brand-name">Gaming Center</div>
         <div class="brand-sub">eFootball Mobile</div>
@@ -544,7 +462,7 @@
 <div class="wrap">
 
   <!-- ================= PAGE 1: SCAN ================= -->
-  <div id="page-scan" class="page-section active animated-section">
+  <div id="page-scan" class="page-section active">
     <section class="hero">
       <div class="hero-eyebrow display">GAME READY?</div>
       <p class="hero-note">اضغط Start Scan ليقرأ التطبيق المعلومات الحقيقية التي يسمح بها متصفحك عن جهازك.</p>
@@ -573,7 +491,7 @@
   </div>
 
   <!-- ================= PAGE 2: AI COACH & ANIMATION SECTION ================= -->
-  <div id="page-ai" class="page-section animated-section">
+  <div id="page-ai" class="page-section">
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
       <div class="offline-badge">⚡ الدليل والأنيميشن الاحترافي لـ eFootball Mobile</div>
@@ -583,7 +501,7 @@
       <div class="coach-subtabs">
         <button class="coach-subtab active" onclick="switchCoachTab('chat')">💬 الشات والفحص</button>
         <button class="coach-subtab" onclick="switchCoachTab('defense')">🛡️ دليل الدفاع</button>
-        <button class="coach-subtab" onclick="switchCoachTab('players')">👤 أساليب اللعب</button>
+        <button class="coach-subtab" onclick="switchCoachTab('players')">👤 أسلوب اللاعب</button>
         <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 Animation</button>
       </div>
 
@@ -639,37 +557,14 @@
         </div>
       </div>
 
-      <!-- TAB 3: PLAYER ROLES & STYLES (مع Modals متكاملة) -->
+      <!-- TAB 3: PLAYER ROLES & STYLES -->
       <div id="coach-tab-players" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--violet);">
-          <div class="tactics-guide-title">👤 دليل أساليب اللعب المتكاملة</div>
-          <div class="tactics-guide-desc" style="margin-bottom:10px;">اضغط على أي أسلوب أدناه لعرض الشرح والأدوار التفصيلية بدقة عالية دون التأثير على الباقة أو التصميم:</div>
-          
-          <div class="playstyles-grid">
-            <div class="playstyle-card" onclick="openModal('المهاجم القناص (Goal Poacher)', 'مهاجم يتحرك بذكاء داخل منطقة الجزاء لإنهاء الهجمات، بارع في كسر مصيدة التسلل واقتناص أنصاف الفرص.')">
-              ⚽ مهاجم قناص
-            </div>
-            <div class="playstyle-card" onclick="openModal('المهاجم المراوغ (Roaming Flank)', 'مهاجم يخرج من تمركزه لسحب المدافعين وخلق مساحات واسعة لزملائه القادمين من الخلف.')">
-              🏃 مهاجم مراوغ
-            </div>
-            <div class="playstyle-card" onclick="openModal('الهجوم الدائم (Hole Player)', 'لاعب يبحث دائماً عن الثغرات للتقدم العميق نحو المرمى وتشكيل خطورة ومساندة تهديفية مستمرة.')">
-              ⚡ هجوم دائم
-            </div>
-            <div class="playstyle-card" onclick="openModal('خبير صنع لعب (Creative Playmaker)', 'مايسترو الوسط، يبحث عن المساحات الهادئة لتلقي الكرة وتوزيع التمريرات القاتلة بدقة عالية.')">
-              🎯 صانع لعب
-            </div>
-            <div class="playstyle-card" onclick="openModal('بيني الوسط والهجوم (Box-to-Box)', 'الجندي المجهول، يغطي الملعب عرضاً وطولاً، يساهم في افتكاك الكرات دفاعياً والمساندة الهجومية بقوة بدنية.')">
-              🔄 بيني الوسط
-            </div>
-            <div class="playstyle-card" onclick="openModal('الارتكاز وبناء اللعب (Anchor Man / Orchestrator)', 'رِكيزة الدفاع في الوسط، يلتزم بالتمركز العميق، يقطع الإمدادات، ويبدأ بناء الهجمة بهدوء وتأمين الفريق.')">
-              🛡️ ارتكاز وبناء
-            </div>
-            <div class="playstyle-card" onclick="openModal('محطم الأضلاع / المدمر (Destroyer)', 'قاطع كرات شرس، يضغط بقوة وبشراسة على حامل الكرة لتعطيل هجمات الخصم في مهدها بمنطقة المناورات.')">
-              🧱 محطم / مدمر
-            </div>
-            <div class="playstyle-card" onclick="openModal('الظهير الجناح / الغزال (Prolific Winger)', 'يغطي الرواق كاملاً، يمتلك سرعة فائقة لتقديم الإسناد الهجومي المستمر وعكس العرضيات المتقنة نحو الصندوق.')">
-              🚀 جناح غزال
-            </div>
+          <div class="tactics-guide-title">👤 الطريقة الصحيحة لاستخدام كل لاعب</div>
+          <div class="tactics-guide-desc">
+            • <b>المهاجم الصريح (Goal Poacher / Fox in the Box):</b> التمركز خلف آخر مدافع والانطلاق الفوري عند ضرب مصيدة التسلل.<br>
+            • <b>صانع اللعب العميق (Orchestrator):</b> البقاء كخيار تمرير هادئ أمام المدافعين وتوزيع الكرات الطويلة بدقة.<br>
+            • <b>الجناح الناشط (Roaming Flank / Prolific Winger):</b> الدخول لعمق الملعب للتسديد أو إرسال العرضيات المتقنة.
           </div>
         </div>
       </div>
@@ -736,7 +631,7 @@
             <div class="pitch-lines"></div>
             <div class="pitch-center-circle"></div>
             <div class="role-indicator-ring"></div>
-            <div class="player-node role-player smart-coach-badge" style="background:linear-gradient(135deg,var(--lime),var(--blue)); color:#000;">PRO</div>
+            <div class="player-node role-player" style="background:linear-gradient(135deg,var(--lime),var(--blue)); color:#000;">PRO</div>
           </div>
 
           <div id="animCaption" style="font-size:12px;color:var(--text-dim);text-align:center;margin-top:8px;">💡 حركة انسيابية توضح تمركز خطة 4-2-2-2 وتناغم اللاعبين.</div>
@@ -747,7 +642,7 @@
   </div>
 
   <!-- ================= PAGE 3: GIVEAWAY TIMER ================= -->
-  <div id="page-giveaway" class="page-section animated-section">
+  <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 مختبر الجوائز — تحدي العداد</h2>
       <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة الفورية!</p>
@@ -773,7 +668,7 @@
   </div>
 
   <!-- ================= PAGE 4: PERFORMANCE & SYSTEM ================= -->
-  <div id="page-system" class="page-section animated-section">
+  <div id="page-system" class="page-section">
     <section>
       <h2 class="section-title display">System & Performance</h2>
       <p class="section-desc">تحكم في إعدادات الأداء، وضع عدم الإزعاج، وأنماط اللعب.</p>
@@ -807,7 +702,7 @@
   </div>
 
   <!-- ================= PAGE 5: NETWORK & STORAGE ================= -->
-  <div id="page-net" class="page-section animated-section">
+  <div id="page-net" class="page-section">
     <section>
       <h2 class="section-title display">Network & Storage</h2>
       <p class="section-desc">قراءات حقيقية من متصفحك.</p>
@@ -821,7 +716,7 @@
 
       <div id="storagePanel" class="panel">
         <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Storage</div>
-        <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>المتاح: <b id="stFree">--</b></span></div>
+        <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>التاح: <b id="stFree">--</b></span></div>
         <div class="bar-track"><div id="stBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--danger),#FF8FA3)"></div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
           <div>
@@ -847,15 +742,6 @@
   </section>
 
   <footer>Gaming Performance Center · نظام الصفحات المتعددة · يعمل بدون إنترنت</footer>
-</div>
-
-<!-- نافذة منبثقة تفاعلية (Modal) لأساليب اللعب لعدم تخريب مساحات الباقة -->
-<div class="modal-overlay" id="playstyleModal" onclick="closeModalOutside(event)">
-  <div class="modal-content">
-    <button class="close-modal" onclick="closeModal()">✕</button>
-    <h3 id="modalTitle" style="color:var(--lime);font-family:'Tajawal';font-weight:800;">عنوان الأسلوب</h3>
-    <p id="modalDesc" style="color: #cbd5e1; margin-top: 10px; font-size: 13.5px; line-height:1.7;"></p>
-  </div>
 </div>
 
 <div id="toast" class="toast"></div>
@@ -925,23 +811,6 @@ function switchAnimView(viewKey){
   }
 }
 
-// MODAL CONTROL FUNCTIONS
-function openModal(title, desc) {
-  document.getElementById('modalTitle').innerText = title;
-  document.getElementById('modalDesc').innerText = desc;
-  document.getElementById('playstyleModal').style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('playstyleModal').style.display = 'none';
-}
-
-function closeModalOutside(event) {
-  if (event.target.id === 'playstyleModal') {
-    closeModal();
-  }
-}
-
 function showToast(msg, ms=2200){
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -985,7 +854,7 @@ function triggerComprehensiveSquadAnalysis(){
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
-    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 تم فحص تشكيلتك بنجاح:\n\n🌟 **التقييم:** تشكيلة متوازنة وقوية للغاية.\n🛡️ **النصيحة:** تأكد من مراجعة قسم أساليب اللعب والأنيميشن الجديد لضبط تكتيكات المدافعين والأطراف!`;
+    const reply = `يا هلا بيك يا كابتن ماكس! 🔥 تم فحص تشكيلتك بنجاح:\n\n🌟 **التقييم:** تشكيلة متوازنة وقوية.\n🛡️ **النصيحة:** تأكد من إعطاء الأدوار الصحيحة للمدافعين كما موضح في قسم Animation الجديد!`;
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
     showToast('تم تحليل تشكيلتك بنجاح!');
@@ -995,9 +864,9 @@ function triggerComprehensiveSquadAnalysis(){
 function getCoachReply(userText){
   const q = userText.toLowerCase();
   if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع')){
-    return `🛡️ **دليل الدفاع:** راجع تبويب أساليب اللعب وقسم Animation الجديد لاسترعاء الفكرة بصرياً وتطبيقها فوراً في المباريات!`;
+    return `🛡️ **دليل الدفاع:** راجع قسم Animation الجديد لاسترعاء الفكرة بصرياً وتطبيقها فوراً في المباريات!`;
   }
-  return `أنا معك يا كابتن! انتقل لتبويب (Animation) أو (أسلوب اللاعب) لمشاهدة التحركات والخطط بالتفصيل.`;
+  return `أنا معك يا كابتن! انتقل لتبويب (Animation) لمشاهدة خطة 4-2-2-2 والتحركات الدفاعية والهجومية بالتفصيل.`;
 }
 
 function sendAIChatMessage(prefillText){
@@ -1120,90 +989,148 @@ function stopGiveawayTimer(auto=false){
   }
 }
 
-// DEVICE SCAN & PERFORMANCE LOGIC (Placeholder / System integration)
+// DEVICE SCAN & STATS
+function getGpuInfo(){
+  try{
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if(!gl) return null;
+    const dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    return dbgInfo ? gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+  }catch(e){ return null; }
+}
+
+async function getBatteryInfo(){
+  try{
+    if(!navigator.getBattery) return null;
+    const b = await navigator.getBattery();
+    return { level: Math.round(b.level*100), charging: b.charging };
+  }catch(e){ return null; }
+}
+
+async function collectRealDeviceStats(){
+  const stats = [];
+  const cores = navigator.hardwareConcurrency;
+  stats.push({ key:'CPU (أنوية منطقية)', icon:'⚙', display: cores ? String(cores) : null });
+  const mem = navigator.deviceMemory;
+  stats.push({ key:'ذاكرة الجهاز (RAM)', icon:'🧠', display: mem ? (mem + ' GB تقريباً') : null });
+  const gpu = getGpuInfo();
+  stats.push({ key:'GPU (المعالج الرسومي)', icon:'🖥', display: gpu || null });
+  const batt = await getBatteryInfo();
+  stats.push({ key:'البطارية', icon:'🔋', display: batt ? (batt.level + '%' + (batt.charging ? ' (تشحن)' : '')) : null });
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  stats.push({ key:'نوع الاتصال', icon:'📶', display: conn && conn.effectiveType ? conn.effectiveType.toUpperCase() : null });
+  stats.push({ key:'حالة الاتصال', icon:'🌐', display: navigator.onLine ? 'متصل' : 'غير متصل' });
+  return stats;
+}
+
 function runScan(){
-  showToast('جارِ فحص النظام والأداء...');
-  const gaugeFill = document.getElementById('gaugeFill');
-  const gaugeScore = document.getElementById('gaugeScore');
-  const gaugeLabel = document.getElementById('gaugeLabel');
-  const statGrid = document.getElementById('statGrid');
-  const boostBtn = document.getElementById('boostBtn');
+  const btn = document.getElementById('scanBtn');
+  btn.disabled = true;
+  btn.textContent = 'جارِ الفحص...';
+  document.getElementById('statGrid').innerHTML = '';
 
-  setTimeout(() => {
-    gaugeFill.style.strokeDashoffset = '118'; // ~80%
-    gaugeScore.textContent = '94';
-    gaugeLabel.textContent = 'أداء ممتاز';
-    
-    statGrid.innerHTML = `
-      <div class="stat-card show">
-        <div class="stat-name">استقرار الفريمات</div>
-        <div class="stat-value">60 FPS</div>
-        <span class="stat-status st-excellent">مستقر</span>
-      </div>
-      <div class="stat-card show">
-        <div class="stat-name">سرعة الاستجابة</div>
-        <div class="stat-value">منخفضة جداً</div>
-        <span class="stat-status st-excellent">مثالي للعب</span>
-      </div>
-    `;
-    boostBtn.disabled = false;
-    showToast('تم فحص الجهاز بنجاح!');
-  }, 800);
+  collectRealDeviceStats().then(stats => {
+    const available = stats.filter(s => s.display !== null);
+    const score = stats.length ? Math.round((available.length / stats.length) * 100) : 0;
+    const circumference = 590.6;
+    const offset = circumference - (circumference * score / 100);
+    document.getElementById('gaugeFill').style.strokeDashoffset = offset;
+    document.getElementById('gaugeScore').textContent = score;
+    document.getElementById('gaugeLabel').textContent = score >= 70 ? 'بيانات ممتازة' : 'بيانات جزئية';
+
+    const grid = document.getElementById('statGrid');
+    stats.forEach((s,i)=>{
+      const el = document.createElement('div');
+      el.className = 'stat-card';
+      el.innerHTML = `
+        <div class="stat-top"><span class="stat-name">${s.key}</span><span>${s.icon}</span></div>
+        <div class="stat-value">${s.display !== null ? s.display : '—'}</div>
+        <span class="stat-status ${s.display !== null ? 'st-excellent' : 'st-na'}">${s.display !== null ? 'قراءة حقيقية' : 'غير متاح'}</span>`;
+      grid.appendChild(el);
+      setTimeout(()=>el.classList.add('show'), i*60);
+    });
+
+    document.getElementById('scanFinePrint').style.display = 'block';
+    document.getElementById('scanFinePrint').textContent = 'ملاحظة: المتصفحات تفرض قيوداً أمنية على قراءة حرارة المعالج الكاملة.';
+    btn.disabled = false;
+    btn.textContent = 'Scan Again';
+    document.getElementById('boostBtn').disabled = false;
+  });
 }
 
-function boostAndPlay(){
-  showToast('🚀 تم تفعيل وضع التعزيز وأقصى أداء للعب!');
+function boostAndPlay(){ showToast('أغلق التطبيقات في الخلفية يدويًا للحصول على أفضل أداء للعب.', 3400); }
+
+function togglePerf(on){
+  const pill = document.getElementById('perfStatus');
+  pill.classList.toggle('on', on);
+  pill.innerHTML = `<span class="dot"></span> Performance Mode: ${on?'ON':'OFF'}`;
+  if(on) showToast('تم تفعيل وضع الأداء.');
 }
 
-function togglePerf(isChecked){
-  const st = document.getElementById('perfStatus');
-  if(isChecked){
-    st.className = 'status-pill on';
-    st.innerHTML = '<span class="dot"></span> Performance Mode: ON';
-    showToast('تم تفعيل وضع الأداء العالي');
-  } else {
-    st.className = 'status-pill';
-    st.innerHTML = '<span class="dot"></span> Performance Mode: OFF';
-    showToast('تم إيقاف وضع الأداء العالي');
-  }
-}
+document.getElementById('dndChips').addEventListener('click', (e)=>{
+  const chip = e.target.closest('.chip');
+  if(!chip) return;
+  document.querySelectorAll('#dndChips .chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+});
 
 function startGamingDND(){
-  showToast('🔕 تم تفعيل وضع عدم الإزعاج أثناء اللعب');
-  const dnd = document.getElementById('dndStatus');
-  dnd.className = 'status-pill on';
-  dnd.innerHTML = '<span class="dot"></span> مفعل بنجاح';
+  const active = document.querySelector('#dndChips .chip.active');
+  const pill = document.getElementById('dndStatus');
+  pill.classList.add('on');
+  pill.innerHTML = `<span class="dot"></span> مفعّل — ${active.textContent.trim()}`;
+  showToast('تم تفعيل وضع عدم الإزعاج.');
 }
 
-// RAM & STORAGE READINGS
-async function initSystemStats(){
-  if(navigator.deviceMemory){
-    document.getElementById('ramLabelLeft').textContent = `${navigator.deviceMemory} GB RAM (تقديري)`;
-    document.getElementById('ramBar').style.width = `${Math.min((navigator.deviceMemory / 16) * 100, 100)}%`;
-    document.getElementById('ramIndicator').innerHTML = '✅ الذاكرة مقبولة لتشغيل اللعبة بسلاسة';
+async function loadStorageAndMemoryPanel(){
+  const mem = navigator.deviceMemory;
+  if(mem){
+    document.getElementById('ramLabelLeft').textContent = 'الذاكرة التقريبية: ' + mem + ' GB';
+    document.getElementById('ramBar').style.width = Math.min(100, (mem/8)*100) + '%';
+    document.getElementById('ramIndicator').textContent = '🟢 مدعوم';
   } else {
-    document.getElementById('ramLabelLeft').textContent = 'غير متوفر بالمتصفح';
-    document.getElementById('ramBar').style.width = '50%';
+    document.getElementById('ramLabelLeft').textContent = 'غير مدعوم في هذا المتصفح';
+    document.getElementById('ramBar').style.width = '0%';
+    document.getElementById('ramIndicator').textContent = '⚪ غير متاح';
   }
+  try{
+    if(navigator.storage && navigator.storage.estimate){
+      const est = await navigator.storage.estimate();
+      const usedMB = (est.usage/1024/1024).toFixed(1);
+      const quotaMB = (est.quota/1024/1024).toFixed(0);
+      const pct = est.quota ? Math.min(100, Math.round((est.usage/est.quota)*100)) : 0;
+      document.getElementById('stUsed').textContent = usedMB + ' MB';
+      document.getElementById('stFree').textContent = quotaMB + ' MB';
+      document.getElementById('stBar').style.width = pct + '%';
+      document.getElementById('cacheSize').textContent = usedMB + ' MB';
+    }
+  }catch(e){}
+}
 
-  if(navigator.storage && navigator.storage.estimate){
-    const est = await navigator.storage.estimate();
-    const usedMB = Math.round((est.usage || 0) / (1024 * 1024));
-    const quotaMB = Math.round((est.quota || 0) / (1024 * 1024));
-    const freeMB = quotaMB - usedMB;
-    const pct = quotaMB ? Math.round((usedMB / quotaMB) * 100) : 0;
-
-    document.getElementById('stUsed').textContent = `${usedMB} MB`;
-    document.getElementById('stFree').textContent = `${freeMB} MB`;
-    document.getElementById('stBar').style.width = `${pct}%`;
-    document.getElementById('cacheSize').textContent = `${usedMB} MB مستخدمة للتخزين المؤقت`;
+async function cleanStorage(){
+  const cleanBtn = document.getElementById('cleanBtn');
+  cleanBtn.disabled = true;
+  cleanBtn.textContent = 'جاري التنظيف... ⏳';
+  try{
+    if(window.caches && caches.keys){
+      const keys = await caches.keys();
+      await Promise.all(keys.map(k => caches.delete(k)));
+    }
+    document.getElementById('stBar').style.width = '0%';
+    setTimeout(() => {
+      loadStorageAndMemoryPanel();
+      cleanBtn.disabled = false;
+      cleanBtn.textContent = 'تنظيف 🧹';
+      showToast('✨ تم تفريغ الكاش وتحسين الذاكرة بنجاح!');
+    }, 700);
+  }catch(e){
+    cleanBtn.disabled = false;
+    cleanBtn.textContent = 'تنظيف 🧹';
+    showToast('تعذّر التنظيف.');
   }
 }
-initSystemStats();
-
-function cleanStorage(){
-  showToast('🧹 تم تنظيف البيانات المؤقتة بنجاح');
-}
+loadStorageAndMemoryPanel();
 </script>
 </body>
 </html>
