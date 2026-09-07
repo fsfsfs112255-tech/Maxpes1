@@ -254,7 +254,7 @@
   .vision-preview-wrap{margin-top:10px;display:none;position:relative;}
   .vision-preview-img{max-width:100%;max-height:160px;border-radius:10px;border:1px solid var(--border);object-fit:cover;}
 
-  /* ANIMATION SECTION STYLES (ENHANCED REALISTIC) */
+  /* ANIMATION SECTION STYLES */
   .anim-sub-selector{display:grid;grid-template-columns:repeat(2, 1fr);gap:8px;margin-bottom:12px;}
   .anim-sel-btn{
     background:var(--bg-elev);border:1px solid var(--border);color:var(--text-dim);
@@ -291,7 +291,6 @@
     box-shadow:0 0 14px #fff, 0 0 6px var(--lime);transform:translate(-50%,-50%);
   }
 
-  /* Enhanced Realistic 4-2-2-2 Flow Animation */
   .f4222-gk {top:90%; left:50%;}
   .f4222-lb {top:72%; left:15%; animation: realisticLB 4s infinite ease-in-out;}
   .f4222-cb1{top:76%; left:38%; animation: realisticCB 4s infinite ease-in-out;}
@@ -312,15 +311,9 @@
   @keyframes realisticAMF { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(-8px,-14px) scale(1.1);} }
   @keyframes realisticCF { 0%,100%{transform:translate(-50%,-50%) translate(0,0);} 50%{transform:translate(-50%,-50%) translate(5px,-16px) scale(1.12);} }
   @keyframes ballRouteRealistic4222 {
-    0% {top:90%;left:50%;}
-    20% {top:76%;left:38%;}
-    40% {top:56%;left:35%;}
-    60% {top:36%;left:28%;}
-    80% {top:18%;left:42%;}
-    100% {top:90%;left:50%;}
+    0% {top:90%;left:50%;} 20% {top:76%;left:38%;} 40% {top:56%;left:35%;} 60% {top:36%;left:28%;} 80% {top:18%;left:42%;} 100% {top:90%;left:50%;}
   }
 
-  /* Enhanced Realistic Defense Animation */
   .def-line-real {position:absolute;top:65%;left:12%;right:12%;height:2px;background:var(--lime);border-style:dashed;box-shadow:0 0 10px var(--lime);}
   .d-gk {top:90%; left:50%;}
   .d-lb {top:67%; left:16%; animation: defBlockSide 3.5s infinite ease-in-out;}
@@ -337,7 +330,6 @@
     0% {top:20%;left:50%;} 35% {top:45%;left:50%;} 65% {top:65%;left:50%;} 100% {top:20%;left:50%;}
   }
 
-  /* Enhanced Realistic Attack Animation */
   .att-lw {top:28%; left:15%; animation: attWingRun 4s infinite ease-in-out;}
   .att-rw {top:28%; left:85%; animation: attWingRun 4s infinite ease-in-out reverse;}
   .att-amf{top:38%; left:50%; animation: attPlaymaker 4s infinite ease-in-out;}
@@ -351,7 +343,6 @@
     0% {top:75%;left:50%;} 30% {top:50%;left:50%;} 65% {top:15%;left:50%;} 100% {top:75%;left:50%;}
   }
 
-  /* Enhanced Correct Player Role Nodes & Animation */
   .role-player-node {top:50%; left:50%; animation: realisticRolePulse 3s infinite ease-in-out; width:44px; height:44px; font-size:13px; background:linear-gradient(135deg,var(--lime),var(--blue)); color:#000; border-color:#fff;}
   .role-orbit-ring1 {
     position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -404,13 +395,50 @@
     padding:4px 10px;border-radius:20px;margin-bottom:10px;box-shadow: 0 0 12px rgba(182,255,62,0.15);
   }
 
-  /* TACTICS GUIDE CARDS */
+  /* TACTICS GUIDE & STYLISH PLAYER ROLES CARDS */
   .tactics-guide-card{
     background:var(--bg-elev);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px;
     backdrop-filter: blur(12px);box-shadow: 0 4px 20px rgba(0,0,0,0.25);
   }
-  .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
   .tactics-guide-desc{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
+
+  /* NEW STYLISH PLAYER ROLES STYLING */
+  .role-category-box {
+    background: rgba(18, 22, 31, 0.85);
+    border: 1px solid rgba(62, 139, 255, 0.25);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  .role-category-box:hover {
+    border-color: var(--blue);
+    box-shadow: 0 0 20px rgba(62, 139, 255, 0.2);
+  }
+  .role-cat-header {
+    font-family: 'Tajawal';
+    font-weight: 800;
+    font-size: 14.5px;
+    color: var(--lime);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+  .role-item {
+    margin-bottom: 8px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--text-dim);
+  }
+  .role-item b {
+    color: var(--text);
+    font-weight: 700;
+  }
 
   /* GIVEAWAY TIMER */
   .timer-display{
@@ -510,7 +538,7 @@
     <section>
       <h2 class="section-title display">🤖 المدرب الذكي وتحليل التشكيلة</h2>
       <div class="offline-badge">⚡ الدليل والأنيميشن الاحترافي لـ eFootball Mobile</div>
-      <p class="section-desc">فحص التشكيلة، الشات الذكي، دليل الدفاع، وقسم الأنيميشن الحصري.</p>
+      <p class="section-desc">فحص التشكيلة، الشات الذكي، دليل الدفاع، وأساليب اللاعبين.</p>
 
       <!-- SUB-TABS FOR AI COACH -->
       <div class="coach-subtabs">
@@ -520,13 +548,13 @@
         <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 Animation</button>
       </div>
 
-      <!-- TAB 1: CHAT & SQUAD VISION -->
+      <!-- TAB 1: CHAT & SQUAD VISION (UPDATED WITH 7 TIPS & UPGRADE WARNING) -->
       <div id="coach-tab-chat" class="coach-tab-content">
         <div class="vision-box">
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
           <div class="vision-icon">📸</div>
           <div class="vision-title">اسحب أو اضغط لرفع صورة تشكيلتك (Squad Screenshot)</div>
-          <div class="vision-sub">سيقوم المدرب بتحليلك، مدح تشكيلتك، وإعطائك 5 نصائح شاملة!</div>
+          <div class="vision-sub">سيقوم المدرب بمدح التشكيلة، إعطاء نصائح الدفاع، 7 نصائح شاملة وتنبيهك لتطوير اللاعبين!</div>
           <div id="visionPreviewWrap" class="vision-preview-wrap">
             <img id="visionPreviewImg" class="vision-preview-img" src="" alt="Squad Preview">
           </div>
@@ -541,7 +569,7 @@
         <div class="panel chat-container">
           <div id="chatMessages" class="chat-messages">
             <div class="chat-msg ai">
-              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لنقوم بتحليلها ومدحها وإعطائك النصائح الذهبية، أو انتقل لتبويب (Animation) لرؤية التحركات والخطط بصرياً!
+              أهلاً بك يا بطل كابتن ماكس! 🎮⚽ أنا مدربك الذكي.<br>ارفع صورة تشكيلتك بالأعلى لتحليلها، مدحها، وإعطائك نصائح الدفاع والتطوير الشاملة!
             </div>
           </div>
           <div class="chat-input-row">
@@ -551,7 +579,7 @@
         </div>
       </div>
 
-      <!-- TAB 2: DEFENSE GUIDE (EXPANDED) -->
+      <!-- TAB 2: DEFENSE GUIDE -->
       <div id="coach-tab-defense" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
           <div class="tactics-guide-title">🛡️ 1. أساليب وتصنيفات المدافعين في اللعبة</div>
@@ -584,44 +612,52 @@
         </div>
       </div>
 
-      <!-- TAB 3: PLAYER ROLES & STYLES (FULL EXHAUSTIVE LIST) -->
+      <!-- TAB 3: PLAYER ROLES & STYLES (REDESIGNED FOR ULTIMATE ORGANIZATION & BEAUTY) -->
       <div id="coach-tab-players" class="coach-tab-content" style="display:none;">
-        <div class="tactics-guide-card" style="border-color:var(--violet);">
-          <div class="tactics-guide-title">👤 دليل جميع أساليب اللاعبين (Player Playstyles) في eFootball</div>
-          <div class="tactics-guide-desc" style="line-height:1.9;">
-            <b>1. أساليب المهاجمين (Forwards):</b><br>
-            • <b>مهاجم صريح (Goal Poacher):</b> يتمركز بذكاء على خط التسلل وينطلق خلف المدافعين لاستلام البين پاس.<br>
-            • <b>الثعلب في الصندوق (Fox in the Box):</b> مهاجم صندوق كلاسيكي، لا يخرج كثيراً للخارج ويبحث عن أنصاف الفرص للتسجيل.<br>
-            • <b>مهاجم متراجع (Target Man):</b> يتلقى الكرات الطويلة ويحميها بجسده لفتح المساحات للقادمين من الخلف.<br>
-            • <b>مهاجم وهمي (Deep-Lying Forward):</b> يتراجع لمنتصف الملعب لاستلام الكرة وبناء الهجمة وصناعة اللعب.<br>
-            • <b>مهاجم نشط (Roaming Flank):</b> جناح يميل للدخول لعمق الملعب والتسديد بقدمه العكسية.<br>
-            • <b>جناح ترشحي / كلاسيكي (Prolific Winger):</b> يلتزم بالخط الجانبي ويرسل العرضيات المتقنة.<br>
-            • <b>مخترق الأجنحة (Creative Playmaker):</b> يفضل استلام الكرة للبحث عن تمريرات قاتلة داخل الصندوق.<br>
-            • <b>النشيط المتقدم (Coinciding / Hole Player):</b> الأفضل كـ AMF أوSS، ينطلق كقاطرة من الخلف لملء صندوق الخصم.<br><br>
+        <div class="tactics-guide-card" style="border-color:var(--lime); margin-bottom:14px;">
+          <div class="tactics-guide-title">🌟 دليل أساليب اللاعبين الاحترافي في eFootball</div>
+          <div class="tactics-guide-desc">استكشف جميع أساليب اللعب الخاصة باللاعبين مصنفة ومنظمة بدقة لتوظيف كل لاعب في مكانه المثالي واستخراج أقصى طاقاته.</div>
+        </div>
 
-            <b>2. أساليب خط الوسط (Midfielders):</b><br>
-            • <b>صانع اللعب الكلاسيكي (Classic No. 10):</b> يتحرك ببطء ودقة عالية ويمتلك تمريرات ساحرة، قليل الحركة بدون كرة.<br>
-            • <b>بوكس تو بوكس (Box-to-Box):</b> محرك الفريق، يغطي الملعب دفاعياً وهجومياً بلا توقف طوال المباراة.<br>
-            • <b>محور الارتكاز (Anchor Man):</b> صخرة أمام المدافعين، لا يتقدم للهجوم أبداً ويبقى لتأمين العمق.<br>
-            • <b>صانع اللعب العميق (Orchestrator):</b> منظم إيقاع الفريق وتوزيع الكرات الهادئة أمام خط الدفاع.<br>
-            • <b>المحطة / المدافع النشط (Destroyer Mid):</b> يضغط بقوة لافت افتكاك الكرات في منتصف الملعب.<br><br>
+        <!-- 1. FORWARDS -->
+        <div class="role-category-box">
+          <div class="role-cat-header">⚽ أولاً: أساليب المهاجمين (Forwards)</div>
+          <div class="role-item">• <b>مهاجم صريح (Goal Poacher):</b> يتحرك بذكاء خارق على خط التسلل وينطلق كالسهم خلف المدافعين لاستلام البين پاسات القاتلة.</div>
+          <div class="role-item">• <b>الثعلب في الصندوق (Fox in the Box):</b> مهاجم صندوق كلاسيكي لا يخرج كثيراً للخارج، يتموضع بدقة لاقتناص أنصاف الفرص وسجل الأهداف.</div>
+          <div class="role-item">• <b>مهاجم متراجع (Target Man):</b> يتلقى الكرات الطويلة العالية ويحميها بجسده بقوة لفتح المساحات للقادمين من الخلف وصناعة اللعب.</div>
+          <div class="role-item">• <b>مهاجم وهمي (Deep-Lying Forward):</b> يتراجع لعمق الملعب لاستلام الكرة وبناء الهجمة مباغتةً دفاع الخصم.</div>
+          <div class="role-item">• <b>مهاجم نشط (Roaming Flank):</b> جناح يميل للدخول لعمق الملعب والتسديد بقدمه العكسية بقوة.</div>
+          <div class="role-item">• <b>جناح كلاسيكي (Prolific Winger):</b> يلتزم بالخط الجانبي تماماً ويمتلك دقة عالية في إرسال العرضيات المتقنة نحو الصندوق.</div>
+          <div class="role-item">• <b>صانع لعب مبدع (Creative Playmaker):</b> يفضل استلام الكرة للبحث عن ثغرات وتمريرات حاسمة داخل منطقة الجزاء.</div>
+          <div class="role-item">• <b>النشيط المتقدم (Hole Player):</b> الأفضل كـ AMF أو SS، ينطلق كقاطرة من الخلف لملء صندوق الخصم ومباغتة الحارس.</div>
+        </div>
 
-            <b>3. أساليب المدافعين والحراس (Defenders & GK):</b><br>
-            • <b>بناء لعب (Build-up):</b> قلب دفاع متزن يوزع اللعب ولا يندفع.<br>
-            • <b>المحطم (Destroyer Def):</b> مدافع شرس في الالتحامات الفردية.<br>
-            • <b>ظهير هجومي / مدافع / إضافي (Full-back Finisher / Extra Frontman):</b> تقدم وتغطية تكتيكية دقيقة.<br>
-            • <b>حارس هجومي / دفاعي (Offensive / Defensive Goalkeeper):</b> يخرج لتغطية الانفرادات أو يلتزم بحراسة خط العرين.
-          </div>
+        <!-- 2. MIDFIELDERS -->
+        <div class="role-category-box">
+          <div class="role-cat-header">⚙️ ثانياً: أساليب خط الوسط (Midfielders)</div>
+          <div class="role-item">• <b>صانع اللعب الكلاسيكي (Classic No. 10):</b> يتميز ببطء تكتيكي ودقة تمرير ساحرة، يقتصد في مجهوده البدني بدون كرة لضرب الدفاع بتمريرة واحدة.</div>
+          <div class="role-item">• <b>بوكس تو بوكس (Box-to-Box):</b> محرك الفريق الأهم، يغطي الملعب طولاً وعرضاً دفاعياً وهجومياً بلا توقف طوال الـ 90 دقيقة.</div>
+          <div class="role-item">• <b>محور الارتكاز (Anchor Man):</b> صخرة صلبة أمام المدافعين، لا يتقدم للهجوم إطلاقاً ويبقى لتأمين العمق وقطع الكرات المرتدة.</div>
+          <div class="role-item">• <b>صانع اللعب العميق (Orchestrator):</b> منظم إيقاع اللعب، يستلم الكرة بهدوء تام ويوزع التمريرات الطويلة والقصيرة لبناء الهجمات.</div>
+          <div class="role-item">• <b>المحطم / قاطع الكرات (Destroyer Mid):</b> لاعب وسط شرس جداً في الضغط العنيف وافتكاك الكرات من منتصف ملعب الخصم.</div>
+        </div>
+
+        <!-- 3. DEFENDERS & GOALKEEPERS -->
+        <div class="role-category-box">
+          <div class="role-cat-header">🛡️ ثالثاً: أساليب المدافعين والحراس (Defenders & GK)</div>
+          <div class="role-item">• <b>بناء لعب (Build-up):</b> قلب دفاع متزن وهادئ، يغطي المساحات بدقة ولا يندفع أبداً خلف المهاجمين.</div>
+          <div class="role-item">• <b>المحطم الدفاعي (Destroyer Def):</b> مدافع صلب في الالتحامات الفردية والتدخلات البدنية القوية لتعطيل خطورة الهدافين.</div>
+          <div class="role-item">• <b>ظهير هجومي / مدافع (Offensive / Defensive Full-back):</b> الأول يصنع الكثافة الهجومية والعرضيات، والثاني يلتزم بالخط الخلفي لتأمين الأجنحة تماماً.</div>
+          <div class="role-item">• <b>حارس هجومي / دفاعي (Offensive / Defensive GK):</b> الحارس الهجومي يخرج لتغطية الكرات الطويلة، بينما يلتزم الحارس الدفاعي بحراسة خط العرين والانعكاسات.</div>
         </div>
       </div>
 
-      <!-- TAB 4: ENHANCED REALISTIC ANIMATION SECTION -->
+      <!-- TAB 4: ANIMATION SECTION -->
       <div id="coach-tab-animation" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime);">
           <div class="tactics-guide-title">🎬 قسم الـ Animation الاحترافي والواقعي لـ eFootball Mobile</div>
           <div class="tactics-guide-desc" style="margin-bottom:12px;">تحركات تكتيكية حية ومحاكاة دقيقة لانسيابية اللاعبين على الميدان الافتراضي:</div>
 
-          <!-- ANIMATION SUB-BUTTONS -->
           <div class="anim-sub-selector">
             <button class="anim-sel-btn active" onclick="switchAnimView('4222')">خطة 4-2-2-2 الواقعية ⚽</button>
             <button class="anim-sel-btn" onclick="switchAnimView('defense')">محاكاة الدفاع المتقدم 🛡️</button>
@@ -629,7 +665,6 @@
             <button class="anim-sel-btn" onclick="switchAnimView('role')">التمركز والأسلوب المثالي 👤</button>
           </div>
 
-          <!-- 1. FORMATION 4-2-2-2 ANIMATION -->
           <div id="anim-box-4222" class="anim-canvas-box active">
             <div class="pitch-grass-lines"></div>
             <div class="pitch-center-circle"></div>
@@ -650,7 +685,6 @@
             <div class="player-node f4222-cf2">CF</div>
           </div>
 
-          <!-- 2. DEFENSE ANIMATION -->
           <div id="anim-box-defense" class="anim-canvas-box">
             <div class="pitch-grass-lines"></div>
             <div class="def-line-real"></div>
@@ -663,7 +697,6 @@
             <div class="player-node d-dmf" style="background:linear-gradient(135deg,var(--lime),#44aa00); color:#000;">DMF</div>
           </div>
 
-          <!-- 3. ATTACK ANIMATION -->
           <div id="anim-box-attack" class="anim-canvas-box">
             <div class="pitch-grass-lines"></div>
             <div class="ball-anim ball-att-real"></div>
@@ -674,7 +707,6 @@
             <div class="player-node att-cf">CF</div>
           </div>
 
-          <!-- 4. CORRECT PLAYER ROLE ANIMATION -->
           <div id="anim-box-role" class="anim-canvas-box">
             <div class="pitch-grass-lines"></div>
             <div class="pitch-center-circle"></div>
@@ -879,7 +911,7 @@ function formatCoachMessage(text){
   return escaped.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
 }
 
-// SQUAD VISION UPLOAD WITH 5 GOLDEN TIPS
+// SQUAD VISION UPLOAD (UPDATED: PRAISE + DEFENSE STYLES + 7 TIPS + UPGRADE WARNING)
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -898,25 +930,25 @@ function triggerComprehensiveSquadAnalysis(){
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   const loadingId = 'loading_' + Date.now();
-  chatMessages.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="chat-msg ai">🔍 المدرب الذكي يفحص تشكيلتك بدقة خارقة... <span class="typing-dots"><span></span><span></span><span></span></span></div>`);
+  chatMessages.insertAdjacentHTML('beforeend', `<div id="${loadingId}" class="chat-msg ai">🔍 المدرب الذكي يحلل تشكيلتك ويبدع في قراءتها... <span class="typing-dots"><span></span><span></span><span></span></span></div>`);
   chatMessages.scrollTop = chatMessages.scrollHeight;
 
   setTimeout(() => {
     document.getElementById(loadingId).remove();
-    const reply = `يا أهلاً بك يا بطل كابتن ماكس! 🔥 ما شاء الله، تشكيلة مرعبة ومتوازنة بشكل ممتاز تدل على خبرتك العالية.\n\nإليك **5 نصائح ذهبية** لتطوير أداء فريقك أكثر:\n\n1. **الدفاع:** احرص على استخدام مدافعين بخاصية (Build-up) لتفادي الاندفاع العشوائي خلف المهاجمين.\n2. **الوسط:** اترك محور الارتكاز (Anchor Man) مستقراً في مكانه ولا تخرجه للأطراف لغلق المساحات.\n3. **الهجوم:** استغل سرعة انطلاقات (Goal Poacher) خلف مصيدة التسلل فور قطع الكرة.\n4. **التحكم:** اعتمد بشكل أساسي على زر (Match-Up) في الدفاع ولا تضغط زر الضغط العشوائي أبداً.\n5. **التناغم:** تأكد من مطابقة أسلوب لعب المدرب مع قدرات وتناغم اللاعبين لضمان أعلى أداء بدني.`;
+    const reply = `يا أهلاً بك يا بطل كابتن ماكس! 🔥\n\n🏆 **مدح التشكيلة:** ما شاء الله تبارك الرحمن، تشكيلة ممتازة جداً ومرعبة وتدل على فكر تكتيكي وعين فاحصة في اختيار اللاعبين وتوزيعهم بشكل متوازن!\n\n🛡️ **نصائح الدفاع والأساليب الصحيحة:**\n• استخدم مدافعين بخاصية (Build-up) لضمان عدم الاندفاع، مع محور إرتكاز (Anchor Man) لغلق العمق.\n• اعتمد على زر (Match-Up) بحرفية لتقليل سرعة الخصم دون تدخل عشوائي.\n\n📋 **7 نصائح أساسية لتطوير تشكيلتك:**\n1. وازن بين الأظهير بحيث لا يتقدم الظهيران معاً في نفس الهجمة المرتدة.\n2. استغل سرعة انطلاقات (Goal Poacher) خلف خط التسلل.\n3. راقب صانع ألعاب الخصم (AMF) يدوياً بقطع خط التمرير.\n4. فعّل التعليمات الدفاعية (Defensive) على الأظهير لحماية الأطراف.\n5. تجنب نهائياً الخروج بقلب الدفاع (CB) لمطاردة الخصم خارج منطقة الجزاء.\n6. حافظ على استقرار الارتكاز في وسط الملعب لقطع كرات (Through Pass).\n7. تأكد من توافق أسلوب المدرب مع لاعبيك لرفع الـ Team Playstyle فوق 100.\n\n⚠️ **تنبيه هام جداً:**\nتشكيلتك رائعة حالياً، ولكن **تحتاج إلى تطوير اللاعبين وتدريبهم بالكامل، بالإضافة إلى إضافة لاعبين أقوياء جدد (Epic/Showtime) في المستقبل القريب** لمجابهة المنافسين في الأقسام العليا!`;
     
     chatMessages.insertAdjacentHTML('beforeend', `<div class="chat-msg ai">${formatCoachMessage(reply)}</div>`);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    showToast('تم تحليل تشكيلتك وإعطاؤك النصائح الذهبية!');
+    showToast('تم فحص التشكيلة وتقديم النصائح الكاملة بنجاح!');
   }, 1600);
 }
 
 function getCoachReply(userText){
   const q = userText.toLowerCase();
   if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع')){
-    return `🛡️ **دليل الدفاع:** راجع قسم (Animation) الجديد لمشاهدة محاكاة حائط الصد والدفاع الواقعي وتطبيقها في مبارياتك!`;
+    return `🛡️ **دليل الدفاع:** استخدم مدافعين Build-up وحافظ على تمركزهم، واستخدم (Match-Up) لغلق الزوايا تماماً!`;
   }
-  return `أنا معك يا كابتن! انتقل لتبويب (Animation) أو ارفع صورة تشكيلتك للحصول على تحليل وتوجيهات فورية.`;
+  return `أنا معك يا كابتن! ارفع صورة تشكيلتك أو اختر من المواضيع السريعة للحصول على إجابة تحليلية فورية.`;
 }
 
 function sendAIChatMessage(prefillText){
