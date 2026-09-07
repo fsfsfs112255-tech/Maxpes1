@@ -440,18 +440,80 @@
     font-weight: 700;
   }
 
-  /* GIVEAWAY TIMER */
+  /* GIVEAWAY LAB STYLING */
+  .giveaway-section-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: border-color 0.3s ease;
+  }
+  .giveaway-section-box:hover {
+    border-color: rgba(182, 255, 62, 0.4);
+  }
+  .giveaway-title {
+    font-family: 'Tajawal';
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--lime);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 10px rgba(182,255,62,0.3);
+  }
+  .giveaway-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
   .timer-display{
-    font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
-    background:var(--bg-elev);border:2px solid var(--border);border-radius:18px;padding:20px;
-    color:var(--lime);letter-spacing:2px;margin-bottom:16px;backdrop-filter: blur(14px);
+    font-family:'Tajawal', sans-serif;font-weight:900;font-size:38px;text-align:center;
+    background:var(--bg-elev);border:2px solid var(--border);border-radius:14px;padding:14px;
+    color:var(--lime);letter-spacing:2px;margin-bottom:12px;backdrop-filter: blur(14px);
   }
   .timer-display.running{
-    border-color:var(--lime);box-shadow: 0 0 35px rgba(182,255,62,0.35);animation: pulseTimer 1.2s infinite alternate;
+    border-color:var(--lime);box-shadow: 0 0 25px rgba(182,255,62,0.35);animation: pulseTimer 1.2s infinite alternate;
   }
   @keyframes pulseTimer{ 0% {transform:scale(1);} 100% {transform:scale(1.02);} }
-  .giveaway-rules{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:14px;background:rgba(255,176,32,0.08);border:1px solid rgba(255,176,32,0.25);padding:12px;border-radius:14px;}
-  .cooldown-box{background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.3);color:#FF8FA3;padding:12px;border-radius:14px;font-size:13px;text-align:center;font-weight:700;margin-bottom:14px;display:none;}
+  
+  /* Wheel Styles */
+  .wheel-container{position:relative;width:200px;height:200px;margin:15px auto;border-radius:50%;border:4px solid var(--lime);box-shadow:0 0 25px rgba(182,255,62,0.4);overflow:hidden;background:#12161F;}
+  .wheel-inner{width:100%;height:100%;border-radius:50%;position:relative;transition:transform 4s cubic-bezier(0.15, 0.85, 0.15, 1);}
+  .wheel-slice{position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0% 100%;display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:10px;color:#fff;padding-left:15px;padding-bottom:15px;}
+  .slice-1{transform:rotate(0deg) skewY(-30deg);background:rgba(62,139,255,0.35);}
+  .slice-2{transform:rotate(90deg) skewY(-30deg);background:rgba(182,255,62,0.35);color:#0A0D12;}
+  .slice-3{transform:rotate(180deg) skewY(-30deg);background:rgba(155,107,255,0.35);}
+  .slice-4{transform:rotate(270deg) skewY(-30deg);background:rgba(255,176,32,0.35);color:#0A0D12;}
+  .wheel-pointer{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid var(--lime);z-index:10;filter:drop-shadow(0 0 6px var(--lime));}
+
+  /* Cups Styles */
+  .cups-row{display:flex;justify-content:space-around;gap:8px;margin:15px 0;}
+  .cup-item{
+    flex:1;background:var(--bg-elev);border:2px solid var(--border);border-radius:14px;padding:14px 8px;
+    text-align:center;cursor:pointer;transition:all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter:blur(10px);position:relative;overflow:hidden;
+  }
+  .cup-item:hover{border-color:var(--blue);box-shadow:0 0 15px rgba(62,139,255,0.3);transform:translateY(-3px);}
+  .cup-icon{font-size:28px;margin-bottom:6px;}
+  .cup-name{font-family:'Tajawal';font-weight:800;font-size:11.5px;color:var(--text);}
+  .cup-item.shuffling{animation: cupFastShuffle 0.25s infinite alternate ease-in-out;}
+  @keyframes cupFastShuffle {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-8px) scale(1.05); border-color: var(--lime); box-shadow: 0 0 20px var(--lime); }
+  }
+
+  /* Scratch Card Styles */
+  .scratch-box{position:relative;width:100%;height:90px;background:var(--bg-elev);border:2px dashed var(--border);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:10px;}
+  .scratch-prize{font-family:'Tajawal';font-weight:900;font-size:15px;color:var(--lime);text-shadow:0 0 12px rgba(182,255,62,0.5);}
+  .scratch-cover{position:absolute;inset:0;background:linear-gradient(135deg, #2b3648, #161c25);display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:13px;color:var(--text-dim);border-radius:10px;transition:opacity 0.5s ease;border:1px solid rgba(255,255,255,0.15);}
+  .scratch-cover.scratched{opacity:0;pointer-events:none;}
+
+  .cooldown-box{background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.3);color:#FF8FA3;padding:10px;border-radius:12px;font-size:12px;text-align:center;font-weight:700;margin-bottom:10px;display:none;}
 
   .toast{
     position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(14px);
@@ -548,7 +610,7 @@
         <button class="coach-subtab" onclick="switchCoachTab('animation')">🎬 Animation</button>
       </div>
 
-      <!-- TAB 1: CHAT & SQUAD VISION (UPDATED WITH 7 TIPS & UPGRADE WARNING) -->
+      <!-- TAB 1: CHAT & SQUAD VISION -->
       <div id="coach-tab-chat" class="coach-tab-content">
         <div class="vision-box">
           <input type="file" id="squadImageInput" accept="image/*" onchange="handleSquadImageUpload(event)">
@@ -612,14 +674,13 @@
         </div>
       </div>
 
-      <!-- TAB 3: PLAYER ROLES & STYLES (REDESIGNED FOR ULTIMATE ORGANIZATION & BEAUTY) -->
+      <!-- TAB 3: PLAYER ROLES & STYLES -->
       <div id="coach-tab-players" class="coach-tab-content" style="display:none;">
         <div class="tactics-guide-card" style="border-color:var(--lime); margin-bottom:14px;">
           <div class="tactics-guide-title">🌟 دليل أساليب اللاعبين الاحترافي في eFootball</div>
           <div class="tactics-guide-desc">استكشف جميع أساليب اللعب الخاصة باللاعبين مصنفة ومنظمة بدقة لتوظيف كل لاعب في مكانه المثالي واستخراج أقصى طاقاته.</div>
         </div>
 
-        <!-- 1. FORWARDS -->
         <div class="role-category-box">
           <div class="role-cat-header">⚽ أولاً: أساليب المهاجمين (Forwards)</div>
           <div class="role-item">• <b>مهاجم صريح (Goal Poacher):</b> يتحرك بذكاء خارق على خط التسلل وينطلق كالسهم خلف المدافعين لاستلام البين پاسات القاتلة.</div>
@@ -632,7 +693,6 @@
           <div class="role-item">• <b>النشيط المتقدم (Hole Player):</b> الأفضل كـ AMF أو SS، ينطلق كقاطرة من الخلف لملء صندوق الخصم ومباغتة الحارس.</div>
         </div>
 
-        <!-- 2. MIDFIELDERS -->
         <div class="role-category-box">
           <div class="role-cat-header">⚙️ ثانياً: أساليب خط الوسط (Midfielders)</div>
           <div class="role-item">• <b>صانع اللعب الكلاسيكي (Classic No. 10):</b> يتميز ببطء تكتيكي ودقة تمرير ساحرة، يقتصد في مجهوده البدني بدون كرة لضرب الدفاع بتمريرة واحدة.</div>
@@ -642,7 +702,6 @@
           <div class="role-item">• <b>المحطم / قاطع الكرات (Destroyer Mid):</b> لاعب وسط شرس جداً في الضغط العنيف وافتكاك الكرات من منتصف ملعب الخصم.</div>
         </div>
 
-        <!-- 3. DEFENDERS & GOALKEEPERS -->
         <div class="role-category-box">
           <div class="role-cat-header">🛡️ ثالثاً: أساليب المدافعين والحراس (Defenders & GK)</div>
           <div class="role-item">• <b>بناء لعب (Build-up):</b> قلب دفاع متزن وهادئ، يغطي المساحات بدقة ولا يندفع أبداً خلف المهاجمين.</div>
@@ -722,29 +781,80 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: GIVEAWAY TIMER ================= -->
+  <!-- ================= PAGE 3: GIVEAWAY LAB (UPDATED WITH 4 SECTIONS) ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
-      <h2 class="section-title display">🎁 مختبر الجوائز — تحدي العداد</h2>
-      <p class="section-desc">أوقف العداد عند **10.00 ثانية** بالضبط لتربح الجائزة الفورية!</p>
+      <h2 class="section-title display">🎁 مختبر الجوائز الاحترافي</h2>
+      <p class="section-desc">اختبر حظك وتحدياتك اليومية (مسموح بالمحاولة مرة كل 24 ساعة لكل قسم)!</p>
 
-      <div class="panel">
-        <div class="giveaway-rules">
-          📌 <b>قوانين التحدي:</b>
-          <br>1. العداد يبدأ من 0.00 ويصعد إلى 20.00 ثانية.
-          <br>2. يجب إيقاف العداد عند <b>10.00 ثانية</b> تماماً.
-          <br>3. مسموح بـ <b>محاولة واحدة كل 24 ساعة</b> فقط!
-        </div>
-
-        <div id="cooldownBox" class="cooldown-box"></div>
+      <!-- 1. COUNTER CHALLENGE -->
+      <div class="giveaway-section-box">
+        <div class="giveaway-title">⚡ 1. تحدي العداد (Counter Challenge)</div>
+        <div class="giveaway-desc">أوقف العداد عند الثانية <b>10.00</b> بالضبط لتربح جائزة (لويس سواريز).</div>
+        <div id="cooldownCounter" class="cooldown-box"></div>
         <div id="timerDisplay" class="timer-display">00.00</div>
-
         <div style="display:flex;gap:10px">
           <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد ⚡</button>
           <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
         </div>
-        <div id="giveawayResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+        <div id="giveawayResult" style="margin-top:10px;text-align:center;font-weight:700;font-size:13px;display:none"></div>
       </div>
+
+      <!-- 2. WHEEL OF FORTUNE -->
+      <div class="giveaway-section-box">
+        <div class="giveaway-title">🎡 2. عجلة الحظ (Wheel of Fortune)</div>
+        <div class="giveaway-desc">عجلة مقسمة لأربعة أقسام: (لويس سواريز - إيكر كاسياس - 100 Coins - حظ أوفر).</div>
+        <div id="cooldownWheel" class="cooldown-box"></div>
+        
+        <div class="wheel-container">
+          <div class="wheel-pointer"></div>
+          <div id="wheelInner" class="wheel-inner">
+            <div class="wheel-slice slice-1">لويس سواريز</div>
+            <div class="wheel-slice slice-2">إيكر كاسياس</div>
+            <div class="wheel-slice slice-3">100 Coins</div>
+            <div class="wheel-slice slice-4">حظ أوفر</div>
+          </div>
+        </div>
+        <button id="wheelBtn" class="btn btn-primary" onclick="spinWheel()">تدوير العجلة 🎡</button>
+        <div id="wheelResult" style="margin-top:10px;text-align:center;font-weight:700;font-size:13px;display:none"></div>
+      </div>
+
+      <!-- 3. THREE CUPS -->
+      <div class="giveaway-section-box">
+        <div class="giveaway-title">🏆 3. لعبة الأكواب الثلاثة (Three Cups)</div>
+        <div class="giveaway-desc">اختر أحد الأكواب المكتوب عليها الجوائز (لويس سواريز - إيكر كاسياس - حظ أوفر).</div>
+        <div id="cooldownCups" class="cooldown-box"></div>
+
+        <div class="cups-row" id="cupsRow">
+          <div class="cup-item" onclick="chooseCup(0)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">لويس سواريز</div>
+          </div>
+          <div class="cup-item" onclick="chooseCup(1)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">إيكر كاسياس</div>
+          </div>
+          <div class="cup-item" onclick="chooseCup(2)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">حظ أوفر</div>
+          </div>
+        </div>
+        <div id="cupsResult" style="margin-top:10px;text-align:center;font-weight:700;font-size:13px;display:none"></div>
+      </div>
+
+      <!-- 4. SCRATCH CARD -->
+      <div class="giveaway-section-box">
+        <div class="giveaway-title">💳 4. بطاقة الحظ المخدوشة (Scratch Card)</div>
+        <div class="giveaway-desc">الجوائز المتوفرة: لويس سواريز | إيكر كاسياس | حظ أوفر.<br>اسحب أو اضغط لخدش البطاقة واكتشاف الجائزة!</div>
+        <div id="cooldownScratch" class="cooldown-box"></div>
+
+        <div class="scratch-box" onclick="scratchCardNow()">
+          <div id="scratchPrizeText" class="scratch-prize">حظ أوفر ❌</div>
+          <div id="scratchCoverLayer" class="scratch-cover">اسحب لخدش البطاقة 🪙</div>
+        </div>
+        <div id="scratchResult" style="margin-top:10px;text-align:center;font-weight:700;font-size:13px;display:none"></div>
+      </div>
+
     </section>
   </div>
 
@@ -911,7 +1021,7 @@ function formatCoachMessage(text){
   return escaped.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
 }
 
-// SQUAD VISION UPLOAD (UPDATED: PRAISE + DEFENSE STYLES + 7 TIPS + UPGRADE WARNING)
+// SQUAD VISION UPLOAD
 function handleSquadImageUpload(event){
   const file = event.target.files[0];
   if(!file) return;
@@ -944,10 +1054,6 @@ function triggerComprehensiveSquadAnalysis(){
 }
 
 function getCoachReply(userText){
-  const q = userText.toLowerCase();
-  if(q.includes('دفاع') || q.includes('أساليب') || q.includes('مدافع')){
-    return `🛡️ **دليل الدفاع:** استخدم مدافعين Build-up وحافظ على تمركزهم، واستخدم (Match-Up) لغلق الزوايا تماماً!`;
-  }
   return `أنا معك يا كابتن! ارفع صورة تشكيلتك أو اختر من المواضيع السريعة للحصول على إجابة تحليلية فورية.`;
 }
 
@@ -985,46 +1091,36 @@ document.getElementById('quickTopics').addEventListener('click', (e) => {
   sendAIChatMessage(chip.getAttribute('data-q'));
 });
 
-// GIVEAWAY TIMER
-const COOLDOWN_KEY = 'r2max_giveaway_last_time';
+// ================= GIVEAWAY LAB LOGIC (4 SECTIONS WITH 24H COOLDOWN) =================
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-let giveawayMemory = null;
 
-function getCooldownValue(){
-  try{ return localStorage.getItem(COOLDOWN_KEY); } catch(e){ return giveawayMemory; }
-}
-function setCooldownValue(v){
-  try{ localStorage.setItem(COOLDOWN_KEY, v); } catch(e){ giveawayMemory = v; }
-}
+// 1. Counter Challenge Logic
+const KEY_COUNTER = 'r2max_counter_time';
+let timerInterval = null, startTime = 0, isRunning = false;
 
-function checkGiveawayCooldown(){
-  const lastTime = getCooldownValue();
+function checkCounterCooldown(){
+  const lastTime = localStorage.getItem(KEY_COUNTER);
   const startBtn = document.getElementById('timerStartBtn');
-  const cooldownBox = document.getElementById('cooldownBox');
+  const cooldownBox = document.getElementById('cooldownCounter');
   if(!lastTime) return;
   const elapsed = Date.now() - parseInt(lastTime, 10);
   if(elapsed < TWENTY_FOUR_HOURS){
-    const remaining = TWENTY_FOUR_HOURS - elapsed;
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000*60*60));
+    const m = Math.floor((rem % (1000*60*60)) / (1000*60));
     startBtn.disabled = true;
     cooldownBox.style.display = 'block';
-    cooldownBox.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${hours} ساعة و ${minutes} دقيقة</b>`;
+    cooldownBox.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${h} س و ${m} د</b>`;
   } else {
     startBtn.disabled = false;
     cooldownBox.style.display = 'none';
   }
 }
-checkGiveawayCooldown();
-
-let timerInterval = null;
-let startTime = 0;
-let isRunning = false;
 
 function startGiveawayTimer(){
-  const lastTime = getCooldownValue();
+  const lastTime = localStorage.getItem(KEY_COUNTER);
   if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
-    showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
+    showToast('محاولتك اليومية في العداد مستخدمة بالفعل.');
     return;
   }
   if(isRunning) return;
@@ -1039,7 +1135,7 @@ function startGiveawayTimer(){
   function updateTimer(){
     if(!isRunning) return;
     const elapsed = (performance.now() - startTime) / 1000;
-    if(elapsed >= 20.00){ stopGiveawayTimer(true); return; }
+    if(elapsed >= 15.00){ stopGiveawayTimer(true); return; }
     displayEl.textContent = elapsed.toFixed(2);
     timerInterval = requestAnimationFrame(updateTimer);
   }
@@ -1052,24 +1148,151 @@ function stopGiveawayTimer(auto=false){
   cancelAnimationFrame(timerInterval);
   document.getElementById('timerDisplay').classList.remove('running');
   document.getElementById('timerStopBtn').disabled = true;
-  setCooldownValue(Date.now().toString());
-  checkGiveawayCooldown();
+  localStorage.setItem(KEY_COUNTER, Date.now().toString());
+  checkCounterCooldown();
 
   const elapsedStr = document.getElementById('timerDisplay').textContent;
-  const elapsedNum = parseFloat(elapsedStr);
   const resultDiv = document.getElementById('giveawayResult');
   resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. حظ أوفر، تحتاج إلى دقة تامة وتكرار المحاولة غداً!`;
+  resultDiv.style.color = 'var(--danger)';
+}
 
-  const isExactTarget = (elapsedNum >= 9.98 && elapsedNum <= 10.02);
-  if(!auto && isExactTarget && Math.random() < 0.01){
-    resultDiv.innerHTML = `🎉 مبروووك يا بطل! أوقفْتَه عند ${elapsedStr} ثانية وفزت بجائزتك!`;
-    resultDiv.style.color = 'var(--lime)';
-    showToast('مبروك الفوز بالجائزة!');
+// 2. Wheel of Fortune Logic
+const KEY_WHEEL = 'r2max_wheel_time';
+
+function checkWheelCooldown(){
+  const lastTime = localStorage.getItem(KEY_WHEEL);
+  const wheelBtn = document.getElementById('wheelBtn');
+  const cooldownBox = document.getElementById('cooldownWheel');
+  if(!lastTime) return;
+  const elapsed = Date.now() - parseInt(lastTime, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000*60*60));
+    const m = Math.floor((rem % (1000*60*60)) / (1000*60));
+    wheelBtn.disabled = true;
+    cooldownBox.style.display = 'block';
+    cooldownBox.innerHTML = `⏳ محاولتك بالعجلة مستخدمة. متبقي: <b>${h} س و ${m} د</b>`;
   } else {
-    resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. استنفدت محاولتك اليومية، ننتظرك غداً!`;
-    resultDiv.style.color = 'var(--danger)';
+    wheelBtn.disabled = false;
+    cooldownBox.style.display = 'none';
   }
 }
+
+function spinWheel(){
+  const lastTime = localStorage.getItem(KEY_WHEEL);
+  if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
+    showToast('محاولتك اليومية في عجلة الحظ مستخدمة.');
+    return;
+  }
+  const wheelInner = document.getElementById('wheelInner');
+  const wheelBtn = document.getElementById('wheelBtn');
+  const resultDiv = document.getElementById('wheelResult');
+  wheelBtn.disabled = true;
+  resultDiv.style.display = 'none';
+
+  // Always land on slice-4 (حظ أوفر -> 315 degrees approx)
+  const randomSpins = 360 * 5; 
+  const targetDegree = randomSpins + 315; 
+  wheelInner.style.transform = `rotate(${targetDegree}deg)`;
+
+  setTimeout(() => {
+    localStorage.setItem(KEY_WHEEL, Date.now().toString());
+    checkWheelCooldown();
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `❌ استقرت العجلة على: <b>حظ أوفر!</b> تعوضها في المرات القادمة.`;
+    resultDiv.style.color = 'var(--danger)';
+  }, 4000);
+}
+
+// 3. Three Cups Logic
+const KEY_CUPS = 'r2max_cups_time';
+
+function checkCupsCooldown(){
+  const lastTime = localStorage.getItem(KEY_CUPS);
+  const cooldownBox = document.getElementById('cooldownCups');
+  if(!lastTime) return;
+  const elapsed = Date.now() - parseInt(lastTime, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000*60*60));
+    const m = Math.floor((rem % (1000*60*60)) / (1000*60));
+    cooldownBox.style.display = 'block';
+    cooldownBox.innerHTML = `⏳ محاولتك بالأكواب مستخدمة. متبقي: <b>${h} س و ${m} د</b>`;
+  } else {
+    cooldownBox.style.display = 'none';
+  }
+}
+
+function chooseCup(index){
+  const lastTime = localStorage.getItem(KEY_CUPS);
+  if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
+    showToast('محاولتك اليومية في الأكواب مستخدمة.');
+    return;
+  }
+  const cups = document.querySelectorAll('.cup-item');
+  const resultDiv = document.getElementById('cupsResult');
+  
+  cups.forEach(c => c.classList.add('shuffling'));
+  resultDiv.style.display = 'none';
+
+  setTimeout(() => {
+    cups.forEach(c => c.classList.remove('shuffling'));
+    localStorage.setItem(KEY_CUPS, Date.now().toString());
+    checkCupsCooldown();
+
+    resultDiv.style.display = 'block';
+    resultDiv.innerHTML = `❌ اخترت الكوب الصحيح ولكن النتيجة النهائية هي: <b>حظ أوفر!</b>`;
+    resultDiv.style.color = 'var(--danger)';
+    showToast('حظ أوفر في اختيار الكوب!');
+  }, 1200);
+}
+
+// 4. Scratch Card Logic
+const KEY_SCRATCH = 'r2max_scratch_time';
+
+function checkScratchCooldown(){
+  const lastTime = localStorage.getItem(KEY_SCRATCH);
+  const cooldownBox = document.getElementById('cooldownScratch');
+  if(!lastTime) return;
+  const elapsed = Date.now() - parseInt(lastTime, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000*60*60));
+    const m = Math.floor((rem % (1000*60*60)) / (1000*60));
+    cooldownBox.style.display = 'block';
+    cooldownBox.innerHTML = `⏳ محاولتك بالبطاقة المخدوشة مستخدمة. متبقي: <b>${h} س و ${m} د</b>`;
+  } else {
+    cooldownBox.style.display = 'none';
+  }
+}
+
+function scratchCardNow(){
+  const lastTime = localStorage.getItem(KEY_SCRATCH);
+  if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
+    showToast('محاولتك اليومية بالبطاقة مستخدمة.');
+    return;
+  }
+  const cover = document.getElementById('scratchCoverLayer');
+  if(cover.classList.contains('scratched')) return;
+
+  cover.classList.add('scratched');
+  localStorage.setItem(KEY_SCRATCH, Date.now().toString());
+  checkScratchCooldown();
+
+  const resultDiv = document.getElementById('scratchResult');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `❌ النتيجة تحت البطاقة: <b>حظ أوفر!</b>`;
+  resultDiv.style.color = 'var(--danger)';
+  showToast('تم خدش البطاقة بنجاح!');
+}
+
+// Initialize all giveaway cooldowns on load
+checkCounterCooldown();
+checkWheelCooldown();
+checkCupsCooldown();
+checkScratchCooldown();
 
 // DEVICE SCAN & STATS
 function getGpuInfo(){
@@ -1212,6 +1435,7 @@ async function cleanStorage(){
     showToast('تعذّر التنظيف.');
   }
 }
+
 loadStorageAndMemoryPanel();
 </script>
 </body>
