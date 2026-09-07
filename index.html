@@ -403,6 +403,7 @@
   .tactics-guide-title{font-family:'Tajawal';font-weight:800;font-size:15px;color:var(--lime);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
   .tactics-guide-desc{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
 
+  /* NEW STYLISH PLAYER ROLES STYLING */
   .role-category-box {
     background: rgba(18, 22, 31, 0.85);
     border: 1px solid rgba(62, 139, 255, 0.25);
@@ -439,91 +440,94 @@
     font-weight: 700;
   }
 
-  /* GIVEAWAY LAB SUB-TABS & STYLING */
-  .giveaway-subtabs {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    margin-bottom: 16px;
+  /* GIVEAWAY LAB STYLES (NEW UPGRADED SECTIONS) */
+  .gw-section-card {
     background: var(--bg-elev);
-    padding: 6px;
-    border-radius: 16px;
     border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
     backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: border-color 0.3s ease;
   }
-  .giveaway-subtab {
-    background: transparent;
-    border: none;
-    color: var(--text-dim);
+  .gw-section-card:hover {
+    border-color: rgba(182, 255, 62, 0.4);
+  }
+  .gw-title {
     font-family: 'Tajawal';
     font-weight: 800;
-    font-size: 12px;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.25s ease;
-  }
-  .giveaway-subtab.active {
-    background: var(--bg-card);
+    font-size: 15px;
     color: var(--lime);
-    border: 1px solid rgba(182,255,62,0.3);
-    box-shadow: 0 0 15px rgba(182,255,62,0.2);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 10px rgba(182,255,62,0.3);
   }
-  .giveaway-section-box { display: none; }
-  .giveaway-section-box.active { display: block; }
-
-  /* 1. Counter Challenge */
+  .gw-desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
   .timer-display{
-    font-family:'Tajawal', sans-serif;font-weight:900;font-size:48px;text-align:center;
-    background:var(--bg-elev);border:2px solid var(--border);border-radius:18px;padding:20px;
-    color:var(--lime);letter-spacing:2px;margin-bottom:16px;backdrop-filter: blur(14px);
+    font-family:'Tajawal', sans-serif;font-weight:900;font-size:38px;text-align:center;
+    background:var(--bg-card);border:2px solid var(--border);border-radius:14px;padding:14px;
+    color:var(--lime);letter-spacing:2px;margin-bottom:12px;backdrop-filter: blur(14px);
   }
   .timer-display.running{
-    border-color:var(--lime);box-shadow: 0 0 35px rgba(182,255,62,0.35);animation: pulseTimer 1.2s infinite alternate;
+    border-color:var(--lime);box-shadow: 0 0 25px rgba(182,255,62,0.35);animation: pulseTimer 1.2s infinite alternate;
   }
   @keyframes pulseTimer{ 0% {transform:scale(1);} 100% {transform:scale(1.02);} }
-
-  /* 2. Wheel of Fortune */
-  .wheel-container{text-align:center;position:relative;margin:15px auto;}
-  .wheel-outer{
-    width:220px;height:220px;margin:0 auto;border-radius:50%;position:relative;
-    border:6px solid var(--blue);background:var(--bg-elev);overflow:hidden;
-    box-shadow: 0 0 30px rgba(62,139,255,0.4);transition: transform 4s cubic-bezier(0.15, 0.9, 0.2, 1);
+  
+  /* WHEEL OF FORTUNE */
+  .wheel-container{position:relative;width:210px;height:210px;margin:10px auto 14px;}
+  .wheel{
+    width:100%;height:100%;border-radius:50%;border:4px solid var(--lime);
+    position:relative;overflow:hidden;transition:transform 4s cubic-bezier(0.15, 0.85, 0.25, 1);
+    box-shadow:0 0 30px rgba(182,255,62,0.3);
   }
-  .wheel-sector{
-    position:absolute;width:50%;height:50%;top:0;left:50%;transform-origin:0% 100%;
-    display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:11px;color:#fff;
-    padding-left:15px;box-sizing:border-box;
+  .wheel-slice{
+    position:absolute;width:50%;height:50%;top:0;right:0;transform-origin:bottom left;
+    display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:11px;
+    color:#fff;padding-left:15px;text-shadow:0 0 5px rgba(0,0,0,0.8);
   }
+  .slice-1{background:rgba(62,139,255,0.85);transform:rotate(0deg) skewY(-30deg);}
+  .slice-2{background:rgba(155,107,255,0.85);transform:rotate(90deg) skewY(-30deg);}
+  .slice-3{background:rgba(255,176,32,0.85);transform:rotate(180deg) skewY(-30deg);}
+  .slice-4{background:rgba(255,84,112,0.85);transform:rotate(270deg) skewY(-30deg);}
   .wheel-pointer{
-    position:absolute;top:-12px;left:50%;transform:translateX(-50%);width:0;height:0;
-    border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid var(--lime);
-    z-index:10;filter:drop-shadow(0 0 8px var(--lime));
+    position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+    width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid var(--lime);
+    filter:drop-shadow(0 0 8px var(--lime));z-index:10;
   }
 
-  /* 3. Three Cups */
-  .cups-grid{display:flex;gap:12px;justify-content:center;margin:20px 0;}
+  /* THREE CUPS */
+  .cups-row{display:flex;gap:10px;justify-content:center;margin-bottom:12px;perspective:1000px;}
   .cup-item{
-    flex:1;background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;
-    padding:20px 10px;text-align:center;cursor:pointer;font-size:32px;
-    transition: all 0.3s ease;backdrop-filter: blur(10px);
+    flex:1;background:var(--bg-card);border:1.5px solid var(--border);border-radius:14px;padding:14px 8px;
+    text-align:center;cursor:pointer;backdrop-filter:blur(10px);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .cup-item:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 0 20px rgba(62,139,255,0.3);}
-  .cup-name{font-family:'Tajawal';font-weight:800;font-size:12.5px;color:var(--text);margin-top:8px;}
-
-  /* 4. Scratch Card */
-  .scratch-wrap{position:relative;width:100%;height:120px;background:var(--bg-elev);border:2px solid var(--border);border-radius:16px;overflow:hidden;margin:15px 0;text-align:center;display:flex;align-items:center;justify-content:center;}
-  .scratch-prize{font-family:'Tajawal';font-weight:900;font-size:18px;color:var(--lime);text-shadow:0 0 12px rgba(182,255,62,0.4);}
-  .scratch-cover{
-    position:absolute;inset:0;background:linear-gradient(135deg, #3A4454, #232B38);
-    display:flex;align-items:center;justify-content:center;font-family:'Tajawal';font-weight:800;font-size:14px;color:var(--text-dim);
-    cursor:pointer;transition: opacity 0.5s ease;user-select:none;
+  .cup-item:hover{border-color:var(--blue);box-shadow:0 0 20px rgba(62,139,255,0.3);transform:translateY(-3px);}
+  .cup-item.shuffling{animation: cupShuffleAnim 0.4s ease-in-out infinite alternate;}
+  @keyframes cupShuffleAnim{
+    0%{transform:translateX(-8px) rotate(-3deg);}
+    100%{transform:translateX(8px) rotate(3deg);}
   }
-  .scratch-cover.scratched{opacity:0;pointer-events:none;}
+  .cup-icon{font-size:26px;margin-bottom:6px;}
+  .cup-name{font-family:'Tajawal';font-weight:800;font-size:12px;color:var(--text);}
 
-  .giveaway-rules{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:14px;background:rgba(255,176,32,0.08);border:1px solid rgba(255,176,32,0.25);padding:12px;border-radius:14px;}
-  .cooldown-box{background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.3);color:#FF8FA3;padding:12px;border-radius:14px;font-size:13px;text-align:center;font-weight:700;margin-bottom:14px;display:none;}
+  /* SCRATCH CARD */
+  .scratch-card-box{
+    position:relative;width:100%;height:65px;background:linear-gradient(135deg,#5C6577,#353C4A);
+    border-radius:12px;border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;overflow:hidden;user-select:none;transition:all 0.3s;
+  }
+  .scratch-card-box.scratched{background:rgba(255,84,112,0.15);border-color:var(--danger);}
+  .scratch-text{font-family:'Tajawal';font-weight:900;font-size:14px;color:#EAEEF3;text-shadow:0 0 10px rgba(0,0,0,0.5);}
+
+  .cooldown-box{background:rgba(255,84,112,0.08);border:1px solid rgba(255,84,112,0.3);color:#FF8FA3;padding:10px;border-radius:12px;font-size:12px;text-align:center;font-weight:700;margin-bottom:12px;display:none;}
 
   .toast{
     position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(14px);
@@ -791,100 +795,75 @@
     </section>
   </div>
 
-  <!-- ================= PAGE 3: GIVEAWAY LAB (UPDATED WITH 4 NEW SECTIONS) ================= -->
+  <!-- ================= PAGE 3: GIVEAWAY LAB (UPDATED WITH 4 SECTIONS) ================= -->
   <div id="page-giveaway" class="page-section">
     <section>
       <h2 class="section-title display">🎁 مختبر الجوائز الاحترافي</h2>
-      <p class="section-desc">اختر التحدي أو اللعبة وحاول الفوز بجوائز إي فوتبول المميزة!</p>
+      <p class="section-desc">أقسام التحديات والجوائز اليومية — جرب حظك الآن!</p>
 
-      <!-- GIVEAWAY SUB-TABS -->
-      <div class="giveaway-subtabs">
-        <button class="giveaway-subtab active" onclick="switchGiveawayTab('timer')">⏱️ تحدي العداد</button>
-        <button class="giveaway-subtab" onclick="switchGiveawayTab('wheel')">🎡 عجلة الحظ</button>
-        <button class="giveaway-subtab" onclick="switchGiveawayTab('cups')">🏆 الأكواب الثلاثة</button>
-        <button class="giveaway-subtab" onclick="switchGiveawayTab('scratch')">🎫 البطاقة المخدوشة</button>
+      <!-- 1. COUNTER CHALLENGE -->
+      <div class="gw-section-card">
+        <div class="gw-title">⏱️ 1. تحدي العداد (Counter Challenge)</div>
+        <div class="gw-desc">أوقف العداد عند الثانية العاشرة (<b>10.00 ثانية</b>) بدقة لتربح (لويس سواريز). متاح مرة كل 24 ساعة!</div>
+        <div id="counterCooldownBox" class="cooldown-box"></div>
+        <div id="timerDisplay" class="timer-display">00.00</div>
+        <div style="display:flex;gap:10px">
+          <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد ⚡</button>
+          <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
+        </div>
+        <div id="counterResult" style="margin-top:12px;text-align:center;font-weight:700;font-size:13.5px;display:none"></div>
       </div>
 
-      <!-- SECTION 1: COUNTER CHALLENGE -->
-      <div id="giveaway-box-timer" class="giveaway-section-box active">
-        <div class="panel">
-          <div class="giveaway-rules">
-            📌 <b>قوانين تحدي العداد:</b>
-            <br>1. العداد يبدأ من 0.00 ويصعد إلى 15.00 ثانية.
-            <br>2. أوقف العداد عند <b>10.00 ثانية</b> تماماً لتربح جائزة (لويس سواريز).
-            <br>3. مسموح بمحاولة واحدة يومياً.
+      <!-- 2. WHEEL OF FORTUNE -->
+      <div class="gw-section-card">
+        <div class="gw-title">🎡 2. عجلة الحظ (Wheel of Fortune)</div>
+        <div class="gw-desc">العجلة مقسمة لأربعة أقسام: (لويس سواريز، إيكر كاسياس، 100 Coins، حظ أوفر). متاح مرة كل 24 ساعة!</div>
+        <div id="wheelCooldownBox" class="cooldown-box"></div>
+        <div class="wheel-container">
+          <div class="wheel-pointer"></div>
+          <div id="fortuneWheel" class="wheel">
+            <div class="wheel-slice slice-1">سواريز</div>
+            <div class="wheel-slice slice-2">كاسياس</div>
+            <div class="wheel-slice slice-3">100C</div>
+            <div class="wheel-slice slice-4">حظ أوفر</div>
           </div>
-
-          <div id="cooldownBox" class="cooldown-box"></div>
-          <div id="timerDisplay" class="timer-display">00.00</div>
-
-          <div style="display:flex;gap:10px">
-            <button id="timerStartBtn" class="btn btn-primary" onclick="startGiveawayTimer()">ابدأ العداد ⚡</button>
-            <button id="timerStopBtn" class="btn btn-blue" onclick="stopGiveawayTimer()" disabled>إيقاف العداد 🛑</button>
-          </div>
-          <div id="giveawayResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
         </div>
+        <button id="wheelBtn" class="btn btn-primary" onclick="spinWheel()">تدوير العجلة 🎯</button>
+        <div id="wheelResult" style="margin-top:12px;text-align:center;font-weight:700;font-size:13.5px;display:none"></div>
       </div>
 
-      <!-- SECTION 2: WHEEL OF FORTUNE -->
-      <div id="giveaway-box-wheel" class="giveaway-section-box">
-        <div class="panel" style="text-align:center;">
-          <div class="giveaway-rules" style="text-align:right;">
-            📌 <b>عجلة الحظ:</b> أفرز حظك الآن واحصل على جوائز (لويس سواريز، إيكر كاسياس، 100 Coins، أو حظ أوفر).
+      <!-- 3. THREE CUPS -->
+      <div class="gw-section-card">
+        <div class="gw-title">🏆 3. لعبة الأكواب الثلاثة (Three Cups)</div>
+        <div class="gw-desc">اختر أحد الأكواب الاحترافية المكتوب عليها الجوائز. الأكواب تتحرك بحركة سريعة، والنتيجة دائماً حظ أوفر! متاح كل 24 ساعة.</div>
+        <div id="cupsCooldownBox" class="cooldown-box"></div>
+        <div class="cups-row" id="cupsRow">
+          <div class="cup-item" onclick="chooseCup(0)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">لويس سواريز</div>
           </div>
-
-          <div class="wheel-container">
-            <div class="wheel-pointer"></div>
-            <div id="wheelOuter" class="wheel-outer">
-              <div class="wheel-sector" style="background:#1B2430; transform: rotate(0deg) skewY(-45deg);">سواريز</div>
-              <div class="wheel-sector" style="background:#121822; transform: rotate(90deg) skewY(-45deg);">حظ أوفر</div>
-              <div class="wheel-sector" style="background:#1B2430; transform: rotate(180deg) skewY(-45deg);">كاسياس</div>
-              <div class="wheel-sector" style="background:#121822; transform: rotate(270deg) skewY(-45deg);">100 Coins</div>
-            </div>
+          <div class="cup-item" onclick="chooseCup(1)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">إيكر كاسياس</div>
           </div>
-
-          <button id="spinWheelBtn" class="btn btn-primary" style="margin-top:16px;" onclick="spinWheelFortune()">تدوير العجلة 🎡</button>
-          <div id="wheelResult" style="margin-top:14px;font-weight:700;font-size:14px;display:none"></div>
+          <div class="cup-item" onclick="chooseCup(2)">
+            <div class="cup-icon">🥤</div>
+            <div class="cup-name">حظ أوفر</div>
+          </div>
         </div>
+        <div id="cupsResult" style="margin-top:12px;text-align:center;font-weight:700;font-size:13.5px;display:none"></div>
       </div>
 
-      <!-- SECTION 3: THREE CUPS -->
-      <div id="giveaway-box-cups" class="giveaway-section-box">
-        <div class="panel">
-          <div class="giveaway-rules">
-            📌 <b>لعبة الأكواب الثلاثة:</b> اختر أحد الأكواب لاكتشاف الجائزة المخفية (لويس سواريز، إيكر كاسياس، أو حظ أوفر).
-          </div>
-
-          <div class="cups-grid">
-            <div class="cup-item" onclick="chooseCup(0)">
-              杯 <div>1</div>
-            </div>
-            <div class="cup-item" onclick="chooseCup(1)">
-              杯 <div>2</div>
-            </div>
-            <div class="cup-item" onclick="chooseCup(2)">
-              杯 <div>3</div>
-            </div>
-          </div>
-
-          <div id="cupResult" style="margin-top:14px;text-align:center;font-weight:700;font-size:14px;display:none"></div>
+      <!-- 4. SCRATCH CARD -->
+      <div class="gw-section-card">
+        <div class="gw-title">💳 4. بطاقات الحظ المخدوشة (Scratch Card)</div>
+        <div class="gw-desc">الجوائز المتاحة تحت البطاقة: (لويس سواريز - إيكر كاسياس - حظ أوفر). اضغط لخدش البطاقة واكتشاف الجائزة! متاح كل 24 ساعة.</div>
+        <div id="scratchCooldownBox" class="cooldown-box"></div>
+        <div style="font-size:11.5px;color:var(--lime);text-align:center;margin-bottom:8px;font-weight:700;">الجوائز: [لويس سواريز] · [إيكر كاسياس] · [حظ أوفر]</div>
+        <div id="scratchBox" class="scratch-card-box" onclick="scratchCardAction()">
+          <span id="scratchText" class="scratch-text">اضغط لخدش البطاقة 🪙</span>
         </div>
-      </div>
-
-      <!-- SECTION 4: SCRATCH CARD -->
-      <div id="giveaway-box-scratch" class="giveaway-section-box">
-        <div class="panel" style="text-align:center;">
-          <div class="giveaway-rules" style="text-align:right;">
-            📌 <b>البطاقة المخدوشة:</b> اسحب أو اضغط على الطبقة الرمادية لخدش البطاقة واكتشاف جائزتك الفورية!
-          </div>
-
-          <div class="scratch-wrap">
-            <div id="scratchPrizeText" class="scratch-prize">حظ أوفر في المرة القادمة 😢</div>
-            <div id="scratchCoverBox" class="scratch-cover" onclick="revealScratchCard()">انقر لخدش البطاقة 🎫</div>
-          </div>
-
-          <button class="btn btn-ghost" style="margin-top:10px; font-size:12px;" onclick="resetScratchCard()">إعادة محاولة بطاقة جديدة 🔄</button>
-        </div>
+        <div id="scratchResult" style="margin-top:12px;text-align:center;font-weight:700;font-size:13.5px;display:none"></div>
       </div>
 
     </section>
@@ -939,7 +918,7 @@
 
       <div id="storagePanel" class="panel">
         <div class="t-name" style="font-family:'Tajawal';font-weight:800;font-size:14px;margin-bottom:6px">Storage</div>
-        <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>التاح: <b id="stFree">--</b></span></div>
+        <div class="bar-legend"><span>مستخدمة: <b id="stUsed">جارِ القراءة...</b></span><span>المتاح: <b id="stFree">--</b></span></div>
         <div class="bar-track"><div id="stBar" class="bar-fill" style="width:0%;background:linear-gradient(90deg,var(--danger),#FF8FA3)"></div></div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
           <div>
@@ -1004,31 +983,6 @@ function switchCoachTab(tabKey){
   } else {
     subtabs[3].classList.add('active');
     document.getElementById('coach-tab-animation').style.display = 'block';
-  }
-}
-
-// GIVEAWAY SUB-TABS SWITCHER
-function switchGiveawayTab(tabKey){
-  const subtabs = document.querySelectorAll('.giveaway-subtab');
-  subtabs.forEach(t => t.classList.remove('active'));
-
-  document.getElementById('giveaway-box-timer').classList.remove('active');
-  document.getElementById('giveaway-box-wheel').classList.remove('active');
-  document.getElementById('giveaway-box-cups').classList.remove('active');
-  document.getElementById('giveaway-box-scratch').classList.remove('active');
-
-  if(tabKey === 'timer'){
-    subtabs[0].classList.add('active');
-    document.getElementById('giveaway-box-timer').classList.add('active');
-  } else if(tabKey === 'wheel'){
-    subtabs[1].classList.add('active');
-    document.getElementById('giveaway-box-wheel').classList.add('active');
-  } else if(tabKey === 'cups'){
-    subtabs[2].classList.add('active');
-    document.getElementById('giveaway-box-cups').classList.add('active');
-  } else if(tabKey === 'scratch'){
-    subtabs[3].classList.add('active');
-    document.getElementById('giveaway-box-scratch').classList.add('active');
   }
 }
 
@@ -1148,63 +1102,53 @@ document.getElementById('quickTopics').addEventListener('click', (e) => {
   sendAIChatMessage(chip.getAttribute('data-q'));
 });
 
-// GIVEAWAY MODULES LOGIC
-// 1. Counter Challenge
-const COOLDOWN_KEY = 'r2max_giveaway_last_time';
+// ================= GIVEAWAY LAB LOGIC (24H COOLDOWN & BAD LUCK FOR ALL) =================
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-let giveawayMemory = null;
 
-function getCooldownValue(){
-  try{ return localStorage.getItem(COOLDOWN_KEY); } catch(e){ return giveawayMemory; }
-}
-function setCooldownValue(v){
-  try{ localStorage.setItem(COOLDOWN_KEY, v); } catch(e){ giveawayMemory = v; }
-}
+// 1. Counter Challenge
+const COUNTER_KEY = 'r2max_counter_time';
+let timerInterval = null, startTime = 0, isRunning = false;
 
-function checkGiveawayCooldown(){
-  const lastTime = getCooldownValue();
-  const startBtn = document.getElementById('timerStartBtn');
-  const cooldownBox = document.getElementById('cooldownBox');
-  if(!lastTime) return;
-  const elapsed = Date.now() - parseInt(lastTime, 10);
+function checkCounterCooldown(){
+  const last = localStorage.getItem(COUNTER_KEY);
+  const btn = document.getElementById('timerStartBtn');
+  const box = document.getElementById('counterCooldownBox');
+  if(!last) return;
+  const elapsed = Date.now() - parseInt(last, 10);
   if(elapsed < TWENTY_FOUR_HOURS){
-    const remaining = TWENTY_FOUR_HOURS - elapsed;
-    const hours = Math.floor(remaining / (1000 * 60 * 60));
-    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    startBtn.disabled = true;
-    cooldownBox.style.display = 'block';
-    cooldownBox.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${hours} ساعة و ${minutes} دقيقة</b>`;
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000 * 60 * 60));
+    const m = Math.floor((rem % (1000 * 60 * 60)) / (1000 * 60));
+    btn.disabled = true;
+    box.style.display = 'block';
+    box.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${h} ساعة و ${m} دقيقة</b>`;
   } else {
-    startBtn.disabled = false;
-    cooldownBox.style.display = 'none';
+    btn.disabled = false;
+    box.style.display = 'none';
   }
 }
-checkGiveawayCooldown();
-
-let timerInterval = null;
-let startTime = 0;
-let isRunning = false;
+checkCounterCooldown();
 
 function startGiveawayTimer(){
-  const lastTime = getCooldownValue();
-  if(lastTime && (Date.now() - parseInt(lastTime, 10) < TWENTY_FOUR_HOURS)){
+  const last = localStorage.getItem(COUNTER_KEY);
+  if(last && (Date.now() - parseInt(last, 10) < TWENTY_FOUR_HOURS)){
     showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
     return;
   }
   if(isRunning) return;
   isRunning = true;
-  const displayEl = document.getElementById('timerDisplay');
-  displayEl.classList.add('running');
+  const disp = document.getElementById('timerDisplay');
+  disp.classList.add('running');
   document.getElementById('timerStartBtn').disabled = true;
   document.getElementById('timerStopBtn').disabled = false;
-  document.getElementById('giveawayResult').style.display = 'none';
+  document.getElementById('counterResult').style.display = 'none';
   startTime = performance.now();
   
   function updateTimer(){
     if(!isRunning) return;
-    const elapsed = (performance.now() - startTime) / 1000;
-    if(elapsed >= 15.00){ stopGiveawayTimer(true); return; }
-    displayEl.textContent = elapsed.toFixed(2);
+    const el = (performance.now() - startTime) / 1000;
+    if(el >= 15.00){ stopGiveawayTimer(true); return; }
+    disp.textContent = el.toFixed(2);
     timerInterval = requestAnimationFrame(updateTimer);
   }
   timerInterval = requestAnimationFrame(updateTimer);
@@ -1216,67 +1160,153 @@ function stopGiveawayTimer(auto=false){
   cancelAnimationFrame(timerInterval);
   document.getElementById('timerDisplay').classList.remove('running');
   document.getElementById('timerStopBtn').disabled = true;
-  setCooldownValue(Date.now().toString());
-  checkGiveawayCooldown();
+  localStorage.setItem(COUNTER_KEY, Date.now().toString());
+  checkCounterCooldown();
 
-  const elapsedStr = document.getElementById('timerDisplay').textContent;
-  const resultDiv = document.getElementById('giveawayResult');
-  resultDiv.style.display = 'block';
-
-  // Strict impossible programming logic for 10.00 exact match
-  resultDiv.innerHTML = `❌ وقفت العداد عند <b>${elapsedStr} ثانية</b>. فشلت في التوقف عند 10.00 تماماً! (حظ أوفر)`;
-  resultDiv.style.color = 'var(--danger)';
+  const timeStr = document.getElementById('timerDisplay').textContent;
+  const resDiv = document.getElementById('counterResult');
+  resDiv.style.display = 'block';
+  resDiv.innerHTML = `❌ وقفت العداد عند <b>${timeStr} ثانية</b>. حظ أوفر، لم تصل لـ 10.00 بدقة!`;
+  resDiv.style.color = 'var(--danger)';
+  showToast('انتهت المحاولة!');
 }
 
-// 2. Wheel of Fortune Logic (Always lands on "حظ أوفر")
-let wheelSpun = false;
-function spinWheelFortune(){
-  if(wheelSpun){
-    showToast('لقد استخدمت محاولة عجلة الحظ مسبقاً!');
+// 2. Wheel of Fortune
+const WHEEL_KEY = 'r2max_wheel_time';
+
+function checkWheelCooldown(){
+  const last = localStorage.getItem(WHEEL_KEY);
+  const btn = document.getElementById('wheelBtn');
+  const box = document.getElementById('wheelCooldownBox');
+  if(!last) return;
+  const elapsed = Date.now() - parseInt(last, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000 * 60 * 60));
+    const m = Math.floor((rem % (1000 * 60 * 60)) / (1000 * 60));
+    btn.disabled = true;
+    box.style.display = 'block';
+    box.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${h} ساعة و ${m} دقيقة</b>`;
+  } else {
+    btn.disabled = false;
+    box.style.display = 'none';
+  }
+}
+checkWheelCooldown();
+
+function spinWheel(){
+  const last = localStorage.getItem(WHEEL_KEY);
+  if(last && (Date.now() - parseInt(last, 10) < TWENTY_FOUR_HOURS)){
+    showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
     return;
   }
-  wheelSpun = true;
-  const wheel = document.getElementById('wheelOuter');
-  const resDiv = document.getElementById('wheelResult');
-  document.getElementById('spinWheelBtn').disabled = true;
+  const btn = document.getElementById('wheelBtn');
+  btn.disabled = true;
+  localStorage.setItem(WHEEL_KEY, Date.now().toString());
+  checkWheelCooldown();
 
-  // Sector 2 is "حظ أوفر" located at 90 degrees
-  const targetDeg = 360 * 5 + 90;
-  wheel.style.transform = `rotate(${targetDeg}deg)`;
+  const wheel = document.getElementById('fortuneWheel');
+  // Target rotation pointing exactly to "حظ أوفر" slice (Slice 4 is at 270deg, spin 1440 + 270 = 1710deg)
+  const randomSpin = 1440 + 270; 
+  wheel.style.transform = `rotate(${randomSpin}deg)`;
+
+  const resDiv = document.getElementById('wheelResult');
+  resDiv.style.display = 'none';
 
   setTimeout(() => {
     resDiv.style.display = 'block';
-    resDiv.innerHTML = `😢 للأسف! استقرت العجلة على: <b>حظ أوفر في المرة القادمة</b>`;
+    resDiv.innerHTML = `❌ استقرت العجلة على: <b>حظ أوفر!</b> ننتظرك غداً بمحاولة جديدة.`;
     resDiv.style.color = 'var(--danger)';
-    showToast('حظ أوفر!');
+    showToast('حظ أوفر في المرة القادمة!');
   }, 4000);
 }
 
-// 3. Three Cups Logic (Always yields "حظ أوفر")
-let cupChosen = false;
+// 3. Three Cups
+const CUPS_KEY = 'r2max_cups_time';
+
+function checkCupsCooldown(){
+  const last = localStorage.getItem(CUPS_KEY);
+  const box = document.getElementById('cupsCooldownBox');
+  if(!last) return;
+  const elapsed = Date.now() - parseInt(last, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000 * 60 * 60));
+    const m = Math.floor((rem % (1000 * 60 * 60)) / (1000 * 60));
+    box.style.display = 'block';
+    box.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${h} ساعة و ${m} دقيقة</b>`;
+  } else {
+    box.style.display = 'none';
+  }
+}
+checkCupsCooldown();
+
 function chooseCup(idx){
-  if(cupChosen){
-    showToast('لقد اخترت كوباً بالفعل!');
+  const last = localStorage.getItem(CUPS_KEY);
+  if(last && (Date.now() - parseInt(last, 10) < TW₂) {
+    // handled inside check
+  }
+  if(last && (Date.now() - parseInt(last, 10) < TWENTY_FOUR_HOURS)){
+    showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
     return;
   }
-  cupChosen = true;
-  const resDiv = document.getElementById('cupResult');
-  resDiv.style.display = 'block';
-  resDiv.innerHTML = `❌ الكوب رقم ${idx + 1} فارغ! النتيجة: <b>حظ أوفر في المرة القادمة</b>`;
-  resDiv.style.color = 'var(--danger)';
-  showToast('حظ أوفر!');
+  
+  const cups = document.querySelectorAll('.cup-item');
+  cups.forEach(c => c.classList.add('shuffling'));
+  showToast('جارِ خلط الأكواب بحركة سريعة...');
+
+  setTimeout(() => {
+    cups.forEach(c => c.classList.remove('shuffling'));
+    localStorage.setItem(CUPS_KEY, Date.now().toString());
+    checkCupsCooldown();
+
+    const resDiv = document.getElementById('cupsResult');
+    resDiv.style.display = 'block';
+    resDiv.innerHTML = `❌ اخترت الكوب رقم ${idx + 1} وكانت النتيجة: <b>حظ أوفر!</b>`;
+    resDiv.style.color = 'var(--danger)';
+    showToast('حظ أوفر!');
+  }, 1200);
 }
 
-// 4. Scratch Card Logic
-function revealScratchCard(){
-  const cover = document.getElementById('scratchCoverBox');
-  cover.classList.add('scratched');
-  showToast('تم خدش البطاقة بنجاح!');
+// 4. Scratch Card
+const SCRATCH_KEY = 'r2max_scratch_time';
+
+function checkScratchCooldown(){
+  const last = localStorage.getItem(SCRATCH_KEY);
+  const box = document.getElementById('scratchCooldownBox');
+  if(!last) return;
+  const elapsed = Date.now() - parseInt(last, 10);
+  if(elapsed < TWENTY_FOUR_HOURS){
+    const rem = TWENTY_FOUR_HOURS - elapsed;
+    const h = Math.floor(rem / (1000 * 60 * 60));
+    const m = Math.floor((rem % (1000 * 60 * 60)) / (1000 * 60));
+    box.style.display = 'block';
+    box.innerHTML = `⏳ محاولتك اليومية مستخدمة. متبقي: <b>${h} ساعة و ${m} دقيقة</b>`;
+  } else {
+    box.style.display = 'none';
+  }
 }
-function resetScratchCard(){
-  const cover = document.getElementById('scratchCoverBox');
-  cover.classList.remove('scratched');
-  showToast('تم استبدال البطاقة ببطاقة جديدة.');
+checkScratchCooldown();
+
+function scratchCardAction(){
+  const last = localStorage.getItem(SCRATCH_KEY);
+  if(last && (Date.now() - parseInt(last, 10) < TWENTY_FOUR_HOURS)){
+    showToast('عذراً، محاولتك اليومية مستخدمة بالفعل.');
+    return;
+  }
+  localStorage.setItem(SCRATCH_KEY, Date.now().toString());
+  checkScratchCooldown();
+
+  const cardBox = document.getElementById('scratchBox');
+  const scratchText = document.getElementById('scratchText');
+  cardBox.classList.add('scratched');
+  scratchText.textContent = '❌ النتيجة تحت البطاقة: حظ أوفر!';
+
+  const resDiv = document.getElementById('scratchResult');
+  resDiv.style.display = 'block';
+  resDiv.innerHTML = `❌ تم خدش البطاقة بنجاح والنتيجة هي: <b>حظ أوفر!</b>`;
+  resDiv.style.color = 'var(--danger)';
+  showToast('تم كشف البطاقة!');
 }
 
 // DEVICE SCAN & STATS
